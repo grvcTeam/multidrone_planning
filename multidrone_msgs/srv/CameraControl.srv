@@ -1,0 +1,84 @@
+# define a service to control camera functions
+
+# request
+
+#BMMCC SBUS controllable functions
+uint8 CONTROL_FUNCTION_RECORD  = 0
+uint8 CONTROL_FUNCTION_IRIS    = 1
+uint8 CONTROL_FUNCTION_FOCUS   = 2
+uint8 CONTROL_FUNCTION_AFOCUS  = 3
+uint8 CONTROL_FUNCTION_ZOOM    = 4
+uint8 CONTROL_FUNCTION_ISO     = 5
+uint8 CONTROL_FUNCTION_SHUTTER = 6
+uint8 CONTROL_FUNCTION_WHITE   = 7
+uint8 CONTROL_FUNCTION_AUDIO   = 8
+uint8 CONTROL_FUNCTION_FRAME   = 9
+uint8 CONTROL_FUNCTION_CODEC   =10
+uint8 CAMERA_RESET             =11
+
+#Change BMMCC push button like functions
+uint8 VALUE_INCREASE    = 129
+uint8 VALUE_DECREASE    = 127
+
+#Example of IRIS values for the tested len @ 14mm
+uint8 VALUE_IRIS_22     = 212
+uint8 VALUE_IRIS_21     = 208
+uint8 VALUE_IRIS_19     = 200
+uint8 VALUE_IRIS_17     = 192
+uint8 VALUE_IRIS_16     = 187
+uint8 VALUE_IRIS_15     = 180
+uint8 VALUE_IRIS_14     = 172
+uint8 VALUE_IRIS_12     = 162
+uint8 VALUE_IRIS_11     = 155
+uint8 VALUE_IRIS_10     = 147
+uint8 VALUE_IRIS_9_5    = 142
+uint8 VALUE_IRIS_8_7    = 128
+uint8 VALUE_IRIS_8      = 124
+uint8 VALUE_IRIS_7_3    = 117
+uint8 VALUE_IRIS_6_7    = 110
+uint8 VALUE_IRIS_6_2    = 102
+uint8 VALUE_IRIS_5_6    =  92
+uint8 VALUE_IRIS_5_2    =  87
+uint8 VALUE_IRIS_4_8    =  80
+uint8 VALUE_IRIS_4_5    =  72
+uint8 VALUE_IRIS_4      =  62
+uint8 VALUE_IRIS_3_7    =  57
+uint8 VALUE_IRIS_3_5    =  50
+
+#Microphone levels % values
+uint8 VALUE_AUDIO_100   = 212
+uint8 VALUE_AUDIO_90    = 196
+uint8 VALUE_AUDIO_80    = 180
+uint8 VALUE_AUDIO_70    = 163
+uint8 VALUE_AUDIO_60    = 146
+uint8 VALUE_AUDIO_50    = 128
+uint8 VALUE_AUDIO_40    = 112
+uint8 VALUE_AUDIO_30    =  96
+uint8 VALUE_AUDIO_20    =  78
+uint8 VALUE_AUDIO_10    =  62
+uint8 VALUE_AUDIO_0     =  44
+
+#Frames/s BMMCC values
+uint8 VALUE_FPS_60      = 205
+uint8 VALUE_FPS_59_94   = 185
+uint8 VALUE_FPS_50      = 165
+uint8 VALUE_FPS_30      = 135
+uint8 VALUE_FPS_29_97   = 128
+uint8 VALUE_FPS_25      =  95
+uint8 VALUE_FPS_24      =  80
+uint8 VALUE_FPS_23_98   =  50
+
+#Codecs BMMCC values
+uint8 VALUE_CODEC_ProResProxy   = 212
+uint8 VALUE_CODEC_ProResLT      = 180
+uint8 VALUE_CODEC_ProRes422     = 150
+uint8 VALUE_CODEC_ProResHQ      = 128
+uint8 VALUE_CODEC_RAW31         =  90
+uint8 VALUE_CODEC_RAW           =  60
+
+
+uint8 control_function
+uint8 value
+bool manual_ctrl
+---
+# reply

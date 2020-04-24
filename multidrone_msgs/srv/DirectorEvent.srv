@@ -1,0 +1,9 @@
+## Define a service for the dashboard to generate an event
+# request
+
+string event_id
+
+---
+# reply
+bool success
+string message

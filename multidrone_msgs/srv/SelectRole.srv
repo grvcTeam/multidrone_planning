@@ -1,0 +1,7 @@
+#request
+string mission_role
+SASRole[] sas_roles
+---
+#response
+bool success
+string message

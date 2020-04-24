@@ -1,0 +1,75 @@
+<launch>
+
+<!-- Launch Mavros for target 1-->
+	<arg name="fcu_url_1" default="/dev/ttyUSB0:115200" />
+	<arg name="fcu_url_2" default="/dev/ttyUSB1:115200" />
+	<arg name="fcu_url_3" default="/dev/ttyUSB3:115200" />
+	<arg name="gcs_url" default="udp://@localhost:14555" />
+	<arg name="fcu_protocol" default="v2.0" />
+	<arg name="filter" default="1" />
+	<arg name="height" default=".5" />
+	<arg name="3d" default="true" />
+
+	<arg name="tgt_system" default="1" />
+	<arg name="tgt_component" default="1" />
+	<arg name="mav_protocol" default="v1.0" />
+	<arg name="log_output" default="screen" />
+
+	<include file="$(find px4_bringup)/launch/spawn_robot.launch" ns="target_1">
+    	<arg name="id" value="1"/>
+		<arg name="mode" default="custom"/>
+		<arg name="fcu_url" value="$(arg fcu_url_1)" />
+		<arg name="gcs_url" value="$(arg gcs_url)" /> 
+		<arg name="rtcm_topic" value="/rtcm_stream"/>
+    </include> 
+
+	<include file="$(find px4_bringup)/launch/spawn_robot.launch" ns="target_2">
+    	<arg name="id" value="2"/>
+		<arg name="mode" default="custom"/>
+		<arg name="fcu_url" value="$(arg fcu_url_2)" />
+		<arg name="gcs_url" value="$(arg gcs_url)" /> 
+		<arg name="rtcm_topic" value="/rtcm_stream"/>
+    </include> 
+
+	<include file="$(find px4_bringup)/launch/spawn_robot.launch" ns="target_3">
+    	<arg name="id" value="3"/>
+		<arg name="mode" default="custom"/>
+		<arg name="fcu_url" value="$(arg fcu_url_3)" />
+		<arg name="gcs_url" value="$(arg gcs_url)" /> 
+		<arg name="rtcm_topic" value="/rtcm_stream"/>
+    </include> 
+
+	<!--Launch Global Tracker -->
+	<node pkg="global_tracker" name="global_tracker" type="global_tracker" output="screen">
+		<rosparam param="drones">[1]</rosparam>
+		<rosparam param="targets">[1]</rosparam>
+		<param name="filter" value="$(arg filter)"/>
+		<param name="height" value="$(arg height)"/>
+		
+		<!-- Cerca del GRVC lab -->
+		<!-- <rosparam param="origin_geo">[37.4119435, -6.0015461, 0]</rosparam> -->
+		
+		<!-- Karting Sevilla -->
+		<!-- <rosparam param="origin_geo">[37.558542, -5.931074, 7.89]</rosparam> -->
+		
+		<!-- plaza del agua ETSI -->
+		<!-- [37.41036, -6.002353, 6.48] -->
+		
+		<!-- IST campo tennis-->
+		<!-- <rosparam param="origin_geo">[38.736146, -9.1376868, 144.6]</rosparam> -->
+		
+		<!-- Hacienda Oran-->
+		<!-- <rosparam param="origin_geo">[37.200366, -5.880913, 0]</rosparam> -->
+		
+		<!-- EXPO dentro da sala-->
+		<!-- <rosparam param="origin_geo">[38.7669777, -9.0927881, 144.6]</rosparam> -->
+
+	</node>
+
+	<group if="$(eval arg('3d') == true)">
+		<include file="$(find onboard_3d_tracker)/launch/onboard_3d_tracker.launch"/>
+    </group>
+
+
+
+</launch>

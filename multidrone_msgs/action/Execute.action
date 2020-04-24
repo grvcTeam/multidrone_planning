@@ -1,0 +1,9 @@
+# Define the goal
+DroneAction action_goal
+---
+# Define the result
+bool goal_achieved
+---
+# Define a feedback message
+bool status
+string action_id

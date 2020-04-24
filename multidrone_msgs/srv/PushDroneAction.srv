@@ -1,0 +1,10 @@
+## define a service for the onboard scheduler to ask for a new drone action list
+
+#request
+
+DroneAction[] action_list
+---
+# reply
+bool received
+
+

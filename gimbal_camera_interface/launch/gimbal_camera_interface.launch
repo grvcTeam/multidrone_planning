@@ -1,0 +1,15 @@
+<launch>
+
+		<arg name="drone_id" default="1"/>
+		<arg name="gimbal_id" default="0"/>
+		<arg name="vend" default="5824"/> <!--Teensy: 5824 Direct: 4292 -->
+		<arg name="prod" default="1155"/> <!--Teensy: 1155 Direct: 60000 -->
+	
+	<node pkg="gimbal_camera_interface" name="gimbal_camera_interface" ns="drone_$(arg drone_id)" type="gimbal_interface_node" output="screen">
+		<param name="baud" type="int" value="115200"/>
+		<param name="vend" value="$(arg vend)"/>
+		<param name="prod" value="$(arg prod)"/>
+		<param name="gimbal_id" value="$(arg gimbal_id)"/>
+	</node>
+
+</launch>

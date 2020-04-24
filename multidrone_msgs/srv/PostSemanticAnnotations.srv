@@ -1,0 +1,6 @@
+# request
+string semantic_map	            # KML-based file with semantic annotations.
+bool supervisor_or_dashboard    # false if KML from supervisor, true if from dashboard
+bool clear                      # true if clear dashboard placemarks
+---
+# reply

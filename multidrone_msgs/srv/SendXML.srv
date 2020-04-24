@@ -1,0 +1,7 @@
+#request
+string xml
+---
+#response
+bool success
+string message
+string element_uuid     # Empty if success true, else element with parse error (if possible to identify).

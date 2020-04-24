@@ -1,0 +1,6 @@
+# request
+FramingType target_framing_type
+int32 target_roi_center_x
+int32 target_roi_center_y
+---
+#reply

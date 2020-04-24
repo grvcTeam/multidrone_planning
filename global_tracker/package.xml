@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<package>
+  <name>global_tracker</name>
+  <version>0.0.1</version>
+  <description>The global tracker package</description>
+
+  <maintainer email="arturotorres@us.es">Arturo Torres</maintainer>
+
+  <license>MIT</license>
+
+  <author email="arturotorres@us.es">Arturo Torres</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>sensor_msgs</build_depend>
+  <build_depend>geometry_msgs</build_depend>
+  <build_depend>multidrone_msgs</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>rospy</build_depend>
+  <build_depend>tf</build_depend>
+  <build_depend>multidrone_kml_parser</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>message_generation</build_depend>
+
+  <run_depend>sensor_msgs</run_depend>
+  <run_depend>geometry_msgs</run_depend>
+  <run_depend>multidrone_msgs</run_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>rospy</run_depend>
+  <run_depend>tf</run_depend>
+  <run_depend>multidrone_kml_parser</run_depend>
+  <run_depend>std_msgs</run_depend>
+  <run_depend>message_runtime</run_depend>
+
+</package>

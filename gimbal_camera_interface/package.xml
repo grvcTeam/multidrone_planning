@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<package>
+  <name>gimbal_camera_interface</name>
+  <version>0.0.0</version>
+  <description>The gimbal and camera interface package</description>
+
+  <maintainer email="vsampaio@tecnico.ulisboa.pt">Vasco Sampaio</maintainer>
+
+  <license>BSD</license>
+
+  <author email="vsampaio@tecnico.ulisboa.pt">Vasco Sampaio</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>multidrone_msgs</build_depend>
+  <build_depend>geometry_msgs</build_depend>
+  <build_depend>sensor_msgs</build_depend>
+  <build_depend>cmake_modules</build_depend>
+  <build_depend>eigen_conversions</build_depend>
+  <run_depend>cmake_modules</run_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>std_msgs</run_depend>
+  <run_depend>multidrone_msgs</run_depend>
+  <run_depend>geometry_msgs</run_depend>
+  <run_depend>sensor_msgs</run_depend>
+  <run_depend>eigen_conversions</run_depend>
+
+</package>

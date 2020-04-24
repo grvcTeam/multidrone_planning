@@ -1,0 +1,8 @@
+# define full drone telemetry
+std_msgs/Header header
+geographic_msgs/GeoPoint geo_home
+geographic_msgs/GeoPoint geo_position
+geometry_msgs/PoseWithCovariance local_pose
+geometry_msgs/TwistWithCovariance twist
+diagnostic_msgs/DiagnosticStatus diagnostic
+mavros_msgs/BatteryStatus battery

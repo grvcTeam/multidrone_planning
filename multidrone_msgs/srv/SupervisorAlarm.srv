@@ -1,0 +1,9 @@
+# define a supervisor triggered alarm message
+
+std_msgs/Header header
+uint8 drone_id
+AlarmType alarm_type
+
+---
+
+bool received

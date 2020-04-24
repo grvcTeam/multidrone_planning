@@ -1,0 +1,2 @@
+string mission_id
+string sas_role

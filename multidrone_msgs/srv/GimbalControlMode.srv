@@ -1,0 +1,11 @@
+## Define a service for the selection of the gimbal control mode
+
+# request
+
+uint8 MODE_RC   = 0
+uint8 MODE_UART = 1
+
+uint8 mode
+
+---
+# reply

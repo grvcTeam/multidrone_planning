@@ -1,0 +1,21 @@
+# request
+
+uint8 GIMBAL_MOVE_UP          = 0
+uint8 GIMBAL_MOVE_DOWN        = 1
+uint8 GIMBAL_MOVE_LEFT        = 2
+uint8 GIMBAL_MOVE_RIGHT       = 3
+uint8 CAMERA_ZOOM_IN          = 4
+uint8 CAMERA_ZOOM_OUT         = 5
+uint8 CONTROL_FOCUS_INCREASE  = 6
+uint8 CONTROL_FOCUS_DECREASE  = 7
+uint8 CONTROL_RECORD_START    = 8
+uint8 CONTROL_RECORD_STOP     = 9
+uint8 CAMERA_RESET            = 10
+uint8 FOCUS_RESET             = 11
+uint8 GIMBAL_RETURN_HOME	  = 12
+
+
+uint8 control
+---
+# reply
+bool success

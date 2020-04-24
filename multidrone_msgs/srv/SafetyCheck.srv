@@ -1,0 +1,13 @@
+# request
+	
+std_msgs/Header header
+MultidronePlan plan
+
+---
+# reply
+
+uint8 SAFETY_OK = 0
+uint8 SAFETY_ERROR = 1
+
+std_msgs/Header header
+uint8 result
