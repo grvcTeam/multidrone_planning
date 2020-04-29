@@ -1,0 +1,6 @@
+<launch>
+    <arg name="drone_id" default="1"/>
+    <node name="onboard_scheduler" pkg="onboard_scheduler" type="onboard_scheduler_node" ns="drone_$(arg drone_id)" output="screen">
+        <param name="drone_id" value="$(arg drone_id)"/>
+    </node>
+</launch>
