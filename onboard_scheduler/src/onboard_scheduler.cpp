@@ -77,77 +77,7 @@ OnBoardScheduler::~OnBoardScheduler()
   delete action_client_;
 }
 
-/** \brief function to run the interface test
- *  \param test_id    test's id
- *  \param timestamp  this refers to the time that the msg was sent
- *  \param interface_test_flag    success flag of the test
- */
-void OnBoardScheduler::run_test(std::string test_id, ros::Time timestamp, bool &interface_test_flag)
-{
 
-    double received;
-    double avg_freq;
-    double freq;
-    double avg_latency;
-    double latency;
-    received = ros::Time::now().toSec();
-
-    if(first_received[test_id] == 0) {
-      first_received[test_id] = received;
-      freq_min[test_id] = 1000;
-      freq_max[test_id] = 0;
-    }
-    if (count[test_id] > 0) {
-      freq = 1/(received - last_received[test_id]);
-      latency = received - timestamp.toSec();
-      latency_max[test_id] = std::max(latency_max[test_id], latency);
-      freq_min[test_id] = std::min(freq_min[test_id], freq);
-      freq_max[test_id] = std::max(freq_max[test_id], freq);
-    }
-
-    if (count[test_id] <= desired_freq) {
-      freq_sum[test_id] += freq;
-      latency_sum[test_id]+=latency;
-      count[test_id]++;
-    }
-    else if ( (avg_freq = freq_sum[test_id]/desired_freq) <= desired_freq + max_allowed_freq_shift && avg_freq >= desired_freq - max_allowed_freq_shift && (avg_latency = latency_sum[test_id]/desired_freq) < max_latency_time) {
-     interface_test_flag = false;
-
-     std::ofstream log_file;
-     log_file.open(test_id+".txt", std::ios::out | std::ios::app);
-
-     if (log_file.is_open()){
-     log_file << "\nTest: "<<test_id<< " SUCCESS at "<<ros::Time::now().toSec()<< "seconds, Test nr: "<<test_nr[test_id]<<"\nAverage frequency: "
-                               <<avg_freq<<"\nTime Elapsed: "<<last_received[test_id] - first_received[test_id]<<" \nMax Frequency: "<< freq_max[test_id]<<"\nMin Frequency: "
-                               <<freq_min[test_id] <<"\nAverage latency: "<<avg_latency<<"\nMax Latency: "<<latency_max[test_id]<<"\n"<<std::endl;
-
-
-     std::cout <<"Created file" << std::endl;
-     }
-
-     log_file.close();
-    
-    } else if (received - first_received[test_id]<max_allowed_time){
-     count[test_id] = 0;
-     freq_sum[test_id] = 0;
-     test_nr[test_id] ++;
-     count[test_id]++;
-     ROS_INFO("Test nr: %d, \nAverage frequency: %f, \nTime Elapsed: %f, \nMax Frequency: %f,\nMin Frequency: %f, \n", test_nr[test_id], avg_freq, last_received[test_id] - first_received[test_id], freq_max[test_id], freq_min[test_id]);
-     freq_min[test_id] = 1000;
-     freq_max[test_id] = 0;
-     first_received[test_id] = received;
-    }
-    else {
-      ROS_INFO("avg_freq: %f", avg_freq);
-      ROS_INFO("Test failed - timeout");
-      ROS_INFO("max allow: %f", max_allowed_freq_shift);
-      ROS_INFO("avg_latency: %f", avg_latency);
-      interface_test_flag = false;
-    }
-
-    last_received[test_id] = received;
-
-}
 
 /** \brief  Event callback. This callback find a drone action for the event. If it is found, the previous drone actions would be erased.
  * If any drone action has been found, nothing happens

@@ -1,0 +1,41 @@
+<launch>
+
+	<arg name="drone_id" default="1"/>
+	<arg name="k1_gimbal" default="1"/>
+	<arg name="k2_gimbal" default=".5"/>
+	<arg name="k_offset" default="2.0"/>
+	<arg name="simulation" default="false"/>
+	<arg name="onboard" default="true"/>
+	<arg name="offset" default="false"/>
+	<arg name="image_height" default="480"/>
+	<arg name="image_width" default="640"/>
+	<arg name="MAX_YAW_RATE" default="0.25"/>
+	<arg name="trailer" default="0.5"/>
+	<arg name="p_C_B" default= "[0.20, -0.05, 0.12]"/>
+						   <!--    "[0.20, -0.05, -0.26]" M100-->
+						   <!--    "[0.05, -0.05, -0.37]"/> S1000-->
+						   <!--    "[0.00, -0.05, -0.33]"/> x6-1-->
+						   <!--    "[0.00, -0.05, -0.30]"/> x6-2 -->
+						   <!--    "[0.00, -0.05, -0.44]"/> Big4  -->
+						   <!--    "[-0.051,   0, -0.162]"/> Simulation--> 
+	<arg name="f_target" default="false"/>
+
+
+	<node pkg="action_executer" name="action_executer" type="action_executer_node" ns="drone_$(arg drone_id)" output="screen"> <!-- launch-prefix="xterm -hold -fn 10x20 -e"-->
+		<param name="drone_id" value="$(arg drone_id)"/>
+		<rosparam command="load" file="$(find multidrone_configs)/config/BMMC_camera.yaml" />
+		<param name="onboard" value="$(arg onboard)"/>
+		<param name="simulation" value="$(arg simulation)"/>
+		<param name="offset" value="$(arg offset)"/>
+		<param name="k1_gimbal" value="$(arg k1_gimbal)"/>
+		<param name="k2_gimbal" value="$(arg k2_gimbal)"/>
+		<param name="k_offset" value="$(arg k_offset)"/>
+		<param name="MAX_YAW_RATE" value="$(arg MAX_YAW_RATE)"/>
+		<rosparam param="p_C_B" subst_value="True">$(arg p_C_B)</rosparam>
+		<param name="image_height" value="$(arg image_height)"/>
+		<param name="image_width" value="$(arg image_width)"/> 
+		<param name="trailer" value="$(arg trailer)"/>
+		<param name="f_target" value="$(arg f_target)"/> 
+	</node>
+
+</launch>

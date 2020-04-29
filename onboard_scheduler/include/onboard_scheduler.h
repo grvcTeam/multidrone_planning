@@ -57,7 +57,6 @@ private:
   void updatingActionsStatus();
   void emergencyAlarms();
   void goToEmergencySite(float x, float y, float z, bool abort = false, bool emergency = false);
-  void run_test(std::string test_id, ros::Time, bool &interface_test_flag);
   void test_setup(std::string test_id);
   bool checkTime(float max_dur_sec, ros::Time begin);
   void checkInterface(bool &it);

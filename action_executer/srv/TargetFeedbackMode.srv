@@ -1,0 +1,14 @@
+# request
+
+#                       |-------------|
+#                       | target_mode |
+#                       |-------------|
+#           FACE VSA 2D | 2D          |
+#                GPS 3D | 3D          |
+# Motion capture system | MOCAP       |
+#                       |-------------|
+
+string target_mode
+
+---
+# reply
