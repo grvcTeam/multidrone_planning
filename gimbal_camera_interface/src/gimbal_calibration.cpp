@@ -1,5 +1,4 @@
 #include <gimbal_camera_interface/gimbal_camera_interface.h>
-#include <interface_test/interface_test.h>
 #include <boost/bind.hpp>
 #include <fstream>
 #include <string>
@@ -267,9 +266,6 @@ void GimbalInterface::timerCallback(const ros::TimerEvent&)
 
 void GimbalInterface::cmd_callback(const geometry_msgs::Vector3::ConstPtr& _msg)
 {
-  if (interface_test_giae) {
-    run_test("giae", interface_test_giae);
-  }
   if (has_gimbal_calibration && has_gimbal_status_){
       int16_t speedROLL_   = _msg->x;
 	    int16_t speedPITCH_  = _msg->y;

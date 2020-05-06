@@ -1,5 +1,4 @@
 #include <gimbal_camera_interface/gimbal_camera_interface.h>
-#include <interface_test/interface_test.h>
 #include <boost/bind.hpp>
 #include <fstream>
 #include <string>
@@ -517,10 +516,6 @@ void GimbalInterface::droneInfo_callback(const geometry_msgs::PoseStamped::Const
 
 void GimbalInterface::cmd_callback(const geometry_msgs::Vector3::ConstPtr& _msg)
 {
-  if (interface_test_giae) {
-    run_test("giae", interface_test_giae);
-  }
-  
   // std::cout << drone_yaw_*TO_DEG << std::endl;
 
   if (has_gimbal_calibration && has_gimbal_status_){

@@ -5,7 +5,6 @@ project(gimbal_camera_interface)
 add_compile_options(-std=c++11)
 
 find_package(catkin REQUIRED COMPONENTS
-  interface_test
 	multidrone_msgs
   roscpp
   std_msgs
@@ -20,7 +19,7 @@ find_package(Eigen3 REQUIRED)
 include_directories(${EIGEN3_INCLUDE_DIR})
 
 catkin_package(
-	LIBRARIES interface_test
+	LIBRARIES 
   CATKIN_DEPENDS roscpp std_msgs geometry_msgs sensor_msgs eigen_conversions
 )
 
