@@ -1,0 +1,6 @@
+<launch>
+	<!-- DEPRECATED. EVENT MANAGER WAS ABSORBED BY THE MISSION CONTROLLER -->
+	<arg name="shooting_action" default="0"/>
+	<node pkg="multidrone_planning" name="event_manager" type="event_manager" output="screen" args="$(arg shooting_action)">
+	</node>
+</launch>

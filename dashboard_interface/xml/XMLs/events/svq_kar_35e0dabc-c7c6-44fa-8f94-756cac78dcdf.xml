@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<event userRef="8dfaa933-1d48-493f-817a-de3caab2a15e" parentEventRef="this_is_the_stem_event_uuid">
+	<!-- Example file that the dashboard can send to the Mission Controller: individual events without missions (using SendMission.srv) -->
+	<uuid>35e0dabc-c7c6-44fa-8f94-756cac78dcdf</uuid>
+	<actualDuration/>
+	<actualStartTime/>
+	<creationDatetime>2018-07-26T11:42:31Z</creationDatetime>
+	<lastUpdated>2019-03-25T11:49:31Z</lastUpdated>
+	<delay/>
+	<description>When the event 35e0dabc-c7c6-44fa-8f94-756cac78dcdf is triggered the race starts and the corresponding ShootingActions are executed.</description>
+	<isRecurrent/>
+	<name>35e0dabc-c7c6-44fa-8f94-756cac78dcdf</name>
+	<plannedDuration>45</plannedDuration>
+	<plannedStartTime>2019-10-21T11:00:30Z</plannedStartTime>
+	<timezone>Europe/Madrid</timezone>
+	<missions/>
+</event>

@@ -1,0 +1,3 @@
+<launch>
+	<node pkg="dashboard_interface" name="dummy_mc_node" type="dummy_mc_node" output="screen"/>  
+</launch>

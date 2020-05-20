@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<package>
+  <name>dashboard_interface</name>
+  <version>0.0.0</version>
+  <description>The dashboard interface package</description>
+
+  <maintainer email="arturotorres@us.es">Arturo Torres</maintainer>
+
+
+  <license>MIT</license>
+
+
+  <author email="amontesromero@us.es">Ángel Manuel Montes Romero</author>
+  <maintainer email="arturotorres@us.es">Arturo Torres</maintainer>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>multidrone_msgs</build_depend>
+  <build_depend>geometry_msgs</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>rospy</build_depend>
+  <build_depend>tf</build_depend>
+  <run_depend>multidrone_msgs</run_depend>
+  <run_depend>geometry_msgs</run_depend>
+  <run_depend>sensor_msgs</run_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>rospy</run_depend>
+  <run_depend>tf</run_depend>
+
+
+  <!-- The export tag contains other, unspecified, tags -->
+  <export>
+    <!-- Other tools can request additional information be placed here -->
+  </export>
+
+</package>

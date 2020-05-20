@@ -1,0 +1,64 @@
+R"~(
+<?xml version="1.0" encoding="UTF-8"?>
+<event xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:///E:/Data/Utenti/Messina/Progetti/MULTIDRONE/WPs/WP5/DashboardDesign/DashboardSchema_v4.xsd">
+	<description>Karting mission with one drone and one shooting action.</description>
+	<name>MultiDrone mission</name>
+	<plannedDuration>0</plannedDuration>
+	<plannedStartTime>2019-02-19T09:00:00Z</plannedStartTime>
+	<childEvents>
+		<event>
+			<name>START_RACE</name>
+			<plannedDuration>25</plannedDuration>
+			<plannedStartTime>2019-02-19T09:00:30Z</plannedStartTime>
+			<description>When the event START_RACE is triggered the race starts and the corresponding ShootingActions are executed.</description>
+			<missions>
+				<mission>
+					<role>main</role>
+					<shootingActionSequences>
+						<shootingActionSequence>
+							<name>Sequence with SA1</name>
+							<role>main</role>
+							<shootingActions>
+								<shootingAction>
+									<duration>20</duration>
+									<length>20</length>
+									<name>SA1</name>
+									<uuid>1</uuid>
+									<shootingTypeName>SHOOT_TYPE_FLYOVER</shootingTypeName>
+									<RTTrajectory>
+										<RTTrajectoryPoint>
+											<x>-28.68</x>
+											<y>4.34</y>
+											<z>0</z>
+										</RTTrajectoryPoint>
+										<RTTrajectoryPoint>
+											<x>-9.35</x>
+											<y>-24.41</y>
+											<z>0</z>
+										</RTTrajectoryPoint>
+									</RTTrajectory>
+									<shootingRoles>
+										<shootingRole>
+											<framingTypeName>FRAMING_TYPE_MS</framingTypeName>
+											<params>
+												{
+                                                "x(t=0)":-10,
+                                                "y(t=0)":0,
+												"z(t=0)":3,
+                                                "x rate":1,
+                                                "y rate":0,
+                                                "z rate":0.2
+												}
+											</params>
+										</shootingRole>
+									</shootingRoles>
+								</shootingAction>
+							</shootingActions>
+						</shootingActionSequence>
+					</shootingActionSequences>
+				</mission>
+			</missions>
+		</event>
+	</childEvents>
+</event>
+)~"

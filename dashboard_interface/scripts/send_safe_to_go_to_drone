@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Script used to send a safe to go service to one drone, specified as the first input argument to the script
+# E.g., the next way of calling the script will send the safe to go to the drone 1:
+# ./send_safe_to_go_to_drone 1
+
+rosservice call /drone_$1/safe_to_go

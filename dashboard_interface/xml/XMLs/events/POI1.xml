@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<event userRef="8dfaa933-1d48-493f-817a-de3caab2a15e" parentEventRef="this_is_another_stem_event_uuid">
+	<!-- Example file that the dashboard can send to the Mission Controller: individual events without missions (using SendMission.srv) -->
+	<uuid>POI1</uuid>
+	<actualDuration/>
+	<actualStartTime/>
+	<creationDatetime>2018-07-26T11:42:31Z</creationDatetime>
+	<lastUpdated>2019-03-25T11:49:31Z</lastUpdated>
+	<delay/>
+	<description>POI1: film a point of interest doing an orbit. Position predictable, time unknown.</description>
+	<isRecurrent/>
+	<name>POI1</name>
+	<plannedDuration>15</plannedDuration>
+	<plannedStartTime/>
+	<timezone></timezone>
+	<missions/>
+</event>

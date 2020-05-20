@@ -1,0 +1,92 @@
+R"~(
+<?xml version="1.0" encoding="UTF-8"?>
+<event xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:///E:/Data/Utenti/Messina/Progetti/MULTIDRONE/WPs/WP5/DashboardDesign/DashboardSchema_v4.xsd">
+	<description>Karting mission with one drone and two shooting actions.</description>
+	<name>MultiDrone mission</name>
+	<plannedDuration>0</plannedDuration>
+	<plannedStartTime>2019-02-19T09:00:00Z</plannedStartTime>
+	<childEvents>
+		<event>
+			<name>START_RACE</name>
+			<plannedDuration>40</plannedDuration>
+			<plannedStartTime>2019-02-19T09:00:30Z</plannedStartTime>
+			<description>When the event START_RACE is triggered the race starts and the corresponding ShootingActions are executed.</description>
+			<missions>
+				<mission>
+					<role>main</role>
+					<shootingActionSequences>
+						<shootingActionSequence>
+							<name>Sequence with SA1 and SA2</name>
+							<role>main</role>
+							<shootingActions>
+								<shootingAction>
+									<duration>17.32</duration>
+									<length>17.32</length>
+									<name>SA1</name>
+									<uuid>1</uuid>
+									<shootingTypeName>SHOOT_TYPE_LATERAL</shootingTypeName>
+									<RTTrajectory>
+										<RTTrajectoryPoint>
+											<x>-28.68</x>
+											<y>4.34</y>
+											<z>0</z>
+										</RTTrajectoryPoint>
+										<RTTrajectoryPoint>
+											<x>-19.02</x>
+											<y>-10.04</y>
+											<z>0</z>
+										</RTTrajectoryPoint>
+									</RTTrajectory>
+									<shootingRoles>
+										<shootingRole>
+											<framingTypeName>FRAMING_TYPE_MS</framingTypeName>
+											<params>
+												{
+												"y":5,
+												"z":5
+												}
+											</params>
+										</shootingRole>
+									</shootingRoles>
+								</shootingAction>
+								<shootingAction>
+									<duration>17.32</duration>
+									<length>17.32</length>
+									<name>SA2</name>
+									<uuid>2</uuid>
+									<shootingTypeName>SHOOT_TYPE_ORBIT</shootingTypeName>
+									<RTTrajectory>
+										<RTTrajectoryPoint>
+											<x>-19.02</x>
+											<y>-10.04</y>
+											<z>0</z>
+										</RTTrajectoryPoint>
+										<RTTrajectoryPoint>
+											<x>-9.35</x>
+											<y>-24.41</y>
+											<z>0</z>
+										</RTTrajectoryPoint>
+									</RTTrajectory>
+									<shootingRoles>
+										<shootingRole>
+											<framingTypeName>FRAMING_TYPE_MS</framingTypeName>
+											<params>
+												{
+                                                "initial azimuth":0,
+                                                "radius":3,
+												"z":3,
+                                                "relative angular speed":0.174
+												}
+											</params>
+										</shootingRole>
+									</shootingRoles>
+								</shootingAction>
+							</shootingActions>
+						</shootingActionSequence>
+					</shootingActionSequences>
+				</mission>
+			</missions>
+		</event>
+	</childEvents>
+</event>
+)~"

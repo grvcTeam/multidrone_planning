@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<event userRef="8dfaa933-1d48-493f-817a-de3asdf2a15e" parentEventRef="this_is_the_stem_event_uuid">
+	<!-- Example file that the dashboard can send to the Mission Controller: individual events without missions (using SendMission.srv) -->
+	<uuid>SECOND_EVENT</uuid>
+	<actualDuration/>
+	<actualStartTime/>
+	<creationDatetime>2018-07-26T11:42:31Z</creationDatetime>
+	<lastUpdated>2019-03-25T11:49:31Z</lastUpdated>
+	<delay/>
+	<description>SECOND_EVENT: the race reach a certain point and different ShootingActions are executed.</description>
+	<isRecurrent/>
+	<name>SECOND_EVENT</name>
+	<plannedDuration>65</plannedDuration>
+	<plannedStartTime>2019-03-27T10:01:00Z</plannedStartTime>
+	<timezone>Europe/Madrid</timezone>
+	<missions/>
+</event>

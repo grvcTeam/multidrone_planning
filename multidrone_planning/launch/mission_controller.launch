@@ -1,0 +1,54 @@
+<launch>
+	<arg name="drones" default="[1, 2]"/>
+	<arg name="origin_latitude" default="0"/>
+	<arg name="origin_longitude" default="0"/>
+	<arg name="origin_altitude" default="0"/>
+
+    <!-- Parameters for the High-Level Planner -->
+    <arg name="absolute_origin_of_time_string" default="'2019-01-01T00:00:00Z'"/>    <!-- If too back in time there will be errors in the trajectories because of time resolution in header.stamp.sec of the PointStamped. If in the future (negative times) there will be errors. TODO: dynamic origin of time. -->
+    <arg name="get_ready_event" default="GET_READY"/>    	<!-- Director event id (request of the director event service) that takeoff the drones and get them ready when receibed. -->
+    <arg name="height_base_stations" default="0"/>    	    <!-- z value in meters of the base stations. -->
+    <arg name="minimum_battery" default="20"/>           	<!-- Minimum battery charge (%) that the battery can have during the plan. LiPo batteries should never discharge to less than 20% or else the life span (number of charge/discharge cycles) will be dramatically reduced. -->
+    <arg name="replanning_same_SA_distance" default="5"/>   <!-- When replanning, if a flying drone has to fly less distance than this parameter in meters it will be considered the same SA Sequence, this new replanning solution will be bonus. -->
+    <arg name="replanning_same_SA_bonus" default="10"/>     <!-- When replanning, bonus of the new solution if a drone is in the same SA Sequence. In seconds for the time record, and meters in accumulated distance. -->
+    <arg name="minimum_separation_xy" default="3"/>      	<!-- Minimum drone separation (meters) between drones during navigation actions. -->
+    <arg name="minimum_separation_z" default="3"/>     	    <!-- Minimum drone separation (meters) between drones during navigation actions. -->
+    <arg name="maximum_battery_error_in_successive_aproximation_method" default="3"/>	<!-- For those nodes that end recording in the middle of a shooting action (because of low battery), % of battery above minimum_battery_ that the drone can have after land. -->
+    <arg name="maximum_idle_time_in_successive_aproximation_method" default="4"/>    	<!-- For those shooting nodes that start recording in the middle of a shooting action, maximum time in seconds that the drone can arrive earlier to the node. -->
+    <arg name="orbit_path_separation_of_discretization" default="5"/>    	<!-- Path's waypoints in a shooting drone action type orbit are discretized, this parameter is the separation in seconds between its waypoints in terms of rt_trajectory. -->
+    <arg name="time_swap_drone" default="7"/>              	<!-- When swapping drones inside an edge (SA) because the battery is low and there is no other way to cover the SA, for security the drone that leaves the SA will be separated an amount "time_swap_drone" of seconds of the one that arrives. -->
+    <arg name="time_change_battery" default="30"/>         	<!-- Time in seconds estimated for a battery change in a base station. -->
+    <arg name="time_minimum_shooting_action" default="5"/> 	<!-- In seconds, minimum time for a shooting edge. If found a shooting action with shorter rec time discard it. -->
+    <arg name="time_max_hovering" default="1200"/> <!--60-->        	<!-- Estimated maximum hovering time (in seconds) before the drone runs out of battery. Must be greater than time_max_flying_full_speed_. -->
+    <arg name="time_max_flying_full_speed" default="900"/> <!--60-->	<!-- Estimated maximum flying time at full speed (in seconds) before the drone runs out of battery. Must be lower than time_max_hovering_. -->
+    <arg name="full_speed_xy" default="3"/>               	<!-- MPC_XY_VEL_MAX    [min, default, max] : [ 0.0 , 12 , 20.0 ]  Maximum horizontal velocity (m/s) of the drone (in AUTO mode, if higher speeds are commanded in a mission they will be capped to this velocity). -->
+    <arg name="full_speed_z_down" default="1"/>       		<!-- MPC_Z_VEL_MAX_DN  [min, default, max] : [ 0.5 ,  1 ,  4.0 ]  Maximum vertical descent velocity (m/s) of the drone (in AUTO mode and endpoint for stabilized modes (ALTCTRL, POSCTRL)). -->
+    <arg name="full_speed_z_up" default="1"/>              	<!-- MPC_Z_VEL_MAX_UP  [min, default, max] : [ 0.5 ,  3 ,  8.0 ]  Maximum vertical ascent velocity (m/s) of the drone (in AUTO mode and endpoint for stabilized modes (ALTCTRL, POSCTRL)). -->
+
+	<node pkg="multidrone_planning" name="mission_controller" type="mission_controller" output="screen">
+		<rosparam param="drones" subst_value="true">$(arg drones)</rosparam>
+		<rosparam param="origin_latitude" subst_value="true">$(arg origin_latitude)</rosparam>
+		<rosparam param="origin_longitude" subst_value="true">$(arg origin_longitude)</rosparam>
+		<rosparam param="origin_altitude" subst_value="true">$(arg origin_altitude)</rosparam>
+
+        <rosparam param="absolute_origin_of_time_string" subst_value="true">$(arg absolute_origin_of_time_string)</rosparam>
+        <rosparam param="get_ready_event" subst_value="true">$(arg get_ready_event)</rosparam>
+        <rosparam param="height_base_stations" subst_value="true">$(arg height_base_stations)</rosparam>
+        <rosparam param="minimum_battery" subst_value="true">$(arg minimum_battery)</rosparam>
+        <rosparam param="replanning_same_SA_distance" subst_value="true">$(arg replanning_same_SA_distance)</rosparam>
+        <rosparam param="replanning_same_SA_bonus" subst_value="true">$(arg replanning_same_SA_bonus)</rosparam>
+        <rosparam param="minimum_separation_xy" subst_value="true">$(arg minimum_separation_xy)</rosparam>
+        <rosparam param="minimum_separation_z" subst_value="true">$(arg minimum_separation_z)</rosparam>
+        <rosparam param="maximum_battery_error_in_successive_aproximation_method" subst_value="true">$(arg maximum_battery_error_in_successive_aproximation_method)</rosparam>
+        <rosparam param="maximum_idle_time_in_successive_aproximation_method" subst_value="true">$(arg maximum_idle_time_in_successive_aproximation_method)</rosparam>
+        <rosparam param="orbit_path_separation_of_discretization" subst_value="true">$(arg orbit_path_separation_of_discretization)</rosparam>
+        <rosparam param="time_swap_drone" subst_value="true">$(arg time_swap_drone)</rosparam>
+        <rosparam param="time_change_battery" subst_value="true">$(arg time_change_battery)</rosparam>
+        <rosparam param="time_minimum_shooting_action" subst_value="true">$(arg time_minimum_shooting_action)</rosparam>
+        <rosparam param="time_max_hovering" subst_value="true">$(arg time_max_hovering)</rosparam>
+        <rosparam param="time_max_flying_full_speed" subst_value="true">$(arg time_max_flying_full_speed)</rosparam>
+        <rosparam param="full_speed_xy" subst_value="true">$(arg full_speed_xy)</rosparam>
+        <rosparam param="full_speed_z_down" subst_value="true">$(arg full_speed_z_down)</rosparam>
+        <rosparam param="full_speed_z_up" subst_value="true">$(arg full_speed_z_up)</rosparam>
+	</node>
+</launch>

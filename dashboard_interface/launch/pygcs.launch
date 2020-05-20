@@ -1,0 +1,4 @@
+<launch>
+	<node pkg="dashboard_interface" type="pygcs.py" name="pygcs" output="screen">
+	</node>
+</launch>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<mission eventRef="START_RACE">
+    <uuid>4</uuid>
+    <name>M1</name>
+    <role>main</role>
+    <creationDatetime>2019-03-11T16:44:04Z</creationDatetime>
+    <lastUpdated>2019-03-11T16:44:04Z</lastUpdated>
+    <editorialTeam>
+        <uuid>e1e5ebee-0c9d-4836-ad62-182636b49ffa</uuid>
+        <name>Editorial Team of M1</name>
+        <members>
+            <member role="Director" userRef="89f56218-3b71-4dca-9db9-dff5d0f1a607"/>
+        </members>
+    </editorialTeam>
+    <targetTypes>
+        <targetType>
+            <name>TARGET_BOAT</name>
+            <description>target is a boat</description>
+        </targetType>
+    </targetTypes>
+    <shootingActionSequences>
+        <shootingActionSequence>
+            <uuid>14b7366e-48ec-40b5-819f-26d9bc6f7fc3</uuid>
+            <name>S1</name>
+            <role>main</role>
+            <shootingActions>
+                <shootingAction shootingActionTemplateRef="LATERAL">
+                    <uuid>e64a4ff8-f573-41da-bd65-a58743e312ef</uuid>
+                    <name>LATERAL</name>
+                    <duration>60</duration>
+                    <params>{}</params>
+                    <formationSpeed>7.2</formationSpeed>
+                    <priority>1</priority>
+                    <RTTrajectory>
+                        <RTTrajectoryPoint>
+                            <x>-28.68</x>
+                            <y>4.34</y>
+                            <altitude>-1.0</altitude>
+                            <time>0</time>
+                        </RTTrajectoryPoint>
+                        <RTTrajectoryPoint>
+                            <x>-18,575621</x>
+                            <y>-8,386263</y>
+                            <altitude>-1.0</altitude>
+                            <time>20</time>
+                        </RTTrajectoryPoint>
+                    </RTTrajectory>
+                    <originOfFormation>
+                        <x>-28.68</x>
+                        <y>4.34</y>
+                        <altitude>-1.0</altitude>
+                        <time>0</time>
+                    </originOfFormation>
+                    <Maps>
+                        <Map>
+                            <name>4a2f561c-b7ad-480b-9ff4-eb6405236a8e</name>
+                            <description>{"lon":-5.931067,"lat":37.558521,"KML":"&lt;kml xmlns=\"http://www.opengis.net/kml/2.2\" xmlns:gx=\"http://www.google.com/kml/ext/2.2\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/kml/2.2 https://developers.google.com/kml/schema/kml22gx.xsd\"&gt;&lt;Document&gt;&lt;Placemark&gt;&lt;LineString&gt;&lt;coordinates&gt;-5.9313972014933825,37.55853429436684 -5.931201400235295,37.558330446481705 -5.9310458321124315,37.55815878510475 -5.930933179333806,37.55802199244499&lt;/coordinates&gt;&lt;/LineString&gt;&lt;/Placemark&gt;&lt;Placemark&gt;&lt;Point&gt;&lt;coordinates&gt;-5.9313972014933825,37.55853161215782&lt;/coordinates&gt;&lt;/Point&gt;&lt;/Placemark&gt;&lt;/Document&gt;&lt;/kml&gt;"}</description>
+                            <uri>http://multidrone.eu/maps/4a2f561c-b7ad-480b-9ff4-eb6405236a8e</uri>
+                        </Map>
+                    </Maps>
+                    <shootingRoles>
+                        <shootingRole>
+                            <name>LATERAL</name>
+                            <framingTypeName>FRAMING_TYPE_MS</framingTypeName>
+                            <shootingTypeName>RULE_OF_THIRDS</shootingTypeName>
+                            <params>{"y_0": {"value": 4, "description": "Radius of the circle (meters)"}, "z_0": {"value": 3, "description": "Z-axis displacement (meters)"}, "image": "LATERAL.png", "description": "The drone flies around the target in a circle, centred at the target."}</params>
+                            <targetIdentifier>
+                                <name>GPS</name>
+                                <description>Tracks a shooting target through GPS sensors</description>
+                                <defaultParams>{"ID": ""}</defaultParams>
+                            </targetIdentifier>
+                            <targetIdentifierParams>{"ID": 1, "rt_mode": 2}</targetIdentifierParams>
+                            <targetTrajectory/>
+                        </shootingRole>
+                    </shootingRoles>
+                </shootingAction>
+            </shootingActions>
+        </shootingActionSequence>
+    </shootingActionSequences>
+</mission>

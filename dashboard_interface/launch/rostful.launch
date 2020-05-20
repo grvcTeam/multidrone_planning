@@ -1,0 +1,5 @@
+<launch>
+
+   	<node pkg="dashboard_interface" type="run_rostful.py" name="run_rostful" output="screen" />
+
+</launch>

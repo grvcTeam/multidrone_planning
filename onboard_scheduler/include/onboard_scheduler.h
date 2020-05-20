@@ -57,9 +57,7 @@ private:
   void updatingActionsStatus();
   void emergencyAlarms();
   void goToEmergencySite(float x, float y, float z, bool abort = false, bool emergency = false);
-  void test_setup(std::string test_id);
   bool checkTime(float max_dur_sec, ros::Time begin);
-  void checkInterface(bool &it);
   bool checkDistance(float total_distance, float &dist_sum);
   bool safeToGoCallback(std_srvs::Trigger::Request &req, std_srvs::Trigger::Response &res);
   bool abortServiceCallback(std_srvs::Trigger::Request &req, std_srvs::Trigger::Response &res);
@@ -132,27 +130,6 @@ private:
 
   int print_new_KML_rosinfo_ = 0;  // Attribute to avoid printing the same status message of the KML many times.
   int delay_countdown_ = 0;
-
-  /* Needed global vars to use run_test function
-  */
-  std::map<std::string, double> first_received;
-  std::map<std::string, double> last_received;
-  std::map<std::string, int> count;
-  std::map<std::string, double> freq_sum;
-  std::map<std::string, double> freq_min;
-  std::map<std::string, double> freq_max;
-  std::map<std::string, double> latency_max;
-  std::map<std::string, double> latency_sum;
-
-  bool it14_18;
-  bool it5_14;
-  bool it14_15;
-  double desired_freq;
-  double max_allowed_freq_shift = 2;
-  std::map<std::string, int> test_nr;
-  double max_allowed_time = 100;
-  double max_latency_time = 1;
-  int cont_test;
 
   bool safe_to_go_flag_ = false;
   ros::Time last_event_received_time_;

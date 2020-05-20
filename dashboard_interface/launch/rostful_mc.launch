@@ -1,0 +1,28 @@
+<launch>
+	<arg name="n_drones" default="1"/>
+
+	<node pkg="dashboard_interface" type="run_rostful.py" name="run_rostful" output="screen" />
+
+	<include file="$(find multidrone_planning)/launch/mission_controller.launch">
+		<arg name="drones" if="$(eval n_drones==1)" value="[1]"/>
+		<arg name="drones" if="$(eval n_drones==2)" value="[1, 2]"/>
+		<arg name="drones" if="$(eval n_drones==3)" value="[1, 2, 3]"/>
+	</include>
+
+	<include file="$(find onboard_scheduler)/launch/onboard_scheduler.launch">
+		<arg name="drone_id" value="1"/>
+	</include>
+	<include file="$(find onboard_scheduler)/launch/onboard_scheduler.launch" if="$(eval n_drones>1)">
+		<arg name="drone_id" value="2"/>
+	</include>
+	<include file="$(find onboard_scheduler)/launch/onboard_scheduler.launch" if="$(eval n_drones>2)">
+		<arg name="drone_id" value="3"/>
+	</include>
+
+	<node pkg="dashboard_interface" type="dummy_drones.py" name="dummy_drones" output="screen">
+		<rosparam param="drone_ids" subst_value="true" if="$(eval n_drones==1)">[1]</rosparam>
+		<rosparam param="drone_ids" subst_value="true" if="$(eval n_drones==2)">[1, 2]</rosparam>
+		<rosparam param="drone_ids" subst_value="true" if="$(eval n_drones==3)">[1, 2, 3]</rosparam>
+	</node>
+
+</launch>

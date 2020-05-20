@@ -19,14 +19,7 @@ OnBoardScheduler::OnBoardScheduler()
   ROS_INFO("Setting up Scheduler %d",drone_id_);
 
 
-  // Interface Test Parameter
-  pnh_.param<bool>("it14_18",it14_18,false);
-  pnh_.param<bool>("it5_14",it5_14,false);
-  pnh_.param<bool>("it14_15",it14_15,false);
-
-
   
-  if(it14_18) test_setup("it14_18");
   // Subscriptions
   event_sub_ = nh_.subscribe<multidrone_msgs::Event>("/mission_controller/event", 10, &OnBoardScheduler::eventReceived, this);
   drone_telemetry_sub_ = nh_.subscribe<sensor_msgs::BatteryState>("mavros/battery", 10, &OnBoardScheduler::droneTelemetryCallback, this);
@@ -48,17 +41,15 @@ OnBoardScheduler::OnBoardScheduler()
   // Timer callback for KML update when drone idle:
   timer_ = nh_.createTimer(ros::Duration(10), &OnBoardScheduler::kmlUpdateCallback,this); // 0.1 Hz
   
-  if(!it14_18 && !it5_14) {
-    bool connected = false;
-    bool print_only_once = true;
-    while(!connected){
-      ros::Duration d(1);
-      if (print_only_once) {
-        ROS_INFO("[Scheduler %d] Waiting for action server",drone_id_);
-        print_only_once = false;
-      }
-      connected = action_client_->waitForServer(d);
+  bool connected = false;
+  bool print_only_once = true;
+  while(!connected){
+    ros::Duration d(1);
+    if (print_only_once) {
+      ROS_INFO("[Scheduler %d] Waiting for action server",drone_id_);
+      print_only_once = false;
     }
+    connected = action_client_->waitForServer(d);
   }
   // action status thread
   status_thread_ = std::thread(&OnBoardScheduler::updatingActionsStatus, this);
@@ -112,21 +103,6 @@ void OnBoardScheduler::eventReceived(const multidrone_msgs::Event::ConstPtr &eve
     } 
 
   }
-  if(it5_14){
-    ROS_INFO("two correct events have to be received to pass the it5_14");
-    if(event->event_id == "START_RACE" || event->event_id == "REACH_F") {
-        ROS_INFO("it5_14: the event %s was correctly received",event->event_id.c_str());
-        cont_test = cont_test +1;
-        if(cont_test == 2){
-          it5_14 = false;
-          ROS_INFO("it5_14 successfully");
-        }
-    }
-      else {
-        ROS_INFO("the it5_14 was not passed");
-        it5_14 = false;
-      }
-  }
 }
 /** \brief abort service callback
 */
@@ -158,9 +134,6 @@ void OnBoardScheduler::dronePoseCallback(const geometry_msgs::PoseStamped::Const
 {
   drone_pose_previous_ = drone_pose_;
   drone_pose_.pose = _msg->pose;
-  // if interface test is active and the test has not finished -> runtest
-  if (it14_18) run_test("it14_18", _msg->header.stamp, it14_18);
-       
 }
 /** \brief  Callback for the drone telemetry. This callback will launch emergency when the baterry level is low
  */
@@ -230,6 +203,7 @@ void OnBoardScheduler::feedbackCallback(const multidrone_msgs::ExecuteFeedbackCo
   }
   time_feedback_ = time(NULL);
 }
+
 /** \brief Callback to check if the drone action is active
  */
 void OnBoardScheduler::activeCallback(){
@@ -237,21 +211,8 @@ void OnBoardScheduler::activeCallback(){
   drone_action_actived_ = true;
 }
 
-/**\brief utility function to take the test params
- */
-void OnBoardScheduler::test_setup(std::string test_id)
-{
-    ros::NodeHandle pnh_(test_id);
-  	pnh_.getParam("desired_freq",desired_freq);
-  	pnh_.getParam("max_allowed_time",max_allowed_time);
-  	pnh_.getParam("max_allowed_freq_shift",max_allowed_freq_shift);
-    pnh_.getParam("max_allowed_latency", max_latency_time);
-}
-
-
 /** \brief Callback for an emergency
  */
-
 bool OnBoardScheduler::emergencyCallback(multidrone_msgs::SupervisorAlarm::Request &req, multidrone_msgs::SupervisorAlarm::Response &res)
 {
   ROS_INFO("Emergency service from supervisor");
@@ -636,7 +597,6 @@ void OnBoardScheduler::loop()
         ros::spinOnce();
       }
     }
-    else if(it14_15) checkInterface(it14_15); // if interface test is active
     else if (push_drone_action_.empty()) {
       action_status_ = multidrone_msgs::ActionStatus::AS_IDLE;
       action_id_ = "0";
@@ -652,14 +612,4 @@ void OnBoardScheduler::loop()
 
   }
 
-}
-
-void OnBoardScheduler::checkInterface(bool &it)
-{
-  ROS_INFO("Onboard scheduler sending an empty goal to test the interface");
-      multidrone_msgs::ExecuteGoal goal;
-      action_client_->sendGoal(goal);
-      if (action_client_->getState() != actionlib::SimpleClientGoalState::REJECTED) ROS_INFO("The goal was rejected so the test is not passed");
-      else ROS_INFO("The action was accepted by the action executer");
-      it = false;
 }

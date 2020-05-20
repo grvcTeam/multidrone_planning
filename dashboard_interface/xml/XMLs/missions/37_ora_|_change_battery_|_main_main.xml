@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<mission eventRef="START_RACE">
+    <uuid>37</uuid>
+    <name>Change battery mission Oran</name>
+    <role>main</role>
+    <description>2 shooting action sequences in parallel</description>
+    <creationDatetime>2019-10-07T10:44:44Z</creationDatetime>
+    <lastUpdated>2019-10-31T13:50:49Z</lastUpdated>
+    <droneTeam>
+        <uuid>04e91fee-6531-4116-a6de-bd71cfecc8d2</uuid>
+        <name>DEVELTEAM</name>
+        <drones>
+            <drone>
+                <uuid>3e61cb4e-e3b8-4a7a-9f84-189c2cadbcea</uuid>
+                <name>Dev Drone 1</name>
+                <description></description>
+                <metadata>{"stream": "rtsp://184.72.239.149/vod/mp4:BigBuckBunny_175k.mov", "drone_id": 1}</metadata>
+            </drone>
+            <drone>
+                <uuid>7154530f-a5f4-4d32-8741-a4b0741d3304</uuid>
+                <name>Dev Drone 3</name>
+                <description></description>
+                <metadata>{"stream": "rtsp://184.72.239.149/vod/mp4:BigBuckBunny_175k.mov", "drone_id": 3}</metadata>
+            </drone>
+            <drone>
+                <uuid>151ca1c6-9ef1-4d75-89f8-7f795ce5ffe7</uuid>
+                <name>Dev Drone 2</name>
+                <description></description>
+                <metadata>{"stream": "rtsp://184.72.239.149/vod/mp4:BigBuckBunny_175k.mov", "drone_id": 2}</metadata>
+            </drone>
+        </drones>
+    </droneTeam>
+    <editorialTeam>
+        <uuid>79a35e32-9fd3-4e62-95ad-fe1f5051939c</uuid>
+        <name>Editorial Team of Mission 1</name>
+        <members>
+            <member role="Director" userRef="33efb403-2dcd-4b98-b26f-00098e70999b"/>
+        </members>
+    </editorialTeam>
+    <targetTypes>
+        <targetType>
+            <name>TARGET_CYCLIST</name>
+            <description>target is a cyclist</description>
+        </targetType>
+    </targetTypes>
+    <shootingActionSequences>
+        <shootingActionSequence>
+            <uuid>0fd2abf6-8c87-4423-bd97-23eecc61e907</uuid>
+            <name>Chase (GPS, GPS).</name>
+            <role>main</role>
+            <shootingActions>
+                <shootingAction shootingActionTemplateRef="CHASE">
+                    <uuid>814a8fa0-e993-4295-ad6d-a7ef6b0b04ef</uuid>
+                    <name>CHASE</name>
+                    <duration>48</duration>
+                    <params>{}</params>
+                    <formationSpeed>3.6</formationSpeed>
+                    <priority>1</priority>
+                    <RTTrajectory>
+                        <RTTrajectoryPoint>
+                            <latitude>37.199728</latitude>
+                            <longitude>-5.8811013</longitude>
+                            <altitude>-1.0</altitude>
+                            <time>0</time>
+                        </RTTrajectoryPoint>
+                        <RTTrajectoryPoint>
+                            <latitude>37.199344</latitude>
+                            <longitude>-5.881033</longitude>
+                            <altitude>-1.0</altitude>
+                            <time>48</time>
+                        </RTTrajectoryPoint>
+                    </RTTrajectory>
+                    <originOfRT>
+                        <latitude>37.199728</latitude>
+                        <longitude>-5.8811013</longitude>
+                        <altitude>-1.0</altitude>
+                        <time>0</time>
+                    </originOfRT>
+                    <originOfFormation>
+                        <latitude>37.199728</latitude>
+                        <longitude>-5.8811013</longitude>
+                        <altitude>-1.0</altitude>
+                        <time>0</time>
+                    </originOfFormation>
+                    <Maps>
+                        <Map>
+                            <name>1b8f265b-385e-4185-acd3-1179720b90c1</name>
+                            <description>{"lon":"-6.0027612","lat":"37.4123987","KML":"&lt;kml xmlns=\"http://www.opengis.net/kml/2.2\" xmlns:gx=\"http://www.google.com/kml/ext/2.2\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/kml/2.2 https://developers.google.com/kml/schema/kml22gx.xsd\"&gt;&lt;Document&gt;&lt;Placemark&gt;&lt;name&gt;9&lt;/name&gt;&lt;description&gt;Origin of Formation&lt;/description&gt;&lt;Point&gt;&lt;coordinates&gt;-5.9313995025877375,37.55856416537427&lt;/coordinates&gt;&lt;/Point&gt;&lt;/Placemark&gt;&lt;Placemark&gt;&lt;name&gt;10&lt;/name&gt;&lt;description&gt;Reference Target Trajectory&lt;/description&gt;&lt;LineString&gt;&lt;coordinates&gt;-5.9313995025877375,37.55856415489689 -5.931003290024819,37.558125456562266&lt;/coordinates&gt;&lt;/LineString&gt;&lt;/Placemark&gt;&lt;Placemark/&gt;&lt;/Document&gt;&lt;/kml&gt;"}</description>
+                            <uri>http://multidrone.eu/maps/1b8f265b-385e-4185-acd3-1179720b90c1</uri>
+                        </Map>
+                    </Maps>
+                    <shootingRoles>
+                        <shootingRole>
+                            <name>CHASE</name>
+                            <framingTypeName>FRAMING_TYPE_MS</framingTypeName>
+                            <shootingTypeName>RULE_OF_THIRDS</shootingTypeName>
+                            <params>{"x_e": {"value": -18, "description": "X-axis end (meters)"}, "x_s": {"value": -18, "description": "X-axis start (meters)"}, "z_0": {"value": 8, "description": "Z-axis displacement (meters)"}, "image": "chase.png", "description": "The drone chases the target from behind, with the distance between them typically decreasing or remaining constant."}</params>
+                            <targetIdentifier>
+                                <name>GPS</name>
+                                <description>Track a shooting target through GPS sensors</description>
+                                <defaultParams>{"ID": ""}</defaultParams>
+                            </targetIdentifier>
+                            <targetIdentifierParams>{"ID": 1, "rt_mode": 2}</targetIdentifierParams>
+                            <targetTrajectory/>
+                        </shootingRole>
+                    </shootingRoles>
+                </shootingAction>
+            </shootingActions>
+        </shootingActionSequence>
+    </shootingActionSequences>
+</mission>

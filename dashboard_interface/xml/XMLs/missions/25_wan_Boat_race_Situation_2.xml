@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<mission eventRef="bb1377f1-edc2-45c7-a06a-51d14daaf6bf">
+    <uuid>7edd48da-52c3-45f8-ad13-2cd643e051b3</uuid>
+    <name>Approaching the finish line</name>
+    <role>approach</role>
+    <description>Boats are approaching the finish line of the boat race. </description>
+    <creationDatetime>2019-07-15T13:10:26.275Z</creationDatetime>
+    <lastUpdated>2019-07-15T13:10:26.275Z</lastUpdated>
+    <droneTeam>
+        <uuid>bd19228d-a6c8-4bde-9d06-a67a744e0c0d</uuid>
+        <name>MULTIDRONE</name>
+        <description>
+        </description>
+        <drones>
+            <drone>
+                <uuid>83bccc1f-c0cc-4733-afe4-266840df19a6</uuid>
+                <name>MULTIDRONE 1</name>
+                <description>
+                </description>
+                <metadata>{"drone_id": 1}</metadata>
+            </drone>
+            <drone>
+                <uuid>54a3d297-fb2a-4aae-ade7-6bddbc2de524</uuid>
+                <name>MULTIDRONE 2</name>
+                <description>
+                </description>
+                <metadata>{"drone_id": 2}</metadata>
+            </drone>
+            <drone>
+                <uuid>17f25324-783f-4e0b-8d25-20587f7ef48f</uuid>
+                <name>MULTIDRONE 4</name>
+                <description>
+                </description>
+                <metadata>{"drone_id": 4}</metadata>
+            </drone>
+            <drone>
+                <uuid>9a3f4911-0ec4-4c80-ab2b-edc9ebaefbc2</uuid>
+                <name>MULTIDRONE 7</name>
+                <description>
+                </description>
+                <metadata>{"drone_id": 7}</metadata>
+            </drone>
+            <drone>
+                <uuid>2de24bc5-526f-4a73-a608-d922d0a137b4</uuid>
+                <name>MULTIDRONE 3</name>
+                <description>
+                </description>
+                <metadata>{"drone_id": 3}</metadata>
+            </drone>
+            <drone>
+                <uuid>774219e7-20b1-445d-8714-b3633974ae62</uuid>
+                <name>MULTIDRONE 6</name>
+                <description>
+                </description>
+                <metadata>{"drone_id": 6}</metadata>
+            </drone>
+            <drone>
+                <uuid>d027aaf4-ce55-4672-9b32-836d4f78f24a</uuid>
+                <name>MULTIDRONE 5</name>
+                <description>
+                </description>
+                <metadata>{"drone_id": 5}</metadata>
+            </drone>
+        </drones>
+    </droneTeam>
+    <editorialTeam>
+        <uuid>291dab46-ae5d-4f94-adbc-817dceeeb2f3</uuid>
+        <name>Editorial Team of Approaching the finish line</name>
+        <members>
+            <member role="Cameraman" userRef="2efd266b-b860-47de-bb75-0f70e9735ce9"/>
+            <member role="Director" userRef="9d41fae5-6b53-4f17-9025-db24b3bd2d61"/>
+            <member role="Production Technician" userRef="1ffa1d7c-bcd8-4f44-ad04-3045a86f28ce"/>
+        </members>
+    </editorialTeam>
+    <targetTypes>
+        <targetType>
+            <name>TARGET_BOAT</name>
+            <description>target is a boat</description>
+        </targetType>
+    </targetTypes>
+    <shootingActionSequences>
+        <shootingActionSequence>
+            <uuid>0858ed85-7630-48ce-9f8f-ffe60102a549</uuid>
+            <name>SAS_approach_2</name>
+            <role>SAS_approach_2</role>
+            <shootingActions>
+                <shootingAction shootingActionTemplateRef="LATERAL">
+                    <uuid>bd45c802-d3b9-4d12-824d-aaad201cfca3</uuid>
+                    <name>LATERAL</name>
+                    <duration>30</duration>
+                    <params>{}</params>
+                    <priority>1</priority>
+                    <RTTrajectory>
+                        <RTTrajectoryPoint>
+                            <x>-28.68</x>
+                            <y>4.34</y>
+                            <altitude>-1.0</altitude>
+                            <time>0</time>
+                        </RTTrajectoryPoint>
+                        <RTTrajectoryPoint>
+                            <x>-23.83</x>
+                            <y>-2.02</y>
+                            <altitude>-1.0</altitude>
+                            <time>0</time>
+                        </RTTrajectoryPoint>
+                    </RTTrajectory>
+                    <originOfFormation>
+                        <x>-28.68</x>
+                        <y>4.34</y>
+                        <altitude>-1.0</altitude>
+                        <time>0</time>
+                    </originOfFormation>
+                    <originOfRT>
+                        <latitude>52.4356</latitude>
+                        <longitude>13.14221</longitude>
+                        <altitude>-1.0</altitude>
+                        <time>0</time>
+                    </originOfRT>
+                    <Maps>
+                        <Map>
+                            <name>a4f73ee0-eb84-47ce-be2d-8d2325044851</name>
+                            <description>{"lon":"13.17334","lat":"52.42861","KML":"&lt;kml xmlns=\"http://www.opengis.net/kml/2.2\" xmlns:gx=\"http://www.google.com/kml/ext/2.2\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/kml/2.2 https://developers.google.com/kml/schema/kml22gx.xsd\"&gt;&lt;Document&gt;&lt;Placemark&gt;&lt;Point&gt;&lt;coordinates&gt;13.14219653606415,52.43560340255499&lt;/coordinates&gt;&lt;/Point&gt;&lt;/Placemark&gt;&lt;Placemark&gt;&lt;LineString&gt;&lt;coordinates&gt;13.142209947109222,52.43560088798404 13.141641318798065,52.43522537872195&lt;/coordinates&gt;&lt;/LineString&gt;&lt;/Placemark&gt;&lt;Placemark/&gt;&lt;/Document&gt;&lt;/kml&gt;"}</description>
+                            <uri>http://multidrone.eu/maps/a4f73ee0-eb84-47ce-be2d-8d2325044851</uri>
+                        </Map>
+                    </Maps>
+                    <shootingRoles>
+                        <shootingRole>
+                            <name>LATERAL</name>
+                            <framingTypeName>FRAMING_TYPE_MS</framingTypeName>
+                            <shootingTypeName>RULE_OF_THIRDS</shootingTypeName>
+                            <params>{"y_0":{"value":9,"description":"Y-axis displacement (meters)"},"z_0":{"value":9,"description":"Z-axis displacement (meters)"},"image":"lateral.png","description":"The drone moves alongside the target."}</params>
+                            <targetIdentifier>
+                                <name>GPS</name>
+                                <description>Track a shooting target through GPS sensors</description>
+                                <defaultParams>{"ID": ""}</defaultParams>
+                            </targetIdentifier>
+                            <targetIdentifierParams>{"ID":1,"rt_mode":2}</targetIdentifierParams>
+                            <targetTrajectory/>
+                        </shootingRole>
+                    </shootingRoles>
+                </shootingAction>
+                <shootingAction shootingActionTemplateRef="BoatRace_3">
+                    <uuid>800e367e-5d57-472d-9225-a4133b3aad99</uuid>
+                    <name>BoatRace_3</name>
+                    <duration>30</duration>
+                    <params>{}</params>
+                    <priority>2</priority>
+                    <RTTrajectory>
+                        <RTTrajectoryPoint>
+                            <x>-23.83</x>
+                            <y>-2.02</y>
+                            <altitude>-1.0</altitude>
+                            <time>0</time>
+                        </RTTrajectoryPoint>
+                        <RTTrajectoryPoint>
+                            <x>-18,58</x>
+                            <y>-8,39</y>
+                            <altitude>-1.0</altitude>
+                            <time>0</time>
+                        </RTTrajectoryPoint>
+                    </RTTrajectory>
+                    <originOfFormation>
+                        <x>-23.83</x>
+                        <y>-2.02</y>
+                        <altitude>-1.0</altitude>
+                        <time>0</time>
+                    </originOfFormation>
+                    <originOfRT>
+                        <latitude>52.43514</latitude>
+                        <longitude>13.141643</longitude>
+                        <altitude>-1.0</altitude>
+                        <time>0</time>
+                    </originOfRT>
+                    <Maps>
+                        <Map>
+                            <name>a9ea4a1d-5dd5-408b-a2b5-05f9db33a216</name>
+                            <description>{"lon":"13.17334","lat":"52.42861","KML":"&lt;kml xmlns=\"http://www.opengis.net/kml/2.2\" xmlns:gx=\"http://www.google.com/kml/ext/2.2\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/kml/2.2 https://developers.google.com/kml/schema/kml22gx.xsd\"&gt;&lt;Document&gt;&lt;Placemark&gt;&lt;Point&gt;&lt;coordinates&gt;13.141642659902573,52.43513292632997&lt;/coordinates&gt;&lt;/Point&gt;&lt;/Placemark&gt;&lt;Placemark&gt;&lt;LineString&gt;&lt;coordinates&gt;13.141642659902573,52.435138290748 13.13995286822319,52.43422097526491&lt;/coordinates&gt;&lt;/LineString&gt;&lt;/Placemark&gt;&lt;Placemark/&gt;&lt;/Document&gt;&lt;/kml&gt;"}</description>
+                            <uri>http://multidrone.eu/maps/a9ea4a1d-5dd5-408b-a2b5-05f9db33a216</uri>
+                        </Map>
+                    </Maps>
+                    <shootingRoles>
+                        <shootingRole>
+                            <name>ORBIT</name>
+                            <framingTypeName>FRAMING_TYPE_MS</framingTypeName>
+                            <shootingTypeName>RULE_OF_THIRDS</shootingTypeName>
+                            <params>{"r_0":{"value":7.5,"description":"Radius of the circle (meters)"},"z_0":{"value":3,"description":"Z-axis displacement (meters)"},"image":"orbit.png","azimuth_s":{"value":3.14,"description":"Drone position angle (radians)"},"description":"The drone flies around the target in a circle, centred at the target.","azimuth_speed":{"value":0.1,"description":"Drone angular speed (rad/s)"}}</params>
+                            <targetIdentifier>
+                                <name>GPS</name>
+                                <description>Track a shooting target through GPS sensors</description>
+                                <defaultParams>{"ID": ""}</defaultParams>
+                            </targetIdentifier>
+                            <targetIdentifierParams>{"ID":1,"rt_mode":0}</targetIdentifierParams>
+                            <targetTrajectory/>
+                        </shootingRole>
+                        <shootingRole>
+                            <name>ORBIT</name>
+                            <framingTypeName>FRAMING_TYPE_MS</framingTypeName>
+                            <shootingTypeName>RULE_OF_THIRDS</shootingTypeName>
+                            <params>{"r_0":{"value":7.5,"description":"Radius of the circle (meters)"},"z_0":{"value":3,"description":"Z-axis displacement (meters)"},"image":"orbit.png","azimuth_s":{"value":0,"description":"Drone position angle (radians)"},"description":"The drone flies around the target in a circle, centred at the target.","azimuth_speed":{"value":0.1,"description":"Drone angular speed (rad/s)"}}</params>
+                            <targetIdentifier>
+                                <name>GPS</name>
+                                <description>Track a shooting target through GPS sensors</description>
+                                <defaultParams>{"ID": ""}</defaultParams>
+                            </targetIdentifier>
+                            <targetIdentifierParams>{"ID":1,"rt_mode":0}</targetIdentifierParams>
+                            <targetTrajectory/>
+                        </shootingRole>
+                        <shootingRole>
+                            <name>LATERAL</name>
+                            <framingTypeName>FRAMING_TYPE_MS</framingTypeName>
+                            <shootingTypeName>RULE_OF_THIRDS</shootingTypeName>
+                            <params>{"y_0":{"value":9,"description":"Y-axis displacement (meters)"},"z_0":{"value":9,"description":"Z-axis displacement (meters)"},"image":"lateral.png","description":"The drone moves alongside the target."}</params>
+                            <targetIdentifier>
+                                <name>GPS</name>
+                                <description>Track a shooting target through GPS sensors</description>
+                                <defaultParams>{"ID": ""}</defaultParams>
+                            </targetIdentifier>
+                            <targetIdentifierParams>{"ID":1,"rt_mode":2}</targetIdentifierParams>
+                            <targetTrajectory/>
+                        </shootingRole>
+                    </shootingRoles>
+                </shootingAction>
+                <shootingAction shootingActionTemplateRef="BoatRace_3">
+                    <uuid>4c444bd9-2b5d-4b4d-a2aa-662d711bc819</uuid>
+                    <name>BoatRace_3</name>
+                    <duration>30</duration>
+                    <params>{}</params>
+                    <priority>3</priority>
+                    <RTTrajectory>
+                        <RTTrajectoryPoint>
+                            <x>-18</x>
+                            <y>-8,39</y>
+                            <altitude>-1.0</altitude>
+                            <time>0</time>
+                        </RTTrajectoryPoint>
+                        <RTTrajectoryPoint>
+                            <x>-13</x>
+                            <y>-14</y>
+                            <altitude>-1.0</altitude>
+                        </RTTrajectoryPoint>
+                    </RTTrajectory>
+                    <originOfFormation>
+                        <x>-18,58</x>
+                        <y>-8,39</y>
+                        <altitude>-1.0</altitude>
+                        <time>0</time>
+                    </originOfFormation>
+                    <originOfRT>
+                        <latitude>52.434242</latitude>
+                        <longitude>13.139915</longitude>
+                        <altitude>-1.0</altitude>
+                        <time>0</time>
+                    </originOfRT>
+                    <Maps>
+                        <Map>
+                            <name>407ea1cc-8321-438a-9293-81c15f521972</name>
+                            <description>{"lon":"13.17334","lat":"52.42861","KML":"&lt;kml xmlns=\"http://www.opengis.net/kml/2.2\" xmlns:gx=\"http://www.google.com/kml/ext/2.2\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/kml/2.2 https://developers.google.com/kml/schema/kml22gx.xsd\"&gt;&lt;Document&gt;&lt;Placemark&gt;&lt;Point&gt;&lt;coordinates&gt;13.139909952878952,52.434242432937026&lt;/coordinates&gt;&lt;/Point&gt;&lt;/Placemark&gt;&lt;Placemark&gt;&lt;Point&gt;&lt;coordinates&gt;13.139909952878952,52.434242432937026&lt;/coordinates&gt;&lt;/Point&gt;&lt;/Placemark&gt;&lt;Placemark&gt;&lt;LineString&gt;&lt;coordinates&gt;13.139915317296982,52.434242432937026 13.138145059347153,52.433303659781814&lt;/coordinates&gt;&lt;/LineString&gt;&lt;/Placemark&gt;&lt;Placemark/&gt;&lt;/Document&gt;&lt;/kml&gt;"}</description>
+                            <uri>http://multidrone.eu/maps/407ea1cc-8321-438a-9293-81c15f521972</uri>
+                        </Map>
+                    </Maps>
+                    <shootingRoles>
+                        <shootingRole>
+                            <name>ORBIT</name>
+                            <framingTypeName>FRAMING_TYPE_MS</framingTypeName>
+                            <shootingTypeName>RULE_OF_THIRDS</shootingTypeName>
+                            <params>{"r_0":{"value":7.5,"description":"Radius of the circle (meters)"},"z_0":{"value":3,"description":"Z-axis displacement (meters)"},"image":"orbit.png","azimuth_s":{"value":0,"description":"Drone position angle (radians)"},"description":"The drone flies around the target in a circle, centred at the target.","azimuth_speed":{"value":-0.1,"description":"Drone angular speed (rad/s)"}}</params>
+                            <targetIdentifier>
+                                <name>GPS</name>
+                                <description>Track a shooting target through GPS sensors</description>
+                                <defaultParams>{"ID": ""}</defaultParams>
+                            </targetIdentifier>
+                            <targetIdentifierParams>{"ID":1,"rt_mode":0}</targetIdentifierParams>
+                            <targetTrajectory/>
+                        </shootingRole>
+                        <shootingRole>
+                            <name>LATERAL</name>
+                            <framingTypeName>FRAMING_TYPE_MS</framingTypeName>
+                            <shootingTypeName>RULE_OF_THIRDS</shootingTypeName>
+                            <params>{"y_0":{"value":9,"description":"Y-axis displacement (meters)"},"z_0":{"value":9,"description":"Z-axis displacement (meters)"},"image":"lateral.png","description":"The drone moves alongside the target."}</params>
+                            <targetIdentifier>
+                                <name>GPS</name>
+                                <description>Track a shooting target through GPS sensors</description>
+                                <defaultParams>{"ID": ""}</defaultParams>
+                            </targetIdentifier>
+                            <targetIdentifierParams>{"ID":1,"rt_mode":2}</targetIdentifierParams>
+                            <targetTrajectory/>
+                        </shootingRole>
+                        <shootingRole>
+                            <name>ORBIT</name>
+                            <framingTypeName>FRAMING_TYPE_MS</framingTypeName>
+                            <shootingTypeName>RULE_OF_THIRDS</shootingTypeName>
+                            <params>{"r_0":{"value":7.5,"description":"Radius of the circle (meters)"},"z_0":{"value":3,"description":"Z-axis displacement (meters)"},"image":"orbit.png","azimuth_s":{"value":3.14,"description":"Drone position angle (radians)"},"description":"The drone flies around the target in a circle, centred at the target.","azimuth_speed":{"value":-0.1,"description":"Drone angular speed (rad/s)"}}</params>
+                            <targetIdentifier>
+                                <name>GPS</name>
+                                <description>Track a shooting target through GPS sensors</description>
+                                <defaultParams>{"ID": ""}</defaultParams>
+                            </targetIdentifier>
+                            <targetIdentifierParams>{"ID":1,"rt_mode":0}</targetIdentifierParams>
+                            <targetTrajectory/>
+                        </shootingRole>
+                    </shootingRoles>
+                </shootingAction>
+            </shootingActions>
+        </shootingActionSequence>
+    </shootingActionSequences>
+</mission>
