@@ -1,0 +1,15 @@
+<launch>
+    <arg name="target_mode" default="3"/>
+
+    <!-- executer 2 -->
+    <include file="$(find action_executer)/launch/action_executer.launch">
+        <arg name="drone_id" value="2"/>
+        <arg name="target_mode" value="$(arg target_mode)"/>
+    </include>
+
+    <!-- scheduler 2 -->
+    <include file="$(find onboard_scheduler)/launch/onboard_scheduler.launch">
+        <arg name="drone_id" value="2"/>
+    </include>
+    
+</launch>

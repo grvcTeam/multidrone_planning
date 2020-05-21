@@ -1,0 +1,8 @@
+<launch>
+
+    <!-- mission controller -->
+    <include file="$(find multidrone_planning)/launch/mission_controller.launch">
+        <arg name="drones" value="[1,2]"/>
+    </include>
+
+</launch>

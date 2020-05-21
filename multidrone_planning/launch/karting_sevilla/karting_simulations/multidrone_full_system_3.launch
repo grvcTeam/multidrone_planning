@@ -1,0 +1,41 @@
+<launch>
+
+    <!-- multidrone robot 1 -->
+    <include file="$(find action_executer)/launch/action_executer.launch">
+        <arg name="drone_id" value="1"/>
+    </include>
+
+    <include file="$(find onboard_scheduler)/launch/onboard_scheduler.launch">
+        <arg name="drone_id" value="1"/>
+    </include>
+
+    <!-- multidrone robot 2 -->
+    <include file="$(find action_executer)/launch/action_executer.launch">
+        <arg name="drone_id" value="2"/>
+    </include>
+
+    <include file="$(find onboard_scheduler)/launch/onboard_scheduler.launch">
+        <arg name="drone_id" value="2"/>
+    </include>
+
+    <!-- multidrone robot 3 -->
+    <include file="$(find action_executer)/launch/action_executer.launch">
+        <arg name="drone_id" value="3"/>
+    </include>
+
+    <include file="$(find onboard_scheduler)/launch/onboard_scheduler.launch">
+        <arg name="drone_id" value="3"/>
+    </include>
+
+    <!-- mission controller. For 1 drone: value="[1]"    For 3 drones: value="[1,2,3]" -->
+    <include file="$(find multidrone_planning)/launch/mission_controller.launch">
+        <arg name="drones" value="[1,2,3]"/>
+        <arg name="origin_latitude" value="37.558533"/>
+        <!-- <arg name="origin_latitude" value="54.17435"/> -->
+        <arg name="origin_longitude" value="-5.931044"/>
+        <!-- <arg name="origin_longitude" value="10.12996"/> -->
+        <arg name="origin_altitude" value="7.89"/>
+    </include>
+
+</launch>
+

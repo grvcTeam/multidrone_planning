@@ -1,0 +1,5 @@
+<launch>
+    <include file="$(find dashboard_interface)/launch/pydashboard.launch">
+        <arg name="xml_folder" value="XMLs" />
+    </include>
+</launch>

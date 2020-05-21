@@ -1,0 +1,33 @@
+<launch>
+
+    <!-- multidrone robot 1 -->
+    <include file="$(find action_executer)/launch/action_executer.launch">
+        <arg name="drone_id" value="1"/>
+    </include>
+
+    <include file="$(find onboard_scheduler)/launch/onboard_scheduler.launch">
+        <arg name="drone_id" value="1"/>
+    </include>
+
+    <!-- multidrone robot 2 -->
+    <include file="$(find action_executer)/launch/action_executer.launch">
+        <arg name="drone_id" value="2"/>
+    </include>
+
+    <include file="$(find onboard_scheduler)/launch/onboard_scheduler.launch">
+        <arg name="drone_id" value="2"/>
+    </include>
+
+    <!-- mission controller. For 2 drones: value="[1,2]" -->
+    <include file="$(find multidrone_planning)/launch/mission_controller.launch">
+        <arg name="drones" value="[1,2]"/>
+        <arg name="origin_latitude" value="52.432789"/>
+        <arg name="origin_longitude" value="13.141819"/>
+        <arg name="origin_altitude" value="0"/>
+    </include>
+
+    <include file="$(find global_tracker)/launch/global_tracker_sim.launch">
+    </include>
+
+</launch>
+

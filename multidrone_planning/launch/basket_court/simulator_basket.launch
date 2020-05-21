@@ -1,0 +1,64 @@
+<launch>
+    <arg name="vehicle" default="typhoon_h480"/>
+
+    <env name="GAZEBO_MODEL_PATH" value="${GAZEBO_MODEL_PATH}:$(find drcsim_model_resources)/gazebo_models"/>
+    <env name="GAZEBO_RESOURCE_PATH" value="${GAZEBO_RESOURCE_PATH}:$(find drcsim_model_resources)/gazebo_models"/>
+
+    <!-- Launch Gazebo simulation -->
+	<rosparam param="/use_sim_time">true</rosparam>
+    <node pkg="px4_bringup" type="launch_gzworld.py" name="gazebo_world" output="screen"
+    args="-physics=ode -world=$(find multidrone_gazebo)/worlds/basket_court.world
+		  -add_model_path=$(find multidrone_gazebo)/models
+		  -description_package=robots_description">
+		<rosparam param="sim_origin">[37.41036, -6.002353, 6.48]</rosparam>  <!-- [lat,lon,alt] -->
+	</node>
+
+	<!-- Launch robot id=1 -->
+	<include file="$(find px4_bringup)/launch/spawn_robot.launch" ns="drone_1">
+		<arg name="id" value="1"/>
+        <arg name="robot_model" value="typhoon_h480"/>
+		<arg name="material" value="Indigo"/>
+        <arg name="x" value="-6"/>
+        <arg name="y" value="1.5"/>
+        <arg name="z" value="0.0"/>
+        <arg name="yaw" value="0"/>
+	</include> 
+
+    <!-- Launch robot id=2  -->
+     <include file="$(find px4_bringup)/launch/spawn_robot.launch" ns="drone_2">
+        <arg name="id" value="2"/>
+        <arg name="material" value="Indigo"/>
+        <arg name="robot_model" value="typhoon_h480"/>
+        <arg name="x" value="-6"/>
+        <arg name="y" value="-1.5"/>
+        <arg name="z" value="0"/>
+        <arg name="yaw" value="0"/>
+    </include> 
+
+     <!-- Launch UAL server for drone id=1 -->
+    <node pkg="uav_abstraction_layer" type="server" name="ual" output="screen" ns="drone_1">
+        <param name="uav_id" value="1"/>
+        <param name="pose_frame_id" value="map"/>
+        <rosparam param="home_pose">[-6.0, 1.5, 0.0]</rosparam>
+    </node>   
+
+    <!-- Launch UAL server for drone id=2 -->
+     <node pkg="uav_abstraction_layer" type="server" name="ual" output="screen" ns="drone_2">
+        <param name="uav_id" value="2"/>
+        <param name="pose_frame_id" value="map"/>
+        <rosparam param="home_pose">[-6.0, -1.5, 0.0]</rosparam>
+    </node>    
+
+    <!-- Camera 1>  -->
+    <node name="rqt_image_view_1" pkg="rqt_image_view" type="rqt_image_view" args="/$(arg vehicle)_1/cgo3_camera/image_raw"/> 
+   
+    <!-- Camera 2> -->
+     <node name="rqt_image_view_2" pkg="rqt_image_view" type="rqt_image_view" args="/$(arg vehicle)_2/cgo3_camera/image_raw"/> 
+
+    <!-- Start vehicle node -->
+    <node name="drc_vehicle_moving" pkg="multidrone_gazebo" type="drc_vehicle_moving" output="screen"/> 
+
+    <include file="$(find global_tracker)/launch/global_tracker_sim.launch">
+    </include>
+
+</launch>

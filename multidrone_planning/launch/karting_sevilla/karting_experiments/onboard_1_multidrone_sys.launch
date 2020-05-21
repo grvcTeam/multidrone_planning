@@ -1,0 +1,12 @@
+<launch>
+   <!-- executer 1 -->
+    <include file="$(find action_executer)/launch/action_executer.launch">
+        <arg name="drone_id" value="1"/>
+    </include>
+    
+    <!-- scheduler 1 -->
+    <include file="$(find onboard_scheduler)/launch/onboard_scheduler.launch">
+        <arg name="drone_id" value="1"/>
+    </include>
+   
+</launch>

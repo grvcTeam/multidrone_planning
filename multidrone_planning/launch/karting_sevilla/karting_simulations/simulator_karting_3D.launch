@@ -1,0 +1,104 @@
+<launch>
+    <arg name="vehicle" default="typhoon_h480"/>
+
+    <env name="GAZEBO_MODEL_PATH" value="${GAZEBO_MODEL_PATH}:$(find drcsim_model_resources)/gazebo_models"/>
+    <env name="GAZEBO_RESOURCE_PATH" value="${GAZEBO_RESOURCE_PATH}:$(find drcsim_model_resources)/gazebo_models"/>
+
+    <!-- Launch Gazebo simulation -->
+	<rosparam param="/use_sim_time">true</rosparam>
+    <node pkg="px4_bringup" type="launch_gzworld.py" name="gazebo_world" output="screen"
+    args="-physics=ode
+          -world=$(find multidrone_gazebo)/worlds/karting_sevilla_3D.world
+		  -add_model_path=$(find multidrone_gazebo)/models
+		  -description_package=robots_description">
+		<rosparam param="sim_origin">[37.558533, -5.931044, 7.89]</rosparam> 
+		<!-- <rosparam param="sim_origin">[54.17435, 10.12996, 7.89]</rosparam>  -->
+		<!-- <rosparam param="sim_origin">[52.4353142, 13.1424676, 7.89]</rosparam> -->
+        <!-- [lat,lon,alt] -->
+	</node>
+
+	<!-- Launch robot id=1 -->
+	<include file="$(find px4_bringup)/launch/spawn_robot.launch" ns="drone_1">
+		<arg name="id" value="1"/>
+		<arg name="material" value="Orange"/>
+        <arg name="robot_model" value="typhoon_h480"/>
+        <arg name="x" value="8.423735"/>
+        <arg name="y" value="-38.712129"/>
+        <!-- <arg name="x" value="-44.298490"/> -->
+        <!-- <arg name="y" value="5.053597"/> -->
+        <arg name="z" value="0.0"/>
+        <arg name="yaw" value="2.215051"/>
+	</include>
+
+    <!-- Launch robot id=2  -->
+    <include file="$(find px4_bringup)/launch/spawn_robot.launch" ns="drone_2">
+        <arg name="id" value="2"/>
+        <arg name="material" value="Indigo"/>
+        <arg name="robot_model" value="typhoon_h480"/>
+        <arg name="x" value="-20.373423"/>
+        <arg name="y" value="-13.798492"/>
+        <!-- <arg name="x" value="-23.712216"/> -->
+        <!-- <arg name="y" value="9.032632"/> -->
+        <arg name="z" value="0"/>
+        <arg name="yaw" value="2.193753"/>
+    </include>
+
+    <!-- Launch robot id=3  -->
+    <include file="$(find px4_bringup)/launch/spawn_robot.launch" ns="drone_3">
+        <arg name="id" value="3"/>
+        <arg name="material" value="Indigo"/>
+        <arg name="robot_model" value="typhoon_h480"/>
+        <arg name="x" value="-52.676923"/>
+        <arg name="y" value="-4.110844"/>
+        <!-- <arg name="x" value="-36.2869"/> -->
+        <!-- <arg name="y" value="10.8590"/> -->
+        <arg name="z" value="0"/>
+        <arg name="yaw" value="2.239573"/>
+    </include>
+
+    <!-- Launch UAL server for drone id=1 -->
+    <node pkg="ual_backend_mavros" type="ual_backend_mavros_server" name="ual" output="screen" ns="drone_1">
+        <param name="uav_id" value="1"/>
+        <param name="pose_frame_id" value="map"/>
+        <rosparam param="home_pose">[8.423735, -38.712129, 0.0]</rosparam>
+        <!-- <rosparam param="home_pose">[-44.298490, 5.053597, 0.0]</rosparam> -->
+        <rosparam param="map_origin_geo">[37.558533, -5.931044, 7.89]</rosparam>
+        <!-- <rosparam param="map_origin_geo">[54.17435, 10.12996, 7.89]</rosparam> -->
+        <!-- <rosparam param="map_origin_geo">[52.4353142, 13.1424676, 7.89]</rosparam> -->
+    </node>
+
+    <!-- Launch UAL server for drone id=2 -->
+    <node pkg="ual_backend_mavros" type="ual_backend_mavros_server" name="ual" output="screen" ns="drone_2">
+        <param name="uav_id" value="2"/>
+        <param name="pose_frame_id" value="map"/>
+        <rosparam param="home_pose">[-20.373423, -13.798492, 0.0]</rosparam>
+        <!-- <rosparam param="home_pose">[-23.712216, 9.032632, 0.0]</rosparam> -->
+        <rosparam param="map_origin_geo">[37.558533, -5.931044, 7.89]</rosparam>
+        <!-- <rosparam param="map_origin_geo">[54.17435, 10.12996, 7.89]</rosparam> -->
+        <!-- <rosparam param="map_origin_geo">[52.4353142, 13.1424676, 7.89]</rosparam> -->
+    </node>
+
+    <!-- Launch UAL server for drone id=3 -->
+    <node pkg="ual_backend_mavros" type="ual_backend_mavros_server" name="ual" output="screen" ns="drone_3">
+        <param name="uav_id" value="3"/>
+        <param name="pose_frame_id" value="map"/>
+        <rosparam param="home_pose">[-52.676923, -4.110844, 0.0]</rosparam>
+        <!-- <rosparam param="home_pose">[-36.2869, 10.8590, 0.0]</rosparam> -->
+        <rosparam param="map_origin_geo">[37.558533, -5.931044, 7.89]</rosparam>
+        <!-- <rosparam param="map_origin_geo">[54.17435, 10.12996, 7.89]</rosparam> -->
+        <!-- <rosparam param="map_origin_geo">[52.4353142, 13.1424676, 7.89]</rosparam> -->
+    </node>
+
+    <!-- Camera 1> -->
+    <!-- <node name="rqt_image_view_1" pkg="rqt_image_view" type="rqt_image_view" args="/$(arg vehicle)_1/cgo3_camera/image_raw"/> -->
+
+    <!-- Camera 2> -->
+    <!-- <node name="rqt_image_view_2" pkg="rqt_image_view" type="rqt_image_view" args="/$(arg vehicle)_2/cgo3_camera/image_raw"/> -->
+
+    <!-- Camera 3> -->
+    <!-- <node name="rqt_image_view_3" pkg="rqt_image_view" type="rqt_image_view" args="/$(arg vehicle)_3/cgo3_camera/image_raw"/> -->
+
+    <!-- Start vehicle node -->
+    <node name="drc_vehicle_moving" pkg="multidrone_gazebo" type="drc_vehicle_moving" output="screen"/> 
+
+</launch>

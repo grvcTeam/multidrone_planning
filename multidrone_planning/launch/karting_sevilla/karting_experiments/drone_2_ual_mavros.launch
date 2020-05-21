@@ -1,0 +1,19 @@
+<launch>
+    <arg name="usb" default="0"/>
+
+    <!-- Launch robot id=2 -->
+    <include file="$(find px4_bringup)/launch/spawn_robot.launch" ns="drone_2">
+        <arg name="id" value="2"/>	    
+        <arg name="mode" value="custom"/>
+        <arg name="fcu_url" value="serial:///dev/ttyUSB$(arg usb):921600"/>
+        <arg name="rtcm_topic" value="/rtcm_stream"/>
+    </include>
+
+    <!-- Launch UAL server for drone id=2 -->
+    <node pkg="uav_abstraction_layer" type="server" name="ual" output="screen" ns="drone_2">
+        <param name="uav_id" value="2"/>
+        <param name="pose_frame_id" value="map"/>
+        <rosparam param="map_origin_geo">[37.5585339, -5.9310622, 7.89]</rosparam>
+    </node>
+
+</launch>
