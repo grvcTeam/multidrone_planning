@@ -1,0 +1,20 @@
+<!--		
+-->
+<launch>
+
+  <node pkg="multidrone_visualizer" name="visualizer_node" type="visualizer_node"
+		output="screen" >
+  </node>    
+
+  <group ns="$(env LOGNAME)">
+    <node pkg="rviz" name="rviz" type="rviz" args="-d $(find multidrone_visualizer)/rviz/karting.rviz"/>   
+  </group>
+
+  <arg name="map" default="karting_scenario"/> 
+
+	<!-- Waking up the specific map -->
+		<node name="map_server" pkg="map_server" type="map_server" 
+			args="$(find multidrone_visualizer)/maps/$(arg map).yaml" respawn="true">	
+		</node>
+
+</launch>

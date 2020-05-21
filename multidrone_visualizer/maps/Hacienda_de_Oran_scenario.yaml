@@ -1,0 +1,6 @@
+image: Hacienda_de_Oran_original.jpg  # Path to the image file containing the occupancy data; can be absolute, or relative to the location of the YAML file
+resolution: 0.27429584    # Resolution of the map, meters / pixel
+origin: [-376.045, -553.045, 0]     # The 2-D pose of the lower-left pixel in the map, as (x, y, yaw), with yaw as counterclockwise rotation (yaw=0 means no rotation). Many parts of the system currently ignore yaw.
+occupied_thresh: 0.5      # Pixels with occupancy probability greater than this threshold are considered completely occupied.
+free_thresh: 0.4          # Pixels with occupancy probability less than this threshold are considered completely free.
+negate: 0                 # Whether the white/black free/occupied semantics should be reversed (interpretation of thresholds is unaffected)
