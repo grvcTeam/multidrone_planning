@@ -1,0 +1,70 @@
+<?xml version="1.0" ?>
+<sdf version="1.4">
+  <world name="karting_sevilla">
+
+    <physics type='ode'>
+      <ode>
+        <solver>
+          <type>quick</type>
+          <iters>10</iters>
+          <sor>1.3</sor>
+        </solver>
+        <constraints>
+          <cfm>0</cfm>
+          <erp>0.2</erp>
+          <contact_max_correcting_vel>100</contact_max_correcting_vel>
+          <contact_surface_layer>0.001</contact_surface_layer>
+        </constraints>
+      </ode>
+      <!-- Values shoud be step_size = 0.001*F and time_up= 1000/F-->
+      <!-- 
+              F   step_size   real_time   real_time_factor
+              1   0.001       1000        0.4 (controler works)
+              2   0.002        500        0.6 (controler works)
+              3   0.003        333        0.8-0.9 (controler works)
+              4   0.004        250        (controler does not work)
+              5   0.005        200        (controler does not work)
+              6   0.006        166
+              7   0.007        142
+              8   0.008        125
+              9   0.009        111
+              10  0.01         100
+      -->
+      <max_step_size>0.002</max_step_size>
+      <real_time_update_rate>500</real_time_update_rate>
+      <real_time_factor>1</real_time_factor>
+      <gravity>0 0 -9.8</gravity>
+      <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
+    </physics>
+
+    <gui>
+      <camera name="user_camera">
+        <pose>-53.06 15.29 9.94 0 0.33 -0.55</pose>
+      </camera>
+    </gui>
+
+    <!-- Car robot -->
+    <include>
+      <uri>model://drc_vehicle_xp900</uri>
+      <pose>-30.962941 3.489969 0 0 0 -0.935917</pose>
+    </include>
+
+    <!-- A global light source -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <!-- The ground plane: karting -->
+    <include>
+      <uri>model://karting</uri>
+    </include>
+  
+    <!-- World state: rotate (ENU) and center the origin of the simulator -->
+    <state world_name='karting_sevilla'>  
+      <model name='karting'>
+        <pose frame=''>-24 -29 0 0 0 1.570796327</pose>
+      </model>
+    </state>
+
+  </world>
+</sdf>

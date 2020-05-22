@@ -1,14 +1,11 @@
 <launch>
     <arg name="vehicle" default="typhoon_h480"/>
 
-    <env name="GAZEBO_MODEL_PATH" value="${GAZEBO_MODEL_PATH}:$(find drcsim_model_resources)/gazebo_models"/>
-    <env name="GAZEBO_RESOURCE_PATH" value="${GAZEBO_RESOURCE_PATH}:$(find drcsim_model_resources)/gazebo_models"/>
-
     <!-- Launch Gazebo simulation -->
 	<rosparam param="/use_sim_time">true</rosparam>
     <node pkg="px4_bringup" type="launch_gzworld.py" name="gazebo_world" output="screen"
-    args="-physics=ode -world=$(find multidrone_gazebo)/worlds/boat_scenario.world
-		  -add_model_path=$(find multidrone_gazebo)/models
+    args="-physics=ode -world=$(find multidrone_simulator)/worlds/boat_scenario.world
+		  -add_model_path=$(find multidrone_simulator)/models
 		  -description_package=robots_description">
 		<rosparam param="sim_origin">[54.193125, 10.128319, 0]</rosparam>  <!-- [lat,lon,alt] -->
 	</node>
@@ -36,14 +33,14 @@
     </include> 
 
      <!-- Launch UAL server for drone id=1 -->
-    <node pkg="uav_abstraction_layer" type="server" name="ual" output="screen" ns="drone_1">
+    <node pkg="ual_backend_mavros" type="ual_backend_mavros_server" name="ual" output="screen" ns="drone_1">
         <param name="uav_id" value="1"/>
         <param name="pose_frame_id" value="map"/>
         <rosparam param="home_pose">[-5, 20, 0.0]</rosparam>
     </node>   
 
     <!-- Launch UAL server for drone id=2 -->
-     <node pkg="uav_abstraction_layer" type="server" name="ual" output="screen" ns="drone_2">
+     <node pkg="ual_backend_mavros" type="ual_backend_mavros_server" name="ual" output="screen" ns="drone_2">
         <param name="uav_id" value="2"/>
         <param name="pose_frame_id" value="map"/>
         <rosparam param="home_pose">[-12, -10, 0.0]</rosparam>
@@ -56,6 +53,6 @@
      <node name="rqt_image_view_2" pkg="rqt_image_view" type="rqt_image_view" args="/$(arg vehicle)_2/cgo3_camera/image_raw"/> 
 
     <!-- Start vehicle node -->
-    <node name="drc_vehicle_moving" pkg="multidrone_gazebo" type="drc_vehicle_moving" output="screen"/> 
+    <node name="drc_vehicle_moving" pkg="multidrone_simulator" type="drc_vehicle_moving" output="screen"/> 
 
 </launch>

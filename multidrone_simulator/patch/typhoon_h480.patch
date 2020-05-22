@@ -1,0 +1,155 @@
+diff --git a/models/typhoon_h480/typhoon_h480.sdf b/models/typhoon_h480/typhoon_h480.sdf
+index 02684a7..22c8e73 100644
+--- a/models/typhoon_h480/typhoon_h480.sdf
++++ b/models/typhoon_h480/typhoon_h480.sdf
+@@ -386,11 +386,11 @@
+       <sensor name="camera" type="camera">
+         <pose frame=''>-0.051 0 -0.162 0 0 3.14159</pose>
+         <camera>
+-          <horizontal_fov>2.0</horizontal_fov>
++          <horizontal_fov>1.6</horizontal_fov>
+           <image>
+             <format>R8G8B8</format>
+-            <width>640</width>
+-            <height>360</height>
++            <width>1920</width>
++            <height>1080</height>
+           </image>
+           <clip>
+             <near>0.05</near>
+@@ -398,9 +398,9 @@
+           </clip>
+         </camera>
+         <always_on>1</always_on>
+-        <update_rate>10</update_rate>
++        <update_rate>30</update_rate>
+         <visualize>false</visualize>
+-        <!-- how to make this work without using urdf?
++        <!-- how to make this work without using urdf? -->
+         <plugin name="cgo3_camera_controller" filename="libgazebo_ros_camera.so">
+           <alwaysOn>true</alwaysOn>
+           <updateRate>0.0</updateRate>
+@@ -415,7 +415,6 @@
+           <distortionT1>0.0</distortionT1>
+           <distortionT2>0.0</distortionT2>
+         </plugin>
+-        -->
+         <!-- GStreamer camera plugin (needs a lot of CPU! Consider lowering the
+              camera image size when enabling) -->
+         <!--
+@@ -461,6 +460,98 @@
+       </physics>
+     </joint>
+ 
++    <link name="r200_camera_link">
++      <inertial>
++        <!-- place holder -->
++        <pose frame=''>-0.08 0 -0.052 0 0 3.14159</pose>
++        <mass>0.001</mass>
++        <inertia>
++          <ixx>1e-05</ixx>
++          <ixy>0</ixy>
++          <ixz>0</ixz>
++          <iyy>1e-05</iyy>
++          <iyz>0</iyz>
++          <izz>1e-05</izz>
++        </inertia>
++      </inertial>
++      <!--collision>
++        <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
++        <geometry>
++          <box size="0.130 0.567 0.118"/>
++        </geometry>
++      </collision>
++      <visual name='r200_camera_visual'>
++        <pose frame=''>0 0 0 0 0 0</pose>
++        <geometry>
++          <box>
++            <size>0.008 0.130 0.019 </size>
++          </box>
++        </geometry>
++      </visual-->
++      <sensor name="r200" type="depth">
++        <pose frame=''>-0.08 0 -0.052 0 0 3.14159</pose>
++        <always_on>true</always_on>
++        <update_rate>30</update_rate>
++        <visualize>false</visualize>
++        <camera>
++          <horizontal_fov>1.047196667</horizontal_fov>
++          <image>
++            <format>B8G8R8</format>
++            <width>640</width>
++            <height>480</height>
++          </image>
++          <clip>
++            <near>0.05</near>
++            <far>500</far>
++          </clip>
++        </camera>
++        <plugin name="r200" filename="libgazebo_ros_openni_kinect.so">
++          <baseline>0.7</baseline>
++          <alwaysOn>true</alwaysOn>
++          <updateRate>10.0</updateRate>
++          <cameraName>r200</cameraName>
++          <imageTopicName>/r200/rgb/image_raw</imageTopicName>
++          <cameraInfoTopicName>/r200/rgb/camera_info</cameraInfoTopicName>
++          <depthImageTopicName>/r200/depth/image_raw</depthImageTopicName>
++          <depthImageInfoTopicName>/r200/depth/camera_info</depthImageInfoTopicName>
++          <pointCloudTopicName>/r200/depth/points</pointCloudTopicName>
++          <frameName>r200_depth_optical_frame</frameName>
++          <pointCloudCutoff>0.4</pointCloudCutoff>
++          <pointCloudCutoffMax>50</pointCloudCutoffMax>
++          <distortionK1>0.0</distortionK1>
++          <distortionK2>0.0</distortionK2>
++          <distortionK3>0.0</distortionK3>
++          <distortionT1>0.0</distortionT1>
++          <distortionT2>0.0</distortionT2>
++          <CxPrime>0</CxPrime>
++          <Cx>0</Cx>
++          <Cy>0</Cy>
++          <focalLength>0</focalLength>
++          <hackBaseline>0</hackBaseline>
++        </plugin>
++      </sensor>
++    </link>
++
++    <joint name='r200_camera_joint' type='revolute'>
++      <child>r200_camera_link</child>
++      <parent>base_link</parent>
++      <pose frame=''>-0.08 0 -0.052 0 0 3.14159</pose>
++      <axis>
++        <xyz>1 0 0</xyz>
++        <limit>
++          <lower>0</lower>
++          <upper>0</upper>
++          <effort>0</effort>
++          <velocity>0</velocity>
++        </limit>
++        <dynamics>
++          <spring_reference>0</spring_reference>
++          <spring_stiffness>0</spring_stiffness>
++        </dynamics>
++        <use_parent_model_frame>1</use_parent_model_frame>
++      </axis>
++    </joint>
++
+     <link name="left_leg">
+       <inertial>
+         <!-- place holder -->
+@@ -1141,6 +1232,7 @@
+       </physics>
+     </joint>
+ 
++    <!--
+     <include>
+       <uri>model://sonar</uri>
+     </include>
+@@ -1155,7 +1247,7 @@
+         </limit>
+       </axis>
+     </joint>
+-  
++    -->
+ 
+     <plugin name='rosbag' filename='librotors_gazebo_multirotor_base_plugin.so'>
+       <robotNamespace></robotNamespace>

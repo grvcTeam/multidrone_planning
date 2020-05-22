@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <model name="cycling_scenario">
+    <static>true</static>
+    <link name="floor">
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>666.08 666.08 .1</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <cast_shadows>false</cast_shadows>
+        <geometry>
+          <box>
+            <size>666.08 666.08 .1</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://cycling_scenario/materials/scripts</uri>
+            <uri>model://cycling_scenario/materials/textures</uri>
+            <name>cycling_scenario</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>

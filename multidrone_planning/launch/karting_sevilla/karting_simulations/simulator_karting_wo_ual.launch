@@ -3,14 +3,11 @@
     <arg name="vehicle" default="typhoon_h480"/>
     <arg name="multi" default="false"/>
 
-    <env name="GAZEBO_MODEL_PATH" value="${GAZEBO_MODEL_PATH}:$(find drcsim_model_resources)/gazebo_models"/>
-    <env name="GAZEBO_RESOURCE_PATH" value="${GAZEBO_RESOURCE_PATH}:$(find drcsim_model_resources)/gazebo_models"/>
-
     <!-- Launch Gazebo simulation -->
 	<rosparam param="/use_sim_time">true</rosparam>
     <node pkg="px4_bringup" type="launch_gzworld.py" name="gazebo_world" output="screen"
-    args="-physics=ode -world=$(find multidrone_gazebo)/worlds/karting_sevilla.world
-		  -add_model_path=$(find multidrone_gazebo)/models
+    args="-physics=ode -world=$(find multidrone_simulator)/worlds/karting_sevilla.world
+		  -add_model_path=$(find multidrone_simulator)/models
 		  -description_package=robots_description">
 		<rosparam param="sim_origin">[37.558542, -5.931074, 7.89]</rosparam>  <!-- [lat,lon,alt] -->
 	</node>
@@ -38,7 +35,7 @@
     </include>
 
     <!-- Start vehicle node -->
-    <!-- <node name="drc_vehicle_moving" pkg="multidrone_gazebo" type="drc_vehicle_moving" output="screen" launch-prefix="xterm -hold -fn 10x20 -e"/>  -->
+    <!-- <node name="drc_vehicle_moving" pkg="multidrone_simulator" type="drc_vehicle_moving" output="screen" launch-prefix="xterm -hold -fn 10x20 -e"/>  -->
 
     <!-- Camera 1 -->
     <node name="rqt_image_view_1" pkg="rqt_image_view" type="rqt_image_view" args="/$(arg vehicle)_1/cgo3_camera/image_raw"/>

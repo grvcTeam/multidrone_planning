@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <model name="Hacienda_de_Oran">
+    <static>true</static>
+    <link name="floor">
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>890.09 890.09 .1</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <cast_shadows>false</cast_shadows>
+        <geometry>
+          <box>
+            <size>890.09 890.09 .1</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://Hacienda_de_Oran/materials/scripts</uri>
+            <uri>model://Hacienda_de_Oran/materials/textures</uri>
+            <name>Hacienda_de_Oran</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>

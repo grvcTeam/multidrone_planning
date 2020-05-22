@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <model name="karting">
+    <static>true</static>
+    <link name="floor">
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>163.89 163.89 .1</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <cast_shadows>false</cast_shadows>
+        <geometry>
+          <box>
+            <size>163.89 163.89 .1</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://karting/materials/scripts</uri>
+            <uri>model://karting/materials/textures</uri>
+            <name>karting</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>
