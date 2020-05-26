@@ -5,7 +5,7 @@
 	<arg name="k2_gimbal" default=".5"/>
 	<arg name="k_offset" default="2.0"/>
 	<arg name="simulation" default="true"/>	<!-- True for simulation, false for real life flight -->
-	<arg name="onboard" default="false"/>	<!-- False if using real onboard_scheduler -->
+	<arg name="onboard" default="false"/>	<!-- True for using target topic name /target_3d_state, false for using /targets_pose -->
 	<arg name="offset" default="false"/>
 	<arg name="image_height" default="480"/>
 	<arg name="image_width" default="640"/>
