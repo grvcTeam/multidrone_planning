@@ -1,80 +1,53 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(multidrone_simulator)
 
+## Add support for C++11, supported in ROS Kinetic and newer
 add_definitions(-std=c++11)
 
-find_package(catkin REQUIRED COMPONENTS
-	cmake_modules
-	gazebo_msgs
-	geometry_msgs
-	roscpp
-	sensor_msgs
-	trajectory_msgs
-	eigen_conversions
-	tf
-  	uav_abstraction_layer
+# Load catkin and all dependencies required for this package
+find_package(catkin REQUIRED COMPONENTS gazebo_plugins std_msgs
+  roscpp 
+  gazebo_ros
+  multidrone_msgs
 )
+include_directories(include ${catkin_INCLUDE_DIRS})
 
-find_package(Eigen3 REQUIRED)
-#find_package(gazebo REQUIRED)
-
-# Check for mavros version for compatibility with older versions
-execute_process(COMMAND rosversion mavros
-		OUTPUT_VARIABLE mavros_version
-		OUTPUT_STRIP_TRAILING_WHITESPACE
-		)
-if ("${mavros_version}" VERSION_LESS "0.25.0")
-  add_definitions("-DMAVROS_VERSION_BELOW_0_25_0=\"${mavros_version}\"")
+## Find gazebo
+if(POLICY CMP0054)
+  cmake_policy(SET CMP0054 NEW)
 endif()
+find_package(gazebo REQUIRED)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GAZEBO_CXX_FLAGS}")
+include_directories(${GAZEBO_INCLUDE_DIRS})
+link_directories(${GAZEBO_LIBRARY_DIRS})
+
+# Depend on system install of Gazebo
+find_package(gazebo REQUIRED)
 
 catkin_package(
-    INCLUDE_DIRS #${Eigen3_INCLUDE_DIRS}
-    CATKIN_DEPENDS gazebo_msgs geometry_msgs roscpp sensor_msgs trajectory_msgs eigen_conversions tf uav_abstraction_layer
+  DEPENDS 
+    roscpp 
+    gazebo_ros 
 )
 
-# set(PROTOBUF_IMPORT_DIRS "")
-# foreach(ITR ${GAZEBO_INCLUDE_DIRS})
-#   if(ITR MATCHES ".*gazebo-[0-9.]+$")
-#     set(PROTOBUF_IMPORT_DIRS "${ITR}/gazebo/msgs/proto")
-#   endif()
-# endforeach()
+link_directories(${GAZEBO_LIBRARY_DIRS})
+include_directories(${Boost_INCLUDE_DIR} ${catkin_INCLUDE_DIRS} ${GAZEBO_INCLUDE_DIRS})
 
-# # PROTOBUF_IMPORT_DIRS has to be set before
-# # find_package is called
-# find_package(Protobuf REQUIRED)
-# pkg_check_modules(PROTOBUF protobuf)
+# Extinguisher simulator for the MBZIRC fire challenge
+add_library(${PROJECT_NAME} src/target_plugin.cpp)
+target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} ${GAZEBO_LIBRARIES})
 
-# if ("${PROTOBUF_VERSION}" VERSION_LESS "2.5.0")
-#   message(FATAL_ERROR "protobuf version: ${PROTOBUF_VERSION} not compatible, must be >= 2.5.0")
-# endif()
+add_dependencies(${PROJECT_NAME} ${catkin_EXPORTED_TARGETS})
 
-# if("${GAZEBO_VERSION}" VERSION_LESS "6.0")
-#   message(FATAL_ERROR "You need at least Gazebo 6.0. Your version: ${GAZEBO_VERSION}")
-# endif()
-
-###########
-## BUILD ##
-###########
-
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GAZEBO_CXX_FLAGS} -std=c++11 -Wno-deprecated-declarations")
-# -Wno-deprecated-declarations: Shut up warnings about std::binder1st, std::binder2nd.
-
-# set(GAZEBO_MSG_INCLUDE_DIRS)
-# foreach(ITR ${GAZEBO_INCLUDE_DIRS})
-#   if(ITR MATCHES ".*gazebo-[0-9.]+$")
-#     set(GAZEBO_MSG_INCLUDE_DIRS "${ITR}/gazebo/msgs")
-#   endif()
-# endforeach()
-
-include_directories(
-    ${catkin_INCLUDE_DIRS}
-    ${Eigen3_INCLUDE_DIRS}
+install(DIRECTORY include/${PROJECT_NAME}/
+  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+  FILES_MATCHING PATTERN "*.h"
+  PATTERN ".svn" EXCLUDE
 )
 
-include_directories(include ${catkin_INCLUDE_DIRS} ${Eigen3_INCLUDE_DIRS})
-
-# foreach(dir launch resource worlds)
-#    install(DIRECTORY ${dir}/
-#       DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/${dir})
-# endforeach(dir)
-
+install(TARGETS
+  ${PROJECT_NAME}
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION}
+)

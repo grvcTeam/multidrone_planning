@@ -40,10 +40,12 @@
     </gui>
 
     <!-- Car robot -->
-    <include>
-      <uri>model://drc_vehicle_xp900</uri>
-      <pose>-63 56 0 0 0 -1.96</pose>
+   <include>
+      <uri>model://target</uri>
+      <pose> 0 0 0 0 0 0 </pose>
+      <name>target</name>
     </include>
+    
   
     <!-- World state: rotate (ENU) and center the origin of the simulator -->
     <state world_name='boat_scenario_world'>

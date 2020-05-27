@@ -6,23 +6,14 @@
     <node pkg="px4_bringup" type="launch_gzworld.py" name="gazebo_world" output="screen"
     args="-physics=ode -world=$(find multidrone_simulator)/worlds/karting_sevilla.world
 		  -add_model_path=$(find multidrone_simulator)/models
+          -debug=true
 		  -description_package=robots_description">
 		<rosparam param="sim_origin">[37.558542, -5.931074, 7.89]</rosparam>  <!-- [lat,lon,alt] -->
 	</node>
 
-	<!-- Launch robot id=1 -->
-	<include file="$(find px4_bringup)/launch/spawn_robot.launch" ns="drone_1">
-		<arg name="id" value="1"/>
-        <arg name="robot_model" value="typhoon_h480"/>
-		<arg name="material" value="Indigo"/>
-        <arg name="x" value="-32.11"/>
-        <arg name="y" value="4.01"/>
-        <arg name="z" value="0.0"/>
-        <arg name="yaw" value="1.57"/>
-	</include>
 
     <!-- Launch robot id=2  -->
-    <!-- <include file="$(find px4_bringup)/launch/spawn_robot.launch" ns="drone_2">
+     <include file="$(find px4_bringup)/launch/spawn_robot.launch" ns="drone_2">
         <arg name="id" value="2"/>
         <arg name="material" value="Indigo"/>
         <arg name="robot_model" value="typhoon_h480"/>
@@ -30,23 +21,16 @@
         <arg name="y" value="-18.0"/>
         <arg name="z" value="0"/>
         <arg name="yaw" value="3.141592"/>
-    </include> -->
+    </include> 
 
-    <!-- Launch UAL server for drone id=1 -->
-    <node pkg="ual_backend_mavros" type="ual_backend_mavros_server" name="ual" output="screen" ns="drone_1">
-        <param name="uav_id" value="1"/>
-        <param name="pose_frame_id" value="map"/>
-        <rosparam param="home_pose">[-32.11, 4.01, 0.0]</rosparam><!-- [x,y,z] -->
-        <rosparam param="map_origin_geo">[37.5585339, -5.9310622, 7.89]</rosparam>
-    </node>
 
     <!-- Launch UAL server for drone id=2 -->
-    <!-- <node pkg="ual_backend_mavros" type="ual_backend_mavros_server" name="ual" output="screen" ns="drone_2">
+     <node pkg="ual_backend_mavros" type="ual_backend_mavros_server" name="ual" output="screen" ns="drone_2">
         <param name="uav_id" value="2"/>
         <param name="pose_frame_id" value="map"/>
         <rosparam param="home_pose">[-18.0, -18.0, 0.0]</rosparam>
         <rosparam param="map_origin_geo">[37.5585339, -5.9310622, 7.89]</rosparam>
-    </node>    -->
+    </node>    
 
     <!-- Camera 1> -->
     <node name="rqt_image_view_1" pkg="rqt_image_view" type="rqt_image_view" args="/$(arg vehicle)_1/cgo3_camera/image_raw"/>
@@ -54,7 +38,5 @@
     <!-- Camera 2> -->
     <!-- <node name="rqt_image_view_2" pkg="rqt_image_view" type="rqt_image_view" args="/$(arg vehicle)_2/cgo3_camera/image_raw"/> -->
 
-    <!-- Start vehicle node -->
-    <node name="drc_vehicle_moving" pkg="multidrone_simulator" type="drc_vehicle_moving" output="screen"/> 
-
+    
 </launch>

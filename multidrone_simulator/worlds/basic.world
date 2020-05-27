@@ -8,9 +8,10 @@
       <uri>model://sun</uri>
     </include>
 
-    <include>
-      <uri>model://drc_vehicle_xp900</uri>
-      <pose>0 0 0 0 0 0</pose>
+   <include>
+      <uri>model://target</uri>
+      <pose> 0 0 0 0 0 0 </pose>
+      <name>target</name>
     </include>
     
     <!-- Only require one ROS interface plugin per world, as any other plugin can connect a Gazebo

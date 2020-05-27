@@ -38,12 +38,13 @@
         <pose>-92.089920 -168.141525 80.311279 0 0.481796 0.58891931</pose>
       </camera>
     </gui>
-
-    <!-- Car robot -->
-    <include>
-      <uri>model://drc_vehicle_xp900</uri>
-      <pose>-15.000032 -70.000164 0 0 0 -1.408419</pose>
+    
+   <include>
+      <uri>model://target</uri>
+      <pose> 0 0 0 0 0 0 </pose>
+      <name>target</name>
     </include>
+    
   
     <!-- World state: rotate (ENU) and center the origin of the simulator -->
     <state world_name='Hacienda_de_Oran_world'>

@@ -39,11 +39,12 @@
       </camera>
     </gui>
 
-    <!-- Car robot -->
-    <include>
-      <uri>model://drc_vehicle_xp900</uri>
-      <pose>0 0 0 0 0 0</pose>
+   <include>
+      <uri>model://target</uri>
+      <pose> 0 0 0 0 0 0 </pose>
+      <name>target</name>
     </include>
+    
   
     <!-- World state: rotate (ENU) and center the origin of the simulator -->
     <state world_name='Wannsee_final_scenario_world'>

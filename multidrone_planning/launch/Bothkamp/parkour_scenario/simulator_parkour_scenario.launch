@@ -5,6 +5,7 @@
 	<rosparam param="/use_sim_time">true</rosparam>
     <node pkg="px4_bringup" type="launch_gzworld.py" name="gazebo_world" output="screen"
     args="-physics=ode -world=$(find multidrone_simulator)/worlds/parkour_scenario.world
+          -debug=true
 		  -add_model_path=$(find multidrone_simulator)/models
 		  -description_package=robots_description">
 		<rosparam param="sim_origin">[54.171181, 10.131550, 0]</rosparam>  <!-- [lat,lon,alt] -->
