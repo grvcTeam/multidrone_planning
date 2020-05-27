@@ -4,9 +4,13 @@
   <version>0.0.0</version>
   <description>Gazebo plugin for dynamic target simulation.</description>
 
-  <maintainer email="kratkvit@fel.cvut.cz">Vit Kratky</maintainer>
+  <maintainer email="aamarin@us.es">Alfonso Alcantara Marin</maintainer>
+  <maintainer email="amontesromero@us.es">Ángel Manuel Montes Romero</maintainer>
+  <maintainer email="arturotorres@us.es">Arturo Torres</maintainer>
 
-  <license>GPLv3</license>
+
+  <license>MIT</license>
+
 
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>gazebo_ros</build_depend>
