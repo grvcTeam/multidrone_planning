@@ -189,7 +189,7 @@ void dynamicTargetPlugin::Load(physics::ModelPtr _parent, sdf::ElementPtr _sdf) 
   }else
   {
     ROS_WARN("[%s][Target]: topic name not defined. Setting to default value", parent_name.c_str());
-    topic_name = "/target_3d_state"; // /targets_pose
+    topic_name = "/targets_pose"; // /target_3d_state
   }
   
   if (_sdf->HasElement("update_rate")) {
