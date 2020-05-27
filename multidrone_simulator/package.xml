@@ -8,20 +8,25 @@
   <maintainer email="amontesromero@us.es">Ángel Manuel Montes Romero</maintainer>
   <maintainer email="arturotorres@us.es">Arturo Torres</maintainer>
 
-
   <license>MIT</license>
-
 
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>gazebo_ros</build_depend>
   <build_depend>roscpp</build_depend>
+  <build_depend>multidrone_msgs</build_depend>
+  <build_depend>geometry_msgs</build_depend>
   <build_export_depend>gazebo_ros</build_export_depend>
   <build_export_depend>roscpp</build_export_depend>
+  <build_export_depend>multidrone_msgs</build_export_depend>
+  <build_export_depend>geometry_msgs</build_export_depend>
   <exec_depend>gazebo_ros</exec_depend>
   <exec_depend>roscpp</exec_depend>
+  <exec_depend>multidrone_msgs</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
 
   <export>
     <gazebo_ros gazebo_model_path="${prefix}/models"/>
     <gazebo_ros plugin_path="${prefix}/lib" gazebo_media_path="${prefix}" />
   </export>
+
 </package>
