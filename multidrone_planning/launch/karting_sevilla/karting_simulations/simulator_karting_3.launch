@@ -95,7 +95,4 @@
     <!-- Camera 3> -->
     <!-- <node name="rqt_image_view_3" pkg="rqt_image_view" type="rqt_image_view" args="/$(arg vehicle)_3/cgo3_camera/image_raw"/> -->
 
-    <!-- Start vehicle node -->
-    <node name="drc_vehicle_moving" pkg="multidrone_simulator" type="drc_vehicle_moving" output="screen"/> 
-
 </launch>

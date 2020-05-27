@@ -38,13 +38,14 @@
         <pose>22.63 -22.12 13.75 0 0.45 1.89</pose>
       </camera>
     </gui>
-   <include>
+
+    <!-- Include human target -->
+    <include>
       <uri>model://target</uri>
-      <pose> 0 0 0 0 0 0 </pose>
-      <name>target</name>
+      <pose>1.65 -0.7 0 0 0 1.35</pose>
+      <name>Human target walking</name>
     </include>
-    
-  
+
     <!-- World state: rotate (ENU) and center the origin of the simulator -->
     <state world_name='parkour_scenario_world'>
       <model name='parkour_scenario'>

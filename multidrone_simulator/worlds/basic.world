@@ -8,12 +8,13 @@
       <uri>model://sun</uri>
     </include>
 
-   <include>
+    <!-- Include human target -->
+    <include>
       <uri>model://target</uri>
-      <pose> 0 0 0 0 0 0 </pose>
-      <name>target</name>
+      <pose>0 0 0 0 0 0</pose>
+      <name>Human target walking</name>
     </include>
-    
+
     <!-- Only require one ROS interface plugin per world, as any other plugin can connect a Gazebo
         topic to a ROS topic (or vise versa). -->
     <plugin name="ros_interface_plugin" filename="librotors_gazebo_ros_interface_plugin.so"></plugin>

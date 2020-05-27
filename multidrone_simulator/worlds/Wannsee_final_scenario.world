@@ -39,13 +39,13 @@
       </camera>
     </gui>
 
-   <include>
+    <!-- Include human target -->
+    <include>
       <uri>model://target</uri>
       <pose> 0 0 0 0 0 0 </pose>
-      <name>target</name>
+      <name>Human target walking</name>
     </include>
-    
-  
+
     <!-- World state: rotate (ENU) and center the origin of the simulator -->
     <state world_name='Wannsee_final_scenario_world'>
       <model name='Wannsee_final_scenario'>

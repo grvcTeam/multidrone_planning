@@ -43,12 +43,12 @@
       </camera>
     </gui>
 
-     <include>
+    <!-- Include human target -->
+    <include>
       <uri>model://target</uri>
-      <pose> 0 0 0 0 0 0 </pose>
-      <name>target</name>
+      <pose>-30.962941 3.489969 0 0 0 -0.935917</pose>
+      <name>Human target walking</name>
     </include>
-    
 
     <!-- A global light source -->
     <include>

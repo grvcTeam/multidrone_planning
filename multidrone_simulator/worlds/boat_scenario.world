@@ -39,14 +39,13 @@
       </camera>
     </gui>
 
-    <!-- Car robot -->
-   <include>
+    <!-- Include human target -->
+    <include>
       <uri>model://target</uri>
-      <pose> 0 0 0 0 0 0 </pose>
-      <name>target</name>
+      <pose>-63 56 0 0 0 -1.96</pose>
+      <name>Human target walking</name>
     </include>
-    
-  
+
     <!-- World state: rotate (ENU) and center the origin of the simulator -->
     <state world_name='boat_scenario_world'>
       <model name='boat_scenario'>
