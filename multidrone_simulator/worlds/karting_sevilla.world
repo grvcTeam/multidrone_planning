@@ -47,7 +47,7 @@
     <include>
       <uri>model://target</uri>
       <pose>-30.962941 3.489969 0 0 0 -0.935917</pose>
-      <name>Human target walking</name>
+      <name>target</name>
     </include>
 
     <!-- A global light source -->

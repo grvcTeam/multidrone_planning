@@ -12,7 +12,7 @@
     <include>
       <uri>model://target</uri>
       <pose>0 0 0 0 0 0</pose>
-      <name>Human target walking</name>
+      <name>target</name>
     </include>
 
     <!-- Only require one ROS interface plugin per world, as any other plugin can connect a Gazebo

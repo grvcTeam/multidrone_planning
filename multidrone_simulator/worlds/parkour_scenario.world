@@ -43,7 +43,7 @@
     <include>
       <uri>model://target</uri>
       <pose>1.65 -0.7 0 0 0 1.35</pose>
-      <name>Human target walking</name>
+      <name>target</name>
     </include>
 
     <!-- World state: rotate (ENU) and center the origin of the simulator -->
