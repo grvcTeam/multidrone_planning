@@ -6,7 +6,6 @@
     <node pkg="px4_bringup" type="launch_gzworld.py" name="gazebo_world" output="screen"
     args="-physics=ode -world=$(find multidrone_simulator)/worlds/Wannsee_final_scenario.world
 		  -add_model_path=$(find multidrone_simulator)/models
-          -debug=true
 		  -description_package=robots_description">
 		<rosparam param="sim_origin">[52.432789, 13.141819, 0]</rosparam>  <!-- [lat,lon,alt] -->
 	</node>
