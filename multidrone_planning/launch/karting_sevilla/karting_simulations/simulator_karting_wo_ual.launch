@@ -39,5 +39,6 @@
 
     <!-- Camera 1 -->
     <node name="rqt_image_view_1" pkg="rqt_image_view" type="rqt_image_view" args="/$(arg vehicle)_1/cgo3_camera/image_raw"/>
+    <include file="$(find multidrone_simulator)/launch/target_node.launch"/>
 
 </launch>
