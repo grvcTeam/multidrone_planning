@@ -85,7 +85,14 @@
         <!-- <rosparam param="map_origin_geo">[52.4353142, 13.1424676, 7.89]</rosparam> -->
     </node>
 
-    <include file="$(find multidrone_simulator)/launch/target_node.launch"/>
+    <include file="$(find multidrone_simulator)/launch/target_node.launch">
+        <arg name="x" value="-30.962941"/>
+        <arg name="y" value="3.489969"/>
+        <arg name="z" value="0.0"/>
+        <arg name="ori_x" value="0.0"/>
+        <arg name="ori_y" value="0.0"/>
+        <arg name="ori_z" value="-0.935917"/>
+    </include>
 
     <!-- Camera 1> -->
     <!-- <node name="rqt_image_view_1" pkg="rqt_image_view" type="rqt_image_view" args="/$(arg vehicle)_1/cgo3_camera/image_raw"/> -->

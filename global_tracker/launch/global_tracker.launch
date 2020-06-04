@@ -21,7 +21,7 @@
 		<arg name="fcu_url" value="$(arg fcu_url_1)" />
 		<arg name="gcs_url" value="$(arg gcs_url)" /> 
 		<arg name="rtcm_topic" value="/rtcm_stream"/>
-    </include> 
+    </include>
 
 	<include file="$(find px4_bringup)/launch/spawn_robot.launch" ns="target_2">
     	<arg name="id" value="2"/>
@@ -29,7 +29,7 @@
 		<arg name="fcu_url" value="$(arg fcu_url_2)" />
 		<arg name="gcs_url" value="$(arg gcs_url)" /> 
 		<arg name="rtcm_topic" value="/rtcm_stream"/>
-    </include> 
+    </include>
 
 	<include file="$(find px4_bringup)/launch/spawn_robot.launch" ns="target_3">
     	<arg name="id" value="3"/>
@@ -37,7 +37,7 @@
 		<arg name="fcu_url" value="$(arg fcu_url_3)" />
 		<arg name="gcs_url" value="$(arg gcs_url)" /> 
 		<arg name="rtcm_topic" value="/rtcm_stream"/>
-    </include> 
+    </include>
 
 	<!--Launch Global Tracker -->
 	<node pkg="global_tracker" name="global_tracker" type="global_tracker" output="screen">

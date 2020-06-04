@@ -64,7 +64,14 @@
         <rosparam param="home_pose">[-25, -55, 0.0]</rosparam>
     </node>
 
-    <include file="$(find multidrone_simulator)/launch/target_node.launch"/>
+    <include file="$(find multidrone_simulator)/launch/target_node.launch">
+        <arg name="x" value="-15.000032"/>
+        <arg name="y" value="-70.000164"/>
+        <arg name="z" value="0"/>
+        <arg name="ori_x" value="0"/>
+        <arg name="ori_y" value="0"/>
+        <arg name="ori_z" value="-1.408419"/>
+    </include>
 
     <!-- Camera 1>  -->
     <!-- <node name="rqt_image_view_1" pkg="rqt_image_view" type="rqt_image_view" args="/$(arg vehicle)_1/cgo3_camera/image_raw"/> -->
