@@ -114,10 +114,7 @@ Target::Target()
   char **argv = NULL;
   ros::init(argc, argv, "target_node", ros::init_options::NoSigintHandler);
   nh_ = new ros::NodeHandle("~");
-  std::string target_topic = "/gazebo/target";
-  pose_pub = nh_->advertise<multidrone_msgs::TargetStateArray>("/targets_pose", 1);
-  model_pose_pub_ = nh_->advertise<geometry_msgs::PoseStamped>(target_topic, 1);
-  timer_pose = nh_->createTimer(ros::Rate(update_rate), &Target::publishPoseTimer, this);
+  std::string target_topic_name = "";
 
   // initialize current pose from parameters
   std::vector<double> initial_target_pose;
@@ -145,85 +142,15 @@ Target::Target()
   if(!nh_->getParam("use_directional_yaw",use_directional_yaw)){
     ROS_WARN("Target node: Fail to get update rate");
   }
-  
-  
-  // if (_sdf->HasElement("update_rate"))
-  // {
-  //   update_rate = _sdf->Get<double>("update_rate");
-  // }
-  // else
-  // {
-  //   ROS_WARN("[%s][Dynamic target]: Update_rate not defined. Setting to defalt value.", parent_name.c_str());
-  //   update_rate = 30;
-  // }
-  // if (_sdf->HasElement("keyboard"))
-  // {
-  //   ROS_INFO("[%s][Target]: keyboard actived", parent_name.c_str());
-  //   keyboard = _sdf->Get<bool>("keyboard");
-  // }
-  // else
-  // {
-  //   ROS_WARN("[%s][Target]: keyboard not defined. Setting to default value", parent_name.c_str());
-  //   keyboard = false;
-  // }
-  // if (_sdf->HasElement("initial_on"))
-  // {
-  //   initial_on = _sdf->Get<bool>("initial_on");
-  // }
-  // else
-  // {
-  //   ROS_WARN("[%s][Dynamic target]: Initial_on not defined. Setting to defalt value.", parent_name.c_str());
-  //   initial_on = true;
-  // }
-  // if (_sdf->HasElement("loop_enabled"))
-  // {
-  //   loop_enabled = _sdf->Get<bool>("loop_enabled");
-  // }
-  // else
-  // {
-  //   ROS_WARN("[%s][Dynamic target]: Loop_enabled not defined. Setting to defalt value.", parent_name.c_str());
-  //   loop_enabled = true;
-  // }
-  // if (_sdf->HasElement("trajectory_file"))
-  // {
-  //   trajectory_file = _sdf->Get<std::string>("trajectory_file");
-  //   ROS_INFO("[%s]: Trajectory file = %s ", ros::this_node::getName().c_str(), trajectory_file.c_str());
-  // }
-  // else
-  // {
-  //   ROS_WARN("[%s][Dynamic target]: Map_path not defined. Has to be loaded by publishing on topic.", parent_name.c_str());
-  // }
-  // if (_sdf->HasElement("use_segmentation"))
-  // {
-  //   use_segmentation = _sdf->Get<bool>("use_segmentation");
-  // }
-  // else
-  // {
-  //   ROS_WARN("[%s][Dynamic target]: Use segmentation not defined. Setting to default value.", parent_name.c_str());
-  //   use_segmentation = false;
-  // }
-  // if (_sdf->HasElement("use_directional_yaw"))
-  // {
-  //   use_directional_yaw = _sdf->Get<bool>("use_directional_yaw");
-  // }
-  // else
-  // {
-  //   ROS_WARN("[%s][Dynamic target]: Use directional yaw not defined. Setting to default value.", parent_name.c_str());
-  //   use_directional_yaw = false;
-  // }
+  if(!nh_->getParam("target_topic_name",target_topic_name)){
+    ROS_WARN("Target node: fail to get target topic name");
+  }
 
-  // create ROS services to control the light
-  // std::stringstream ss;
-  // ss << "/gazebo/dynamic_target/" << parent_name << "/load_map";
-  // load_map_sub = nh_->subscribe(ss.str().c_str(), 1, &dynamicTargetPlugin::loadMapCallback, this);
-  // ss.str(std::string());
-  // ss << "/gazebo/dynamic_target/" << parent_name << "/activate";
-  // activation_srv = nh_->advertiseService(ss.str().c_str(), &dynamicTargetPlugin::activationCallback, this);
-  // ss.str(std::string());
-  // ss << "/gazebo/dynamic_target/" << parent_name << "/reset";
-  // reset_srv = nh_->advertiseService(ss.str().c_str(), &dynamicTargetPlugin::resetCallback, this);
-  // ss.str(std::string());
-  // ss << topic_name;
+  std::string target_topic = "/gazebo/target";
+  timer_pose = nh_->createTimer(ros::Rate(update_rate), &Target::publishPoseTimer, this);
+
+  pose_pub = nh_->advertise<multidrone_msgs::TargetStateArray>(target_topic_name, 1);
+  model_pose_pub_ = nh_->advertise<geometry_msgs::PoseStamped>(target_topic, 1);
 
   // start timer
   if (keyboard)

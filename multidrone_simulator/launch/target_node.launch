@@ -2,8 +2,9 @@
    <node pkg="multidrone_simulator" type="target_node" name="target_node" output="screen">
         <rosparam param="target_pose" subst_value="true">[-30.962941, 3.489969, 0, 0, 0, -0.935917]</rosparam>
         <param name="trajectory_file" value="models/target/trajectory/trajectory.txt"/>
-        <param name="keyboard" value="true"/>
+        <param name="keyboard" value="false"/>
         <param name="update_rate" value="30"/>
         <param name="use_directional_yaw" value="true"/>
+        <param name="target_topic_name" value="/target_3d_pose"/>
 	</node>
 </launch>
