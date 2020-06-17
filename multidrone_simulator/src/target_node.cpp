@@ -42,7 +42,6 @@ private:
   double current_yaw = 0.0;
   ignition::math::Pose3d previous_pose; /*< previous pose to calculate the velocity */
   ros::Subscriber load_map_sub;
-  ros::Timer motion_timer;
   std::atomic<bool> interrupted;
 
   char key = ' ';
@@ -59,7 +58,12 @@ private:
   ros::NodeHandle *nh_;
   ros::ServiceServer activation_srv, reset_srv;
   ros::Timer timer_pose;
+  std::thread keyboard_thread;
+  ros::Timer motion_timer;
+  std::thread spin_thread_;
+
   ros::Publisher model_pose_pub_;
+
 
   /** \brief function to load the map from a txt file and save data in pitch_angles, yaw_angles, roll_angles, updated_trajectory, velocities
     */
@@ -100,7 +104,7 @@ private:
 
   void publishPoseTimer(const ros::TimerEvent &event);
 
-  void motionTimerKeyboardCallback(const ros::TimerEvent &event);
+  void motionTimerKeyboardCallback(void);
 
   void loadMapCallback(const std_msgs::String &msg);
   void moveModel();
@@ -152,14 +156,13 @@ Target::Target()
   pose_pub = nh_->advertise<multidrone_msgs::TargetStateArray>(target_topic_name, 1);
   model_pose_pub_ = nh_->advertise<geometry_msgs::PoseStamped>(target_topic, 1);
 
-  // start timer
   if (keyboard)
   {
-    motion_timer = nh_->createTimer(ros::Rate(update_rate), &Target::motionTimerKeyboardCallback, this);
+    keyboard_thread = std::thread(&Target::motionTimerKeyboardCallback, this);
   }
   else
   {
-    motion_timer = nh_->createTimer(ros::Rate(update_rate), &Target::motionTimerCallback, this);
+    motion_timer = nh_->createTimer(ros::Rate(update_rate), &Target::motionTimerCallback, this); //trajectory
     if (!trajectory_file.empty())
     {
       loadMap();
@@ -175,7 +178,6 @@ Target::Target()
     ROS_INFO("[%s]: Initial on flag set to true. Tracking activated.", ros::this_node::getName().c_str());
   }
 
-  sleep(10);
   if (keyboard)
   {
     std::cout << "Use keyboard to move the target: " << std::endl;
@@ -186,6 +188,7 @@ Target::Target()
     std::cout << "Use J-K to move the orientation of the target" << std::endl;
     std::cout << "Press b to quit" << std::endl;
   }
+  ros::spin();
 }
 /* loadMap */ //{
 void Target::loadMap()
@@ -322,30 +325,18 @@ double Target::euclideanDistance(ignition::math::Pose3d p_1, ignition::math::Pos
 
 int Target::getch(void)
 {
-  int ch;
-  struct termios oldt;
-  struct termios newt;
 
-  // Store old settings, and copy to new settings
-  tcgetattr(STDIN_FILENO, &oldt);
+  static struct termios oldt, newt;
+  tcgetattr( STDIN_FILENO, &oldt);           // save old settings
   newt = oldt;
+  newt.c_lflag &= ~(ICANON);                 // disable buffering      
+  tcsetattr( STDIN_FILENO, TCSANOW, &newt);  // apply new settings
 
-  // Make required changes and apply the settings
-  newt.c_lflag &= ~(ICANON | ECHO);
-  newt.c_iflag |= IGNBRK;
-  newt.c_iflag &= ~(INLCR | ICRNL | IXON | IXOFF);
-  newt.c_lflag &= ~(ICANON | ECHO | ECHOK | ECHOE | ECHONL | ISIG | IEXTEN);
-  newt.c_cc[VMIN] = 1;
-  newt.c_cc[VTIME] = 0;
-  tcsetattr(fileno(stdin), TCSANOW, &newt);
+  int c = getchar();  // read character (non-blocking)
 
-  // Get the current character
-  ch = getchar();
+  tcsetattr( STDIN_FILENO, TCSANOW, &oldt);  // restore old settings
+  return c;
 
-  // Reapply old settings
-  tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
-
-  return ch;
 }
 
 /* convertEulerOffsetToQuaternion() //{ */
@@ -466,56 +457,60 @@ ignition::math::Pose3d Target::getShiftedPose(ignition::math::Pose3d p, std::vec
   return new_pose;
 }
 
-void Target::motionTimerKeyboardCallback(const ros::TimerEvent &event)
-{
-  key = getch();
-  if (key == 'w')
-  { // up
-    current_pose.Pos().X() = current_pose.Pos().X() + (cos(current_yaw) * 1 / update_rate);
-    current_pose.Pos().Y() = current_pose.Pos().Y() + (sin(current_yaw) * 1 / update_rate);
-    current_pose.Pos().Z() = current_pose.Pos().Z();
-  }
-  else if (key == 'j')
-  { //orientation
-    current_yaw = current_yaw + 1 / update_rate;
-    current_pose.Rot() = convertEulerOffsetToQuaternion(0.0, 0.0, current_yaw);
-  }
-  else if (key == 'k')
-  { //orientation
-    current_yaw = current_yaw - 1 / update_rate;
-    current_pose.Set(current_pose.Pos().X(), current_pose.Pos().Y(), current_pose.Pos().Z(), 0.0, 0.0, current_yaw);
-  }
-  else if (key == 'd')
-  { //right
-    current_pose.Pos().X() = current_pose.Pos().X() + (+sin(current_yaw) * 1 / update_rate);
-    current_pose.Pos().Y() = current_pose.Pos().Y() + (-cos(current_yaw) * 1 / update_rate);
-    current_pose.Pos().Z() = current_pose.Pos().Z();
-  }
-  else if (key == 'a')
-  { //lefts
-    current_pose.Pos().X() = current_pose.Pos().X() + (-sin(current_yaw) * 1 / update_rate);
-    current_pose.Pos().Y() = current_pose.Pos().Y() + (+cos(current_yaw) * 1 / update_rate);
-    current_pose.Pos().Z() = current_pose.Pos().Z();
-  }
-  else if (key == 's')
-  { // down
-    current_pose.Pos().X() = current_pose.Pos().X() + (-cos(current_yaw) * 1 / update_rate);
-    current_pose.Pos().Y() = current_pose.Pos().Y() + (-sin(current_yaw) * 1 / update_rate);
-    current_pose.Pos().Z() = current_pose.Pos().Z();
-  }
-  else if (key == 'b')
-  {
-    std::cout << "\nPlease, close the window and restart the simulation" << std::endl;
-    motion_timer.stop();
-  }
 
-  moveModel(); // move model to the current pose
+void Target::motionTimerKeyboardCallback(void)
+{
+  while(ros::ok){
+    key = getch();
+    if (key == 'w')
+    { // up
+      current_pose.Pos().X() = current_pose.Pos().X() + (cos(current_yaw) * 1 / update_rate);
+      current_pose.Pos().Y() = current_pose.Pos().Y() + (sin(current_yaw) * 1 / update_rate);
+      current_pose.Pos().Z() = current_pose.Pos().Z();
+    }
+    else if (key == 'j')
+    { //orientation
+      current_yaw = current_yaw + 1 / update_rate;
+      current_pose.Rot() = convertEulerOffsetToQuaternion(0.0, 0.0, current_yaw);
+    }
+    else if (key == 'k')
+    { //orientation
+      current_yaw = current_yaw - 1 / update_rate;
+      current_pose.Set(current_pose.Pos().X(), current_pose.Pos().Y(), current_pose.Pos().Z(), 0.0, 0.0, current_yaw);
+    }
+    else if (key == 'd')
+    { //right
+      current_pose.Pos().X() = current_pose.Pos().X() + (+sin(current_yaw) * 1 / update_rate);
+      current_pose.Pos().Y() = current_pose.Pos().Y() + (-cos(current_yaw) * 1 / update_rate);
+      current_pose.Pos().Z() = current_pose.Pos().Z();
+    }
+    else if (key == 'a')
+    { //lefts
+      current_pose.Pos().X() = current_pose.Pos().X() + (-sin(current_yaw) * 1 / update_rate);
+      current_pose.Pos().Y() = current_pose.Pos().Y() + (+cos(current_yaw) * 1 / update_rate);
+      current_pose.Pos().Z() = current_pose.Pos().Z();
+    }
+    else if (key == 's')
+    { // down
+      current_pose.Pos().X() = current_pose.Pos().X() + (-cos(current_yaw) * 1 / update_rate);
+      current_pose.Pos().Y() = current_pose.Pos().Y() + (-sin(current_yaw) * 1 / update_rate);
+      current_pose.Pos().Z() = current_pose.Pos().Z();
+    }
+    else if (key == 'b')
+    {
+      std::cout << "\nPlease, close the window and restart the simulation" << std::endl;
+      motion_timer.stop();
+    }
+
+    moveModel(); // move model to the current pose
+  }
 }
 
 void Target::publishPoseTimer(const ros::TimerEvent &event)
 {
   multidrone_msgs::TargetStateArray target_array;
   multidrone_msgs::TargetState target_msgs;
+  target_msgs.target_id = 1;
   target_msgs.pose.pose.position.x = current_pose.Pos().X();
   target_msgs.pose.pose.position.y = current_pose.Pos().Y();
   target_msgs.pose.pose.position.z = current_pose.Pos().Z();
