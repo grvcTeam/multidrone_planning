@@ -10,7 +10,7 @@ git clone https://github.com/grvcTeam/multidrone_planning.git
 
 ## Dependencies ##
 
-* [grvc-ual](https://github.com/grvcTeam/grvc-ual) at tag [v2.1](https://github.com/grvcTeam/grvc-ual/tree/v2.1)
+* [grvc-ual](https://github.com/grvcTeam/grvc-ual)
 * [geodesy (from geographic_info)](http://wiki.ros.org/geodesy): `sudo apt-get install ros-ros-$(rosversion -d)-geographic-info`
 * [libusbp](https://github.com/pololu/libusbp)
 * [cmake_modules](http://wiki.ros.org/cmake_modules): `sudo apt-get install ros-$(rosversion -d)-cmake-modules`
