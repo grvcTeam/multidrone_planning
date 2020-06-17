@@ -32,7 +32,7 @@ JOURNAL = {IEEE Access (submitted)}
 
 ```
 @Article{montes20,
-AUTHOR = {Montes-Romero, {Ángel and Torres-González, Arturo and Capitán, Jesús and Montagnuolo, Maurizio and Metta, Sabino and Negro, Fulvio and Messina, Alberto and Ollero, Aníbal},
+AUTHOR = {Montes-Romero, Ángel and Torres-González, Arturo and Capitán, Jesús and Montagnuolo, Maurizio and Metta, Sabino and Negro, Fulvio and Messina, Alberto and Ollero, Aníbal},
 TITLE = {Director Tools for Autonomous Media Production with a Team of Drones},
 JOURNAL = {Applied Sciences},
 VOLUME = {10},
