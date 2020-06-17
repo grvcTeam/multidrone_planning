@@ -18,3 +18,28 @@ git clone https://github.com/grvcTeam/multidrone_planning.git
 
 
 You can find detailed instructions about the system and how to use it in the [Wiki](https://github.com/grvcTeam/multidrone_planning/wiki)
+
+## Citation
+If you find multidrone_planning useful in your research, please consider citing:
+
+```
+@Article{alcantara20,
+AUTHOR = {Alfonso Alcántara, Jesús Capitán, Arturo Torres-González, Rita Cunha and Aníbal Ollero}
+TITLE = {Autonomous Execution of Cinematographic Shots with Multiple Drones},
+JOURNAL = {IEEE Access (submitted)}
+}
+```
+
+```
+@Article{montes20,
+AUTHOR = {Montes-Romero, {Ángel and Torres-González, Arturo and Capitán, Jesús and Montagnuolo, Maurizio and Metta, Sabino and Negro, Fulvio and Messina, Alberto and Ollero, Aníbal},
+TITLE = {Director Tools for Autonomous Media Production with a Team of Drones},
+JOURNAL = {Applied Sciences},
+VOLUME = {10},
+YEAR = {2020},
+NUMBER = {4},
+ARTICLE-NUMBER = {1494},
+ISSN = {2076-3417},
+DOI = {10.3390/app10041494}
+}
+```
