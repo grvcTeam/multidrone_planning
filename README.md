@@ -2,10 +2,17 @@
 
 Algorithms for cooperative planning and mission execution for autonomous media production with multiple drones.
 
-## How to download ##
+## How to install ##
+
+Download the repository:
 
 ```
 git clone https://github.com/grvcTeam/multidrone_planning.git
+```
+And compile the code with:
+
+```
+catkin build
 ```
 
 ## Dependencies ##
@@ -19,7 +26,7 @@ git clone https://github.com/grvcTeam/multidrone_planning.git
 
 ## Testing ##
 
-You can find detailed instructions about the system and how to use it in the [Wiki](https://github.com/grvcTeam/multidrone_planning/wiki)
+You can find detailed instructions about the system and how to use it in the [Wiki](https://github.com/grvcTeam/multidrone_planning/wiki).
 
 ## References
 
