@@ -2,7 +2,7 @@
 
 Algorithms for cooperative planning and mission execution for autonomous media production with multiple drones.
 
-## How do I get set up? ##
+## How to download ##
 
 ```
 git clone https://github.com/grvcTeam/multidrone_planning.git
@@ -17,10 +17,15 @@ git clone https://github.com/grvcTeam/multidrone_planning.git
 * [gazebo_plugins](http://wiki.ros.org/gazebo_plugins): `sudo apt-get install ros-$(rosversion -d)-gazebo-plugins`
 
 
+## Testing ##
+
 You can find detailed instructions about the system and how to use it in the [Wiki](https://github.com/grvcTeam/multidrone_planning/wiki)
 
-## Citation
-If you find multidrone_planning useful in your research, please consider citing the following works. For a general architecture for cinematography with multiple drones:
+## References
+
+If you find this repository useful in your research, please consider citing the following works. 
+
+For a general architecture for cinematography with multiple drones:
 
 ```
 @article{alcantara_arxiv20,
