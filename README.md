@@ -30,9 +30,9 @@ You can find detailed instructions about the system and how to use it in the [Wi
 
 ## References
 
-If you find this repository useful in your research, please consider citing the following works. 
+Apart from the documentation in the Wiki, you can find a detailed description of the system and the methods for mission planning and execution in the following references. Please consider to cite them if you find this repository helpful for your research.
 
-For a general architecture for cinematography with multiple drones:
+For a general overview of the architecture for cinematography with multiple drones:
 
 ```
 @article{alcantara_arxiv20,
@@ -45,7 +45,7 @@ For a general architecture for cinematography with multiple drones:
 }
 ```
 
-For planning methods in cinematography missions with multiple drones:
+For details about planning methods in cinematography missions with multiple drones:
 
 ```
 @article{caraballo_arxiv20,
@@ -59,7 +59,7 @@ For planning methods in cinematography missions with multiple drones:
 }
 ```
 
-For director tools to design and encode cinematography missions with multiple drones:
+For director tools to design cinematography missions with multiple drones and details about the XML language for mission description:
 
 ```
 @Article{montes_arxiv20,
