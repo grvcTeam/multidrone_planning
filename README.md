@@ -1,6 +1,6 @@
 # Autonomous cinematograpy with multiple drones #
 
-Algorithms for cooperative planning and mission execution for autonomous media production with multiple drones.
+This repository containts a software architecture with algorithms for cooperative planning and mission execution in autonomous cinematography with multiple drones. This work was developed within the framework of the [_MultiDrone_](https://multidrone.eu/) project.
 
 ## How to install ##
 
