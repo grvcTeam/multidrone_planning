@@ -20,18 +20,37 @@ git clone https://github.com/grvcTeam/multidrone_planning.git
 You can find detailed instructions about the system and how to use it in the [Wiki](https://github.com/grvcTeam/multidrone_planning/wiki)
 
 ## Citation
-If you find multidrone_planning useful in your research, please consider citing:
+If you find multidrone_planning useful in your research, please consider citing the following works. For a general architecture for cinematography with multiple drones:
 
 ```
-@Article{alcantara20,
-AUTHOR = {Alfonso Alcántara, Jesús Capitán, Arturo Torres-González, Rita Cunha and Aníbal Ollero}
-TITLE = {Autonomous Execution of Cinematographic Shots with Multiple Drones},
-JOURNAL = {IEEE Access (submitted)}
+@article{alcantara_arxiv20,
+    title={Autonomous Execution of Cinematographic Shots with Multiple Drones},
+    author={Alfonso Alcántara and Jesús Capitán and Arturo Torres-González and Rita Cunha and Aníbal Ollero},
+    year={2020},
+    eprint={2006.12163},
+    archivePrefix={arXiv},
+    primaryClass={cs.RO}
 }
 ```
 
+For planning methods in cinematography missions with multiple drones:
+
 ```
-@Article{montes20,
+@article{caraballo_arxiv20,
+    title={Autonomous Planning for Multiple Aerial Cinematographers},
+    author={Luis-Evaristo Caraballo and Angel Montes-Romero and Jose-Miguel Diaz-Bañez and Jesss Capitan and Arturo Torres-Gonzalez and Anibal Ollero},
+    year={2020},
+    eprint={2005.07237},
+    archivePrefix={arXiv},
+    journal = {ArXiv e-prints},
+    primaryClass={cs.RO}
+}
+```
+
+For director tools to design and encode cinematography missions with multiple drones:
+
+```
+@Article{montes_arxiv20,
 AUTHOR = {Montes-Romero, Ángel and Torres-González, Arturo and Capitán, Jesús and Montagnuolo, Maurizio and Metta, Sabino and Negro, Fulvio and Messina, Alberto and Ollero, Aníbal},
 TITLE = {Director Tools for Autonomous Media Production with a Team of Drones},
 JOURNAL = {Applied Sciences},
