@@ -55,6 +55,8 @@ Executer::Executer(int _argc, char** _argv)
   target_image_offset_y_13  = h_im/3-h_im/2;
   target_image_offset_y_23  = h_im*2/3-h_im/2;
 
+  ROS_INFO("Setting up Executer %d", drone_id_);
+
   // Subscribers
   ros::Subscriber target_array_sub_;
   if (onboard)
@@ -85,7 +87,6 @@ Executer::Executer(int _argc, char** _argv)
   trajectory_                                  = nh.advertise<nav_msgs::Odometry>("desired_trajectory",1);
   lyapunov_                                    = nh.advertise<geometry_msgs::Point32>("gimbal_lyapunov",1);
   pixel_publish                                = nh.advertise<geometry_msgs::Vector3>("pixel_position",1);
-
 
   // Service Client
   cmd_long_client_                             = nh.serviceClient<mavros_msgs::CommandLong>("mavros/cmd/command");
@@ -165,8 +166,6 @@ Executer::Executer(int _argc, char** _argv)
 
   server_->start();
 
-  ROS_WARN("Started Following Vehicle example.");
-
   t_0 = ros::Time::now().toSec();
 
   // start Timer
@@ -175,8 +174,7 @@ Executer::Executer(int _argc, char** _argv)
   timer_gimbal  = nh.createTimer(ros::Duration(GIMBAL_FREQ), &Executer::timerCallbackGimbal, this, false, false); //5Hz
   timer_rt      = nh.createTimer(ros::Duration(RT_FREQ), &Executer::referenceTrajectory, this, false, false); //33Hz
 
-  ROS_ERROR("IS THE TARGET RUNNING?");
-  
+  ROS_INFO("Executer [%d] running", drone_id_);
 
   ros::MultiThreadedSpinner spinner(4); // Use 4 threads
   spinner.spin();
