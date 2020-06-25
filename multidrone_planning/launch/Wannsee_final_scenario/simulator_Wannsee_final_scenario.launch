@@ -52,6 +52,13 @@
      <node name="rqt_image_view_2" pkg="rqt_image_view" type="rqt_image_view" args="/drone_2/cgo3_camera/image_raw"/>
 
     <include file="$(find multidrone_simulator)/launch/target_node.launch">
+        <arg name="x" value="-88"/>
+        <arg name="y" value="-8"/>
+        <arg name="z" value="0"/>
+        <arg name="ori_x" value="0"/>
+        <arg name="ori_y" value="0"/>
+        <arg name="ori_z" value="-1.408419"/>
+        <arg name="scenario" value="wannsee"/>
     </include>
 
 </launch>
