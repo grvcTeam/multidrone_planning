@@ -40,7 +40,3 @@ add_library(path_planner src/path_planner.cpp)
 target_include_directories(path_planner PRIVATE ${PYTHON_INCLUDE_DIRS})
 target_link_libraries(path_planner ${catkin_LIBRARIES} ${PYTHON_LIBRARIES})
 add_dependencies(path_planner ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-
-# add_executable(event_manager src/event_manager.cpp)
-# target_link_libraries(event_manager ${catkin_LIBRARIES})
-# add_dependencies(event_manager ${catkin_EXPORTED_TARGETS})

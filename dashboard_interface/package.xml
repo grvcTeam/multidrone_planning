@@ -11,7 +11,7 @@
 
 
   <author email="amontesromero@us.es">Ángel Manuel Montes Romero</author>
-  <maintainer email="arturotorres@us.es">Arturo Torres</maintainer>
+  <author email="arturotorres@us.es">Arturo Torres</author>
 
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>multidrone_msgs</build_depend>

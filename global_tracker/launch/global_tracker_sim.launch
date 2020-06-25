@@ -1,4 +1,0 @@
-<launch>
-	<node pkg="global_tracker" type="global_tracker_sim.py" name="tracker_simulation" output="screen">
-	</node>
-</launch>
