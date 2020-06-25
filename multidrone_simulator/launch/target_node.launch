@@ -5,9 +5,10 @@
    <arg name="ori_x" default="0"/>
    <arg name="ori_y" default="0"/>
    <arg name="ori_z" default="0"/>
+   <arg name="scenario" default="karting"/>
    <node pkg="multidrone_simulator" type="target_node" name="target_node" output="screen">
         <rosparam param="target_pose" subst_value="true">[$(arg x), $(arg y), $(arg z), $(arg ori_x), $(arg ori_y), $(arg ori_z)]</rosparam>
-        <param name="trajectory_file" value="models/target/trajectory/trajectory.txt"/>
+        <param name="trajectory_file" value="models/target/trajectory/$(arg scenario).txt"/>
         <param name="keyboard" value="false"/>
         <param name="update_rate" value="30"/>
         <param name="use_directional_yaw" value="true"/>

@@ -70,6 +70,7 @@
         <arg name="ori_x" value="0"/>
         <arg name="ori_y" value="0"/>
         <arg name="ori_z" value="-1.408419"/>
+        <arg name="scenario" value="oran"/>
     </include>
 
     <!-- Camera 1>  -->

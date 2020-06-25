@@ -58,6 +58,7 @@
         <arg name="ori_x" value="0"/>
         <arg name="ori_y" value="0"/>
         <arg name="ori_z" value="1.58"/>
+        <arg name="scenario" value="cycling"/>
     </include>
 
 </launch>
