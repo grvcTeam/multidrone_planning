@@ -22,9 +22,7 @@
     <include file="$(find multidrone_planning)/launch/mission_controller.launch">
         <arg name="drones" value="[1,2]"/>
         <arg name="origin_latitude" value="37.558542"/>
-        <!-- <arg name="origin_latitude" value="54.17435"/> -->
         <arg name="origin_longitude" value="-5.931074"/>
-        <!-- <arg name="origin_longitude" value="10.12996"/> -->
         <arg name="origin_altitude" value="7.89"/>
     </include>
 

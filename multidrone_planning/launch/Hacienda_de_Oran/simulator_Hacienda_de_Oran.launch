@@ -1,5 +1,4 @@
 <launch>
-    <arg name="vehicle" default="typhoon_h480"/>
 
     <!-- Launch Gazebo simulation -->
 	<rosparam param="/use_sim_time">true</rosparam>
@@ -18,7 +17,7 @@
         <arg name="x" value="-20"/>
         <arg name="y" value="-40"/>
         <arg name="z" value="0"/>
-        <arg name="yaw" value="0.840432"/>
+        <arg name="yaw" value="0"/>
 	</include>
 
     <!-- Launch robot id=2  -->
@@ -29,7 +28,7 @@
         <arg name="x" value="-10"/>
         <arg name="y" value="-55"/>
         <arg name="z" value="0"/>
-        <arg name="yaw" value="-0.824988"/>
+        <arg name="yaw" value="0"/>
     </include>
 
     <!-- Launch robot id=3  -->
@@ -40,7 +39,7 @@
         <arg name="x" value="-25"/>
         <arg name="y" value="-55"/>
         <arg name="z" value="0"/>
-        <arg name="yaw" value="-0.834988"/>
+        <arg name="yaw" value="0"/>
     </include>
 
      <!-- Launch UAL server for drone id=1 -->
@@ -74,12 +73,12 @@
     </include>
 
     <!-- Camera 1>  -->
-    <!-- <node name="rqt_image_view_1" pkg="rqt_image_view" type="rqt_image_view" args="/$(arg vehicle)_1/cgo3_camera/image_raw"/> -->
+    <node name="rqt_image_view_1" pkg="rqt_image_view" type="rqt_image_view" args="/drone_1/cgo3_camera/image_raw"/>
 
     <!-- Camera 2> -->
-    <!-- <node name="rqt_image_view_2" pkg="rqt_image_view" type="rqt_image_view" args="/$(arg vehicle)_2/cgo3_camera/image_raw"/> -->
+    <node name="rqt_image_view_2" pkg="rqt_image_view" type="rqt_image_view" args="/drone_2/cgo3_camera/image_raw"/>
 
     <!-- Camera 3> -->
-    <!-- <node name="rqt_image_view_3" pkg="rqt_image_view" type="rqt_image_view" args="/$(arg vehicle)_3/cgo3_camera/image_raw"/> -->
+    <node name="rqt_image_view_3" pkg="rqt_image_view" type="rqt_image_view" args="/drone_3/cgo3_camera/image_raw"/>
 
 </launch>

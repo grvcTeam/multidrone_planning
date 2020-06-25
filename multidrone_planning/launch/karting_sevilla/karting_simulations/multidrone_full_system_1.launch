@@ -10,15 +10,6 @@
         <arg name="drone_id" value="1"/>
     </include>
 
-    <!-- multidrone robot 2 -->
-    <!-- <include file="$(find action_executer)/launch/action_executer.launch">
-        <arg name="drone_id" value="2"/>
-        <arg name="target_mode" value="4"/>
-    </include>
-
-    <include file="$(find onboard_scheduler)/launch/onboard_scheduler.launch">
-        <arg name="drone_id" value="2"/>
-    </include> -->
 
     <!-- mission controller. For 1 drone: value="[1]"    For 2 drones: value="[1,2]" -->
     <include file="$(find multidrone_planning)/launch/mission_controller.launch">

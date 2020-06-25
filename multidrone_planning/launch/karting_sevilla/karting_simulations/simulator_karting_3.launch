@@ -7,10 +7,7 @@
     args="-physics=ode -world=$(find multidrone_simulator)/worlds/karting_sevilla.world
 		  -add_model_path=$(find multidrone_simulator)/models
 		  -description_package=robots_description">
-		<rosparam param="sim_origin">[37.558533, -5.931044, 7.89]</rosparam> 
-		<!-- <rosparam param="sim_origin">[54.17435, 10.12996, 7.89]</rosparam>  -->
-		<!-- <rosparam param="sim_origin">[52.4353142, 13.1424676, 7.89]</rosparam> -->
-        <!-- [lat,lon,alt] -->
+		<rosparam param="sim_origin">[37.558533, -5.931044, 7.89]</rosparam>
 	</node>
 
 	<!-- Launch robot id=1 -->
@@ -20,10 +17,8 @@
         <arg name="robot_model" value="typhoon_h480"/>
         <arg name="x" value="8.423735"/>
         <arg name="y" value="-38.712129"/>
-        <!-- <arg name="x" value="-44.298490"/> -->
-        <!-- <arg name="y" value="5.053597"/> -->
         <arg name="z" value="0.0"/>
-        <arg name="yaw" value="2.215051"/>
+        <arg name="yaw" value="0"/>
 	</include>
 
     <!-- Launch robot id=2  -->
@@ -33,10 +28,8 @@
         <arg name="robot_model" value="typhoon_h480"/>
         <arg name="x" value="-20.373423"/>
         <arg name="y" value="-13.798492"/>
-        <!-- <arg name="x" value="-23.712216"/> -->
-        <!-- <arg name="y" value="9.032632"/> -->
         <arg name="z" value="0"/>
-        <arg name="yaw" value="2.193753"/>
+        <arg name="yaw" value="0"/>
     </include>
 
     <!-- Launch robot id=3  -->
@@ -46,10 +39,8 @@
         <arg name="robot_model" value="typhoon_h480"/>
         <arg name="x" value="-52.676923"/>
         <arg name="y" value="-4.110844"/>
-        <!-- <arg name="x" value="-36.2869"/> -->
-        <!-- <arg name="y" value="10.8590"/> -->
         <arg name="z" value="0"/>
-        <arg name="yaw" value="2.239573"/>
+        <arg name="yaw" value="0"/>
     </include>
 
     <!-- Launch UAL server for drone id=1 -->
@@ -57,10 +48,6 @@
         <param name="uav_id" value="1"/>
         <param name="pose_frame_id" value="map"/>
         <rosparam param="home_pose">[8.423735, -38.712129, 0.0]</rosparam>
-        <!-- <rosparam param="home_pose">[-44.298490, 5.053597, 0.0]</rosparam> -->
-        <rosparam param="map_origin_geo">[37.558533, -5.931044, 7.89]</rosparam>
-        <!-- <rosparam param="map_origin_geo">[54.17435, 10.12996, 7.89]</rosparam> -->
-        <!-- <rosparam param="map_origin_geo">[52.4353142, 13.1424676, 7.89]</rosparam> -->
     </node>
 
     <!-- Launch UAL server for drone id=2 -->
@@ -68,10 +55,6 @@
         <param name="uav_id" value="2"/>
         <param name="pose_frame_id" value="map"/>
         <rosparam param="home_pose">[-20.373423, -13.798492, 0.0]</rosparam>
-        <!-- <rosparam param="home_pose">[-23.712216, 9.032632, 0.0]</rosparam> -->
-        <rosparam param="map_origin_geo">[37.558533, -5.931044, 7.89]</rosparam>
-        <!-- <rosparam param="map_origin_geo">[54.17435, 10.12996, 7.89]</rosparam> -->
-        <!-- <rosparam param="map_origin_geo">[52.4353142, 13.1424676, 7.89]</rosparam> -->
     </node>
 
     <!-- Launch UAL server for drone id=3 -->
@@ -79,10 +62,6 @@
         <param name="uav_id" value="3"/>
         <param name="pose_frame_id" value="map"/>
         <rosparam param="home_pose">[-52.676923, -4.110844, 0.0]</rosparam>
-        <!-- <rosparam param="home_pose">[-36.2869, 10.8590, 0.0]</rosparam> -->
-        <rosparam param="map_origin_geo">[37.558533, -5.931044, 7.89]</rosparam>
-        <!-- <rosparam param="map_origin_geo">[54.17435, 10.12996, 7.89]</rosparam> -->
-        <!-- <rosparam param="map_origin_geo">[52.4353142, 13.1424676, 7.89]</rosparam> -->
     </node>
 
     <include file="$(find multidrone_simulator)/launch/target_node.launch">
@@ -95,12 +74,12 @@
     </include>
 
     <!-- Camera 1> -->
-    <!-- <node name="rqt_image_view_1" pkg="rqt_image_view" type="rqt_image_view" args="/$(arg vehicle)_1/cgo3_camera/image_raw"/> -->
+    <node name="rqt_image_view_1" pkg="rqt_image_view" type="rqt_image_view" args="/drone_1/cgo3_camera/image_raw"/>
 
     <!-- Camera 2> -->
-    <!-- <node name="rqt_image_view_2" pkg="rqt_image_view" type="rqt_image_view" args="/$(arg vehicle)_2/cgo3_camera/image_raw"/> -->
+    <node name="rqt_image_view_2" pkg="rqt_image_view" type="rqt_image_view" args="/drone_2/cgo3_camera/image_raw"/>
 
     <!-- Camera 3> -->
-    <!-- <node name="rqt_image_view_3" pkg="rqt_image_view" type="rqt_image_view" args="/$(arg vehicle)_3/cgo3_camera/image_raw"/> -->
+    <node name="rqt_image_view_3" pkg="rqt_image_view" type="rqt_image_view" args="/drone_3/cgo3_camera/image_raw"/>
 
 </launch>

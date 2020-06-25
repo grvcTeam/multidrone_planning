@@ -26,8 +26,5 @@
         <arg name="origin_altitude" value="0"/>
     </include>
 
-    <include file="$(find global_tracker)/launch/global_tracker_sim.launch">
-    </include>
-
 </launch>
 

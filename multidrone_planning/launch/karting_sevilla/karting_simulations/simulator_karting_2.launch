@@ -1,5 +1,4 @@
 <launch>
-    <arg name="vehicle" default="typhoon_h480"/>
 
     <!-- Launch Gazebo simulation -->
 	<rosparam param="/use_sim_time">true</rosparam>
@@ -7,10 +6,7 @@
     args="-physics=ode -world=$(find multidrone_simulator)/worlds/karting_sevilla.world
 		  -add_model_path=$(find multidrone_simulator)/models
 		  -description_package=robots_description">
-		<rosparam param="sim_origin">[37.558542, -5.931074, 7.89]</rosparam> 
-		<!-- <rosparam param="sim_origin">[54.17435, 10.12996, 7.89]</rosparam>  -->
-		<!-- <rosparam param="sim_origin">[52.4353142, 13.1424676, 7.89]</rosparam> -->
-        <!-- [lat,lon,alt] -->
+		<rosparam param="sim_origin">[37.558542, -5.931074, 7.89]</rosparam>
 	</node>
 
 	<!-- Launch robot id=1 -->
@@ -21,7 +17,7 @@
         <arg name="x" value="-41.071969"/>
         <arg name="y" value="-5.854872"/>
         <arg name="z" value="0.0"/>
-        <arg name="yaw" value="1.57"/>
+        <arg name="yaw" value="0"/>
 	</include>
 
     <!-- Launch robot id=2  -->
@@ -32,7 +28,7 @@
         <arg name="x" value="-40.513715"/>
         <arg name="y" value="16.738960"/>
         <arg name="z" value="0"/>
-        <arg name="yaw" value="3.141592"/>
+        <arg name="yaw" value="0"/>
     </include>
 
     <!-- Launch UAL server for drone id=1 -->
@@ -40,9 +36,6 @@
         <param name="uav_id" value="1"/>
         <param name="pose_frame_id" value="map"/>
         <rosparam param="home_pose">[-41.071969, -5.854872, 0.0]</rosparam>
-        <rosparam param="map_origin_geo">[37.558542, -5.931074, 7.89]</rosparam>
-        <!-- <rosparam param="map_origin_geo">[54.17435, 10.12996, 7.89]</rosparam> -->
-        <!-- <rosparam param="map_origin_geo">[52.4353142, 13.1424676, 7.89]</rosparam> -->
     </node>
 
     <!-- Launch UAL server for drone id=2 -->
@@ -50,9 +43,6 @@
         <param name="uav_id" value="2"/>
         <param name="pose_frame_id" value="map"/>
         <rosparam param="home_pose">[-40.513715, 16.738960, 0.0]</rosparam>
-        <rosparam param="map_origin_geo">[37.558542, -5.931074, 7.89]</rosparam>
-        <!-- <rosparam param="map_origin_geo">[54.17435, 10.12996, 7.89]</rosparam> -->
-        <!-- <rosparam param="map_origin_geo">[52.4353142, 13.1424676, 7.89]</rosparam> -->
     </node>
 
     <include file="$(find multidrone_simulator)/launch/target_node.launch">
@@ -65,9 +55,9 @@
     </include>
 
     <!-- Camera 1> -->
-    <!-- <node name="rqt_image_view_1" pkg="rqt_image_view" type="rqt_image_view" args="/$(arg vehicle)_1/cgo3_camera/image_raw"/> -->
+    <node name="rqt_image_view_1" pkg="rqt_image_view" type="rqt_image_view" args="/drone_1/cgo3_camera/image_raw"/>
    
     <!-- Camera 2> -->
-    <!-- <node name="rqt_image_view_2" pkg="rqt_image_view" type="rqt_image_view" args="/$(arg vehicle)_2/cgo3_camera/image_raw"/> -->
+    <node name="rqt_image_view_2" pkg="rqt_image_view" type="rqt_image_view" args="/drone_2/cgo3_camera/image_raw"/>
 
 </launch>
