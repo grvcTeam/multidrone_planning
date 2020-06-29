@@ -1,4 +1,4 @@
-#include <action_executer/action_executer.h>
+#include <action_executor/action_executor.h>
 #include <chrono>
 #include <thread>
 #include <boost/bind.hpp>
@@ -6,7 +6,7 @@
 
 
 #define SHOOT_TYPE_DEFAULT              0
-#define EXECUTER_IDLE                 200
+#define EXECUTOR_IDLE                 200
 #define K_GIMBAL                      1.0
 #define K_DRONE                       1.0
 #define K_DRONE_YAW                   0.3
@@ -22,9 +22,9 @@
 #define K_OFFSET                      2.0
 
 // Constructor
-Executer::Executer(int _argc, char** _argv)
+Executor::Executor(int _argc, char** _argv)
 {
-  ros::init(_argc, _argv, "Executer");
+  ros::init(_argc, _argv, "Executor");
   ros::NodeHandle nh;
   ros::NodeHandle pnh("~");
 
@@ -55,29 +55,29 @@ Executer::Executer(int _argc, char** _argv)
   target_image_offset_y_13  = h_im/3-h_im/2;
   target_image_offset_y_23  = h_im*2/3-h_im/2;
 
-  ROS_INFO("Setting up Executer %d", drone_id_);
+  ROS_INFO("Setting up Executor %d", drone_id_);
 
   // Subscribers
   ros::Subscriber target_array_sub_;
   if (onboard)
-    target_array_sub_                          = nh.subscribe<multidrone_msgs::TargetStateArray>("/target_3d_state", 1, &Executer::targetarrayCallback, this);
+    target_array_sub_                          = nh.subscribe<multidrone_msgs::TargetStateArray>("/target_3d_state", 1, &Executor::targetarrayCallback, this);
   else
-    target_array_sub_                          = nh.subscribe<multidrone_msgs::TargetStateArray>("/targets_pose", 1, &Executer::targetarrayCallback, this);
-  ros::Subscriber drone_pose_sub               = nh.subscribe<geometry_msgs::PoseStamped>("ual/pose", 1, &Executer::dronePose, this);
-  ros::Subscriber drone_vel_sub                = nh.subscribe<geometry_msgs::TwistStamped>("ual/velocity",1, &Executer::droneVelocity, this);
-  ros::Subscriber drone_state_sub              = nh.subscribe<uav_abstraction_layer::State>("ual/state",1, &Executer::droneState, this);
-  ros::Subscriber gimbal_status_sub            = nh.subscribe<multidrone_msgs::GimbalStatus>("gimbal/status",1, &Executer::gimbalStatus, this);
+    target_array_sub_                          = nh.subscribe<multidrone_msgs::TargetStateArray>("/targets_pose", 1, &Executor::targetarrayCallback, this);
+  ros::Subscriber drone_pose_sub               = nh.subscribe<geometry_msgs::PoseStamped>("ual/pose", 1, &Executor::dronePose, this);
+  ros::Subscriber drone_vel_sub                = nh.subscribe<geometry_msgs::TwistStamped>("ual/velocity",1, &Executor::droneVelocity, this);
+  ros::Subscriber drone_state_sub              = nh.subscribe<uav_abstraction_layer::State>("ual/state",1, &Executor::droneState, this);
+  ros::Subscriber gimbal_status_sub            = nh.subscribe<multidrone_msgs::GimbalStatus>("gimbal/status",1, &Executor::gimbalStatus, this);
   
   ros::Subscriber focus_sub_;
   if(f_target)
-    focus_sub_                                 = nh.subscribe<std_msgs::Int32>("visual_analysis/focus_value_target", 1, &Executer::focusCallback, this);
+    focus_sub_                                 = nh.subscribe<std_msgs::Int32>("visual_analysis/focus_value_target", 1, &Executor::focusCallback, this);
   else
-    focus_sub_                                 = nh.subscribe<std_msgs::Int32>("visual_analysis/focus_value_image", 1, &Executer::focusCallback, this);
+    focus_sub_                                 = nh.subscribe<std_msgs::Int32>("visual_analysis/focus_value_image", 1, &Executor::focusCallback, this);
 
   // ###########  Communication with SWAP  ########## //
-  ros::Subscriber confl_warning_sub_           = nh.subscribe("collision_warning", 1, &Executer::collisionWarningCallback, this);
+  ros::Subscriber confl_warning_sub_           = nh.subscribe("collision_warning", 1, &Executor::collisionWarningCallback, this);
   wished_mov_dir_pub_                          = nh.advertise<geometry_msgs::Vector3>("wished_movement_direction",1 , true);  // the final true is required
-  ros::Subscriber avoid_mov_dir_sub_           = nh.subscribe("avoid_movement_direction", 1, &Executer::avoidMovementCallback, this);
+  ros::Subscriber avoid_mov_dir_sub_           = nh.subscribe("avoid_movement_direction", 1, &Executor::avoidMovementCallback, this);
   // ###########  #######################  ########### //
 
   // Publishers
@@ -100,7 +100,7 @@ Executer::Executer(int _argc, char** _argv)
   camera_control_client_                       = nh.serviceClient<multidrone_msgs::CameraControl>("camera_control");
 
   // Service Server
-  ros::ServiceServer manual_controls_service_  = nh.advertiseService("manual_controls", &Executer::ManualControlServiceCallback, this);
+  ros::ServiceServer manual_controls_service_  = nh.advertiseService("manual_controls", &Executor::ManualControlServiceCallback, this);
 
   if(simulation) {
     std::vector<double> camera_matrix;
@@ -114,7 +114,7 @@ Executer::Executer(int _argc, char** _argv)
           0.000000,      K_min,   239.5,
           0.000000,     0.000000, 1.000;
 
-    ROS_INFO("Executer [%d] initialized in simulation mode!", drone_id_);
+    ROS_INFO("Executor [%d] initialized in simulation mode!", drone_id_);
     // Initialise gimbal cmd
     #ifdef MAVROS_VERSION_BELOW_0_25_0
     gimbal_cmd_.request.command = mavros_msgs::CommandCode::CMD_DO_MOUNT_CONTROL;
@@ -136,7 +136,7 @@ Executer::Executer(int _argc, char** _argv)
           0.000000,      K_min,   239.5,
           0.000000,     0.000000, 1.000;
 
-    ROS_INFO("Executer [%d] initialized in real mode", drone_id_);    
+    ROS_INFO("Executor [%d] initialized in real mode", drone_id_);    
   }
 
   multidrone_msgs::ManualControls manual_control_msg_;
@@ -161,33 +161,33 @@ Executer::Executer(int _argc, char** _argv)
 
   // action service
   server_ = new Server(nh, "action_server", false);
-  server_->registerGoalCallback(boost::bind(&Executer::actionCallback, this));
-  server_->registerPreemptCallback(boost::bind(&Executer::preemptCallback, this));
+  server_->registerGoalCallback(boost::bind(&Executor::actionCallback, this));
+  server_->registerPreemptCallback(boost::bind(&Executor::preemptCallback, this));
 
   server_->start();
 
   t_0 = ros::Time::now().toSec();
 
   // start Timer
-  timer_        = nh.createTimer(ros::Duration(MAIN_FREQ), &Executer::timerCallback, this); //33Hz
-  timer_trailer = nh.createTimer(ros::Duration(TRAILER_FREQ), &Executer::timerCallbackTrailer, this, false, false); //10Hz
-  timer_gimbal  = nh.createTimer(ros::Duration(GIMBAL_FREQ), &Executer::timerCallbackGimbal, this, false, false); //5Hz
-  timer_rt      = nh.createTimer(ros::Duration(RT_FREQ), &Executer::referenceTrajectory, this, false, false); //33Hz
+  timer_        = nh.createTimer(ros::Duration(MAIN_FREQ), &Executor::timerCallback, this); //33Hz
+  timer_trailer = nh.createTimer(ros::Duration(TRAILER_FREQ), &Executor::timerCallbackTrailer, this, false, false); //10Hz
+  timer_gimbal  = nh.createTimer(ros::Duration(GIMBAL_FREQ), &Executor::timerCallbackGimbal, this, false, false); //5Hz
+  timer_rt      = nh.createTimer(ros::Duration(RT_FREQ), &Executor::referenceTrajectory, this, false, false); //33Hz
 
-  ROS_INFO("Executer [%d] running", drone_id_);
+  ROS_INFO("Executor [%d] running", drone_id_);
 
   ros::MultiThreadedSpinner spinner(4); // Use 4 threads
   spinner.spin();
 }
 
 // Destructor
-Executer::~Executer()
+Executor::~Executor()
 {
   delete server_;
 };
 
 // Timer callback
-void Executer::timerCallback(const ros::TimerEvent&)
+void Executor::timerCallback(const ros::TimerEvent&)
 {
   lyapunov_publisher();
   
@@ -259,7 +259,7 @@ void Executer::timerCallback(const ros::TimerEvent&)
   }
 }
 
-void Executer::timerCallbackGimbal(const ros::TimerEvent&)
+void Executor::timerCallbackGimbal(const ros::TimerEvent&)
 {
   if (has_gimbal_status_ || simulation) {
     if (shooting_mode_ == multidrone_msgs::TargetIdentifierType::NONE)
@@ -296,7 +296,7 @@ void Executer::timerCallbackGimbal(const ros::TimerEvent&)
     has_drone_pose_ = false;
 }
 
-void Executer::timerCallbackTrailer(const ros::TimerEvent&)
+void Executor::timerCallbackTrailer(const ros::TimerEvent&)
 {
   if (has_rt_target_status_){
     trailer.run_trailer(rt_target_pos_);
@@ -306,7 +306,7 @@ void Executer::timerCallbackTrailer(const ros::TimerEvent&)
   has_rt_target_status_ = false;
 }
 
-void Executer::trajectory_publisher ()
+void Executor::trajectory_publisher ()
 {
   nav_msgs::Odometry _msg;
   desired_point << trailer.desired_point_, trailer.altitude;
@@ -331,7 +331,7 @@ void Executer::trajectory_publisher ()
   trajectory_.publish(_msg);
 }
 
-void Executer::lyapunov_publisher()
+void Executor::lyapunov_publisher()
 {
   geometry_msgs::Point32 _msg;
   _msg.x = lyapunov_visual;
@@ -339,7 +339,7 @@ void Executer::lyapunov_publisher()
   lyapunov_.publish(_msg);
 }
 
-void Executer::targetarrayCallback(const multidrone_msgs::TargetStateArray::ConstPtr& _msg) // real target callback
+void Executor::targetarrayCallback(const multidrone_msgs::TargetStateArray::ConstPtr& _msg) // real target callback
 {
   
   //rt target
@@ -367,7 +367,7 @@ void Executer::targetarrayCallback(const multidrone_msgs::TargetStateArray::Cons
   }
 }
 
-void Executer::referenceTrajectory(const ros::TimerEvent&){ 
+void Executor::referenceTrajectory(const ros::TimerEvent&){ 
 
   if (rt_mode_ == multidrone_msgs::ShootingAction::RT_MODE_VIRTUAL_TRAJ){
     rt_target_pos_.x()  = rt_target_pos_.x() + total_displ.x()*formation_speed_*RT_FREQ/(total_displ.norm());
@@ -397,7 +397,7 @@ void Executer::referenceTrajectory(const ros::TimerEvent&){
   } 
 }
 
-void Executer::targetStatus(bool rt)
+void Executor::targetStatus(bool rt)
 {
   if(rt)
     has_rt_target_status_ = true; 
@@ -424,12 +424,12 @@ void Executer::targetStatus(bool rt)
 }
 
 
-void Executer::focusCallback(const std_msgs::Int32::ConstPtr& _msg)
+void Executor::focusCallback(const std_msgs::Int32::ConstPtr& _msg)
 {
   focus_value = _msg->data;
 }
 
-void Executer::run_w_estimate()
+void Executor::run_w_estimate()
 {
   Eigen::Vector3d w_est_dot;  
 
@@ -441,7 +441,7 @@ void Executer::run_w_estimate()
 }
 
 // Drone pose callback
-void Executer::dronePose(const geometry_msgs::PoseStamped::ConstPtr& _msg)
+void Executor::dronePose(const geometry_msgs::PoseStamped::ConstPtr& _msg)
 {
   tf::pointMsgToEigen(_msg->pose.position, drone_pos_);
   tf::quaternionMsgToEigen(_msg->pose.orientation, drone_att_);
@@ -456,7 +456,7 @@ void Executer::dronePose(const geometry_msgs::PoseStamped::ConstPtr& _msg)
 }
 
 // Drone velocity callback
-void Executer::droneVelocity(const geometry_msgs::TwistStamped::ConstPtr& _msg)
+void Executor::droneVelocity(const geometry_msgs::TwistStamped::ConstPtr& _msg)
 {
 
   tf::twistMsgToEigen(_msg->twist, drone_twist_);
@@ -471,13 +471,13 @@ void Executer::droneVelocity(const geometry_msgs::TwistStamped::ConstPtr& _msg)
 }
 
 // Drone state callback
-void Executer::droneState(const uav_abstraction_layer::State::ConstPtr& _msg)
+void Executor::droneState(const uav_abstraction_layer::State::ConstPtr& _msg)
 {
   drone_state_.state = _msg->state;
 }
 
 // Gimbal status callback
-void Executer::gimbalStatus(const multidrone_msgs::GimbalStatus::ConstPtr& _msg)
+void Executor::gimbalStatus(const multidrone_msgs::GimbalStatus::ConstPtr& _msg)
 {
 
   tf::quaternionMsgToEigen(_msg->orientation, gimbal_att_);
@@ -487,7 +487,7 @@ void Executer::gimbalStatus(const multidrone_msgs::GimbalStatus::ConstPtr& _msg)
   has_gimbal_status_ = true;
 }
 
-bool Executer::ManualControlServiceCallback(multidrone_msgs::ManualControls::Request& req, multidrone_msgs::ManualControls::Response& res)
+bool Executor::ManualControlServiceCallback(multidrone_msgs::ManualControls::Request& req, multidrone_msgs::ManualControls::Response& res)
 {
   multidrone_msgs::CameraControl camera_control_msg_;
   if (req.control == multidrone_msgs::ManualControls::Request::GIMBAL_MOVE_UP)
@@ -567,7 +567,7 @@ bool Executer::ManualControlServiceCallback(multidrone_msgs::ManualControls::Req
     return true;
 }  
 
-void Executer::focus_reset_tree(int beg, int end){
+void Executor::focus_reset_tree(int beg, int end){
   std::cout << " Starting Auto Focus" << "\n";
   int BEST, low_left, high_left = -1, low_right = -1, high_right, curr, curr_left, curr_right;
   bool  stop_left, stop_right;
@@ -663,7 +663,7 @@ void Executer::focus_reset_tree(int beg, int end){
   std::cout << " Done. Focus value is  " << BEST <<"\n";
 }
 
-void Executer::setMountModeParameters()
+void Executor::setMountModeParameters()
 {
   mavros_msgs::ParamGet get_param_in, get_param_out;
   get_param_in.request.param_id = "MNT_MODE_IN";
@@ -700,7 +700,7 @@ void Executer::setMountModeParameters()
   }
 }
 
-void Executer::toEulerAngles_YXZ(const Eigen::Quaterniond& _q, Eigen::Vector3d& euler)
+void Executor::toEulerAngles_YXZ(const Eigen::Quaterniond& _q, Eigen::Vector3d& euler)
 {
   Eigen::Quaterniond q(Eigen::AngleAxisd(-M_PI/2, Eigen::Vector3d::UnitZ())*Eigen::AngleAxisd(-M_PI, Eigen::Vector3d::UnitX())*_q.normalized().toRotationMatrix());
 
@@ -722,7 +722,7 @@ void Executer::toEulerAngles_YXZ(const Eigen::Quaterniond& _q, Eigen::Vector3d& 
   euler.z() = atan2(t0, t1);
 }
 
-void Executer::rotationMatrixToEulerAngles_XYZ(Eigen::Matrix3d& R, Eigen::Vector3d& euler){
+void Executor::rotationMatrixToEulerAngles_XYZ(Eigen::Matrix3d& R, Eigen::Vector3d& euler){
   if (R(2,0) < 1) {
     if (R(2,0) > -1) {
       euler.y() = asin(-R(2,0));
@@ -742,29 +742,29 @@ void Executer::rotationMatrixToEulerAngles_XYZ(Eigen::Matrix3d& R, Eigen::Vector
   }
 }
 
-void Executer::preemptCallback()
+void Executor::preemptCallback()
 {
 goal_preempt_ = true;
 }
 
-void Executer::toSMatrix(Eigen::Vector3d& w, Eigen::Matrix3d& S)
+void Executor::toSMatrix(Eigen::Vector3d& w, Eigen::Matrix3d& S)
 {
   S <<      0,  -w.z(),   w.y(),
         w.z(),       0,  -w.x(),
        -w.y(),   w.x(),       0;
 }
 
-void Executer::toSInvMatrix(Eigen::Matrix3d& R__, Eigen::Vector3d& S_inv__)
+void Executor::toSInvMatrix(Eigen::Matrix3d& R__, Eigen::Vector3d& S_inv__)
 {
   S_inv__ << R__(2,1), R__(0,2), R__(1,0);
 }
 
-void Executer::toPIMatrix(Eigen::Vector3d& rx, Eigen::Matrix3d& PI)
+void Executor::toPIMatrix(Eigen::Vector3d& rx, Eigen::Matrix3d& PI)
 {
   PI = Eigen::Matrix3d::Identity() - rx*rx.transpose();
 }
 
-void Executer::takeOff()
+void Executor::takeOff()
 {
   feedback_.status= true;
   server_->publishFeedback(feedback_);
@@ -773,10 +773,10 @@ void Executer::takeOff()
   take_off_msg.request.blocking = true;
   result_.goal_achieved = take_off_client_.call(take_off_msg);
   server_->setSucceeded(result_);
-  action_type_ = EXECUTER_IDLE;
+  action_type_ = EXECUTOR_IDLE;
 }
 
-void Executer::land()
+void Executor::land()
 {
   feedback_.status= true;
   server_->publishFeedback(feedback_);
@@ -784,10 +784,10 @@ void Executer::land()
   land_msg.request.blocking = true;
   result_.goal_achieved = land_client_.call(land_msg);
   server_->setSucceeded(result_);
-  action_type_ = EXECUTER_IDLE;
+  action_type_ = EXECUTOR_IDLE;
 }
 
-void Executer::goToWaypoint()
+void Executor::goToWaypoint()
 {
   if (cont < list_wp_.size()) {
     result_.goal_achieved=false;
@@ -806,7 +806,7 @@ void Executer::goToWaypoint()
     go_to_waypoint_pub_.publish(setpoint_pose_);
 
     if (drone_alarmed_when_doing_gotowaypoint_==true) { // Alarm received while doing the gotowaypoint, don't keep iterating.
-      action_type_ = EXECUTER_IDLE;
+      action_type_ = EXECUTOR_IDLE;
       action_received_ = false;
       drone_alarmed_when_doing_gotowaypoint_ = false;
       cont = 0;
@@ -823,7 +823,7 @@ void Executer::goToWaypoint()
     if (final_yaw_if_gotowaypoint_.z==0 && final_yaw_if_gotowaypoint_.y==0 && final_yaw_if_gotowaypoint_.x==0 && final_yaw_if_gotowaypoint_.w==0) {
       result_.goal_achieved=true;
       server_->setSucceeded(result_);
-      action_type_ = EXECUTER_IDLE;
+      action_type_ = EXECUTOR_IDLE;
       action_received_ = false;
       drone_alarmed_when_doing_gotowaypoint_ = false;
       cont = 0;
@@ -843,7 +843,7 @@ void Executer::goToWaypoint()
 
     go_to_waypoint_pub_.publish(setpoint_pose_);
     if (drone_alarmed_when_doing_gotowaypoint_==true) { // Alarm received while doing the gotowaypoint, don't keep iterating.
-      action_type_ = EXECUTER_IDLE;
+      action_type_ = EXECUTOR_IDLE;
       action_received_ = false;
       drone_alarmed_when_doing_gotowaypoint_ = false;
       cont = 0;
@@ -859,7 +859,7 @@ void Executer::goToWaypoint()
     if(diff<=0.261799388) { // if wp is reached (difference <= 10 sexagesimal degrees), goal achieved
       result_.goal_achieved=true;
       server_->setSucceeded(result_);
-      action_type_ = EXECUTER_IDLE;
+      action_type_ = EXECUTOR_IDLE;
       action_received_ = false;
       drone_alarmed_when_doing_gotowaypoint_ = false;
       cont = 0;
@@ -867,7 +867,7 @@ void Executer::goToWaypoint()
   }
 }
 
-void Executer::followVehicle()
+void Executor::followVehicle()
 {
   desired_point << trailer.desired_point_, trailer.altitude;
 
@@ -887,7 +887,7 @@ void Executer::followVehicle()
   && !std::isinf(cmd_linear_velocity.x()) && !std::isinf(cmd_linear_velocity.y()) && !std::isinf(cmd_linear_velocity.z())) 
     setpoint_vel_.twist.linear = cmd_linear_velocity_;
   else {
-    action_type_ = EXECUTER_IDLE; 
+    action_type_ = EXECUTOR_IDLE; 
     feedback_.status = false;
     feedback_.action_id = action_id_;
     server_->publishFeedback(feedback_);
@@ -923,7 +923,7 @@ void Executer::followVehicle()
 /**
  *
  */
-void Executer::collisionWarningCallback(const std_msgs::Bool::ConstPtr& collision_warning)
+void Executor::collisionWarningCallback(const std_msgs::Bool::ConstPtr& collision_warning)
 {
   confl_warning_ = collision_warning->data;
 }
@@ -931,14 +931,14 @@ void Executer::collisionWarningCallback(const std_msgs::Bool::ConstPtr& collisio
 /**
  *
  */
-void Executer::avoidMovementCallback(const geometry_msgs::Vector3::ConstPtr& avoidance_direction)
+void Executor::avoidMovementCallback(const geometry_msgs::Vector3::ConstPtr& avoidance_direction)
 {
     avoid_mov_direction_.x = avoidance_direction->x;
     avoid_mov_direction_.y = avoidance_direction->y;
     avoid_mov_direction_.z = avoidance_direction->z;
 }
 
-void Executer::actionCallback()
+void Executor::actionCallback()
 {
   // If the new drone action is a gotowaypoint and right now is running another gotowaypoint, it means that an alarm has been triggered while doing it.
   // In this case wait until the current gotowaypoint finish to start the next alarm's gotowaypoint.
@@ -1120,7 +1120,7 @@ void Executer::actionCallback()
       trailer.trailer_type     = TRAILER_TYPE_ORBIT;
     }
     else {
-      action_type_ = EXECUTER_IDLE; 
+      action_type_ = EXECUTOR_IDLE; 
       feedback_.status = false;
       feedback_.action_id = action_id_;
       server_->publishFeedback(feedback_);
@@ -1144,7 +1144,7 @@ void Executer::actionCallback()
       list_wp_.push_back(goal_.path[i]);
 }
 
-void Executer::gimbalAutomatic(double pan_s, double tilt_s, double pan_e, double tilt_e, double duration, double start_time)
+void Executor::gimbalAutomatic(double pan_s, double tilt_s, double pan_e, double tilt_e, double duration, double start_time)
 { 
   double t    = ros::Time::now().toSec() - start_time;
   double pan  = pan_s + t*(pan_e - pan_s)/duration;
@@ -1182,7 +1182,7 @@ void Executer::gimbalAutomatic(double pan_s, double tilt_s, double pan_e, double
   }
 }
 
-void Executer::gimbalSafeMode()
+void Executor::gimbalSafeMode()
 {
     w_est << 0.0, 0.0, 0.0;
     w_est_ << 0.0, 0.0, 0.0;
@@ -1195,7 +1195,7 @@ void Executer::gimbalSafeMode()
     gimbal_cmd_basecam_pub.publish(msg_gimbal_cmd);
 }
 
-void Executer::gimbalController()
+void Executor::gimbalController()
 { 
 
   if (has_drone_pose_ && has_shooting_target_status_ ){ //GPS
@@ -1285,7 +1285,7 @@ void Executer::gimbalController()
   }
 }
 
-void Executer::CameraControl(){
+void Executor::CameraControl(){
   multidrone_msgs::CameraControl camera_control_msg_;
   camera_control_msg_.request.control_function = multidrone_msgs::CameraControl::Request::CONTROL_FUNCTION_ZOOM;
   camera_control_msg_.request.manual_ctrl = false;

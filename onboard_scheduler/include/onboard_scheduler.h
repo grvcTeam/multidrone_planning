@@ -140,8 +140,8 @@ private:
   time_t time_feedback_;
   uav_abstraction_layer::State state_;
   float max_time_landing_takeoff_ = 30.0;
-  bool nan_inf_executer_ = false;
-  int cont_nan_inf_executer_ = 0;
+  bool nan_inf_executor_ = false;
+  int cont_nan_inf_executor_ = 0;
   std::string previous_id_NaN_inf_ = "";
   const float BATTERY_LIMIT = 0.1;
   const int MAX_NUMBER_NAN = 2;

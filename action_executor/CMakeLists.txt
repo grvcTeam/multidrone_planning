@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(action_executer)
+project(action_executor)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 add_compile_options(-std=c++11)
@@ -49,7 +49,7 @@ include_directories(
   ${EIGEN_INCLUDE_DIR}
 )
 
-add_executable(action_executer_node src/action_executer_node.cpp src/action_executer.cpp src/trailer.cpp)
-target_link_libraries(action_executer_node ${catkin_LIBRARIES} ${Eigen_LIBRARIES})
-add_dependencies(action_executer_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_executable(action_executor_node src/action_executor_node.cpp src/action_executor.cpp src/trailer.cpp)
+target_link_libraries(action_executor_node ${catkin_LIBRARIES} ${Eigen_LIBRARIES})
+add_dependencies(action_executor_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 

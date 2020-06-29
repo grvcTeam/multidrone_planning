@@ -1,6 +1,6 @@
 <launch>
-   <!-- executer 1 -->
-    <include file="$(find action_executer)/launch/action_executer.launch">
+   <!-- executor 1 -->
+    <include file="$(find action_executor)/launch/action_executor.launch">
         <arg name="drone_id" value="1"/>
     </include>
     

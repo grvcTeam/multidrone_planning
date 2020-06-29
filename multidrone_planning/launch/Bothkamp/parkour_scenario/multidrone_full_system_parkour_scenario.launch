@@ -1,7 +1,7 @@
 <launch>
 
     <!-- multidrone robot 1 -->
-    <include file="$(find action_executer)/launch/action_executer.launch">
+    <include file="$(find action_executor)/launch/action_executor.launch">
         <arg name="drone_id" value="1"/>
     </include>
 
@@ -10,7 +10,7 @@
     </include>
 
     <!-- multidrone robot 2 -->
-    <include file="$(find action_executer)/launch/action_executer.launch">
+    <include file="$(find action_executor)/launch/action_executor.launch">
         <arg name="drone_id" value="2"/>
     </include>
 

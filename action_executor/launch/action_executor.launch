@@ -21,7 +21,7 @@
 	<arg name="f_target" default="false"/>
 
 
-	<node pkg="action_executer" name="action_executer" type="action_executer_node" ns="drone_$(arg drone_id)" output="screen"> <!-- launch-prefix="xterm -hold -fn 10x20 -e"-->
+	<node pkg="action_executor" name="action_executor" type="action_executor_node" ns="drone_$(arg drone_id)" output="screen"> <!-- launch-prefix="xterm -hold -fn 10x20 -e"-->
 		<param name="drone_id" value="$(arg drone_id)"/>
 		<!-- <rosparam command="load" file="$(find multidrone_configs)/config/BMMC_camera.yaml" /> -->
 		<param name="onboard" value="$(arg onboard)"/>

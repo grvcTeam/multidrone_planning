@@ -1,11 +1,11 @@
-#ifndef ACTION_EXECUTER_H
-#define ACTION_EXECUTER_H
+#ifndef ACTION_EXECUTOR_H
+#define ACTION_EXECUTOR_H
 
 
-#include <action_executer/trailer.h>
+#include <action_executor/trailer.h>
 
 
-class Executer
+class Executor
 {
 private:
     ros::Subscriber vechile_odometry_sub;
@@ -262,9 +262,9 @@ private:
 
 public:
 
-    Executer(int _argc, char** _argv);
-    ~Executer();
+    Executor(int _argc, char** _argv);
+    ~Executor();
     void actionCallback();
 };
 
-#endif // ACTION_EXECUTER_H
+#endif // ACTION_EXECUTOR_H

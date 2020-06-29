@@ -175,28 +175,28 @@ bool OnBoardScheduler::droneactionlistServiceCallback(multidrone_msgs::PushDrone
   return true;
 }
 
-/** \brief Utility function to check communication with Executer
+/** \brief Utility function to check communication with Executor
  *  \param last_time    last time that the msg was received
  *  \param delay_allowed  delay allowed between msgs
  * **/
 void OnBoardScheduler::checkCommunication(time_t last_time, double delay_allowed){
-  if(time(NULL)-last_time>delay_allowed) ROS_WARN("Scheduler [%d]: delay in communications with executer",drone_id_);
+  if(time(NULL)-last_time>delay_allowed) ROS_WARN("Scheduler [%d]: delay in communications with executor",drone_id_);
 }
 
 /** \brief Drone action feedback callback 
 */
 void OnBoardScheduler::feedbackCallback(const multidrone_msgs::ExecuteFeedbackConstPtr& feedback){
-  if(feedback->status == false) // Nan of inf in the executer
+  if(feedback->status == false) // Nan of inf in the executor
   { 
-    ROS_WARN("Scheduler [%d]: NaN or inf in the executer",drone_id_);
+    ROS_WARN("Scheduler [%d]: NaN or inf in the executor",drone_id_);
     
     if(feedback->action_id != previous_id_NaN_inf_){
-      cont_nan_inf_executer_++;
+      cont_nan_inf_executor_++;
       previous_id_NaN_inf_ = feedback->action_id;
     } 
 
-    if(cont_nan_inf_executer_<MAX_NUMBER_NAN){ //first time nan or inf in the executer, sending another SA
-      nan_inf_executer_ = true;
+    if(cont_nan_inf_executor_<MAX_NUMBER_NAN){ //first time nan or inf in the executor, sending another SA
+      nan_inf_executor_ = true;
     }else{ // second time receiving nan or inf, emergency state is launched
       emergency_ = true;
     }
@@ -207,7 +207,7 @@ void OnBoardScheduler::feedbackCallback(const multidrone_msgs::ExecuteFeedbackCo
 /** \brief Callback to check if the drone action is active
  */
 void OnBoardScheduler::activeCallback(){
-  ROS_INFO("Scheduler [%d]: The drone action was received by the executer and it just went active",drone_id_);
+  ROS_INFO("Scheduler [%d]: The drone action was received by the executor and it just went active",drone_id_);
   drone_action_actived_ = true;
 }
 
@@ -291,17 +291,17 @@ void OnBoardScheduler::kmlUpdateCallback(const ros::TimerEvent&) {
  */
 void OnBoardScheduler::goToEmergencySite(const float x, const float y, const float z, const bool abort, const bool emergency)
 {
-  // wait for the executer to finish the landing or the take off  
+  // wait for the executor to finish the landing or the take off  
   if(action_status_ == multidrone_msgs::ActionStatus::AS_TAKING_OFF || action_status_ == multidrone_msgs::ActionStatus::AS_LANDING){
     ros::Time begin = ros::Time::now();
     float duration = 0.0;
     ros::Rate rate(1); //[Hz]
     while(action_client_->getState() != actionlib::SimpleClientGoalState::SUCCEEDED){
       duration = ros::Time::now().toSec() - begin.toSec();
-      if(action_status_ == multidrone_msgs::ActionStatus::AS_TAKING_OFF) ROS_INFO("Scheduler [%d]: waiting for the Executer to finish the take off", drone_id_);
-      if(action_status_ == multidrone_msgs::ActionStatus::AS_LANDING) ROS_INFO("Scheduler [%d]: waiting for the Executer to finish the landing", drone_id_);
+      if(action_status_ == multidrone_msgs::ActionStatus::AS_TAKING_OFF) ROS_INFO("Scheduler [%d]: waiting for the Executor to finish the take off", drone_id_);
+      if(action_status_ == multidrone_msgs::ActionStatus::AS_LANDING) ROS_INFO("Scheduler [%d]: waiting for the Executor to finish the landing", drone_id_);
       if(duration>max_time_landing_takeoff_){
-        ROS_WARN("Scheduler [%d]: too much time waiting for The Executer. Aborting the wait",drone_id_);
+        ROS_WARN("Scheduler [%d]: too much time waiting for The Executor. Aborting the wait",drone_id_);
         break;
       }
       rate.sleep();
@@ -333,7 +333,7 @@ void OnBoardScheduler::goToEmergencySite(const float x, const float y, const flo
     std::vector<geometry_msgs::PointStamped> path;
     path = path_planner_.getPath(initial_pose, emergency_pos);
 
-    /// send this drone action to executer
+    /// send this drone action to executor
     multidrone_msgs::DroneAction go_to_emergency_site;
     go_to_emergency_site.path = path;
     go_to_emergency_site.action_type = multidrone_msgs::DroneAction::TYPE_GOTOWAYPOINT;
@@ -345,7 +345,7 @@ void OnBoardScheduler::goToEmergencySite(const float x, const float y, const flo
     if(abort)           action_status_ = multidrone_msgs::ActionStatus::AS_GOING_HOME;
     else if (emergency) action_status_ = multidrone_msgs::ActionStatus::AS_EMERGENCY;
 
-    // wait for executer
+    // wait for executor
     while(!drone_action_actived_){
       ROS_INFO("Scheduler [%d]: waiting for goToWaypoint to be activated",drone_id_);
       sleep(1);
@@ -354,11 +354,11 @@ void OnBoardScheduler::goToEmergencySite(const float x, const float y, const flo
 
     /// wait for drone arrives to home
     while(action_client_->getState() != actionlib::SimpleClientGoalState::SUCCEEDED){
-      ROS_INFO("Scheduler [%d]: Waiting for the result of the navigation action", drone_id_); // wait for a result from executer when a drone action finish
+      ROS_INFO("Scheduler [%d]: Waiting for the result of the navigation action", drone_id_); // wait for a result from executor when a drone action finish
       rate.sleep();
     }
 
-    // command land to executer
+    // command land to executor
     multidrone_msgs::DroneAction land_home;
     land_home.action_type = multidrone_msgs::DroneAction::TYPE_LAND;
     goal.action_goal = land_home;
@@ -366,7 +366,7 @@ void OnBoardScheduler::goToEmergencySite(const float x, const float y, const flo
     action_client_->sendGoal(goal, Drone_action_client::SimpleDoneCallback(), boost::bind(&OnBoardScheduler::activeCallback, this));
     if(abort) action_status_ = multidrone_msgs::ActionStatus::AS_LANDING;
 
-    while(!drone_action_actived_){ // wait for executer
+    while(!drone_action_actived_){ // wait for executor
       ROS_INFO("Scheduler [%d]: waiting for landing to be activated",drone_id_);
       sleep(1);
       ros::spinOnce();
@@ -375,13 +375,13 @@ void OnBoardScheduler::goToEmergencySite(const float x, const float y, const flo
     /// wait for landing
     while(action_client_->getState() != actionlib::SimpleClientGoalState::SUCCEEDED){
       rate.sleep();
-      ROS_INFO("Scheduler [%d]: Waiting for landing", drone_id_); // wait for a result from executer when a drone action finish
+      ROS_INFO("Scheduler [%d]: Waiting for landing", drone_id_); // wait for a result from executor when a drone action finish
     }
   }
   emergency_ = false; 
   safe_to_go_flag_ = false; // the safe to go is needed again to fly
   abort_service_received_ = false;
-  nan_inf_executer_ = false;
+  nan_inf_executor_ = false;
 }
 
 /** \brief utility function to check the travelled distance of a shooting action and return if the total distance was reached
@@ -448,7 +448,7 @@ void OnBoardScheduler::loop()
         delay_countdown_ = 0;
         waiting_for_event_cont = 0;
         event_received_ = false;
-        /// publish action to executer
+        /// publish action to executor
         goal.action_goal = push_drone_action_[0];
 
         // TODO: shooting_parameters doesn't have now "event_timestamp"
@@ -465,7 +465,7 @@ void OnBoardScheduler::loop()
         mission_id_ = goal.action_goal.shooting_action.mission_id;
         SAS_id_ = goal.action_goal.action_sequence_id;
         if(goal.action_goal.action_type == multidrone_msgs::DroneAction::TYPE_TAKEOFF){
-          ROS_INFO("Scheduler [%d]: sending take off to the executer", drone_id_);
+          ROS_INFO("Scheduler [%d]: sending take off to the executor", drone_id_);
           if(!home_pose_saved_){ // Scheduler saves the pose before taking offf to back home later
             home_pose_ = drone_pose_;
             home_pose_saved_ = true;
@@ -473,11 +473,11 @@ void OnBoardScheduler::loop()
         }
         else if(goal.action_goal.action_type == multidrone_msgs::DroneAction::TYPE_LAND){
            home_pose_saved_ = false;  // once the drone has landed, the home pose has to be saved again
-           ROS_INFO("Scheduler [%d]: sending land to the executer", drone_id_);
+           ROS_INFO("Scheduler [%d]: sending land to the executor", drone_id_);
            safe_to_go_flag_ = false; //once the drones have landed, the safe to go service is needed again
         }
-        else if(goal.action_goal.action_type == multidrone_msgs::DroneAction::TYPE_GOTOWAYPOINT) ROS_INFO("Scheduler [%d]: sending going to the start pose of SA %s to the executer. x=%f, y=%f", drone_id_,goal.action_goal.action_id.c_str(),home_pose_.pose.position.x,home_pose_.pose.position.y);
-        else if(goal.action_goal.action_type == multidrone_msgs::DroneAction::TYPE_SHOOTING) ROS_INFO("Scheduler [%d]: shooting action %s to the executer", drone_id_,goal.action_goal.action_id.c_str());
+        else if(goal.action_goal.action_type == multidrone_msgs::DroneAction::TYPE_GOTOWAYPOINT) ROS_INFO("Scheduler [%d]: sending going to the start pose of SA %s to the executor. x=%f, y=%f", drone_id_,goal.action_goal.action_id.c_str(),home_pose_.pose.position.x,home_pose_.pose.position.y);
+        else if(goal.action_goal.action_type == multidrone_msgs::DroneAction::TYPE_SHOOTING) ROS_INFO("Scheduler [%d]: shooting action %s to the executor", drone_id_,goal.action_goal.action_id.c_str());
       }
       else if (event_ == push_drone_action_[0].start_event && push_drone_action_[0].delay_since_event >= delay.toSec()) { // if waiting for a delay
         if (push_drone_action_[0].action_type == multidrone_msgs::DroneAction::TYPE_TAKEOFF && push_drone_action_[0].delay_since_event>0) {
@@ -538,14 +538,14 @@ void OnBoardScheduler::loop()
           waiting_for_event_cont = 0;
           break;
           }
-        else if(!drone_action_actived_){ //check if the executer has received the last drone action
+        else if(!drone_action_actived_){ //check if the executor has received the last drone action
           ROS_INFO("Scheduler [%d]: waiting for the drone action to be activated",drone_id_);
           sleep(1);
         }else{
         // if any of the previous conditions has happened, check the distance and the time
           if(goal.action_goal.action_type == multidrone_msgs::DroneAction::TYPE_SHOOTING){ //shooting action
             double dangerous_delay = 2.0;
-            // checkCommunication(time_feedback_,dangerous_delay); //check the feedback sent by the executer
+            // checkCommunication(time_feedback_,dangerous_delay); //check the feedback sent by the executor
             action_status_ = multidrone_msgs::ActionStatus::AS_RUNNING;
             if(checkDistance(goal.action_goal.shooting_action.length, sum_distance )){  // check the max distance of the shooting action
               ROS_INFO("Scheduler [%d]: Max distance reached of the drone action %s", drone_id_, goal.action_goal.action_id.c_str());
@@ -565,10 +565,10 @@ void OnBoardScheduler::loop()
 
               break;
             }
-            if(nan_inf_executer_){ // if executer reports NaN or Inf, the scheduler will try to send next SA
-              ROS_INFO("Scheduler [%d]: rejecting shooting action %s because the executer reported NaN or Inf", drone_id_, goal.action_goal.action_id.c_str());
+            if(nan_inf_executor_){ // if executor reports NaN or Inf, the scheduler will try to send next SA
+              ROS_INFO("Scheduler [%d]: rejecting shooting action %s because the executor reported NaN or Inf", drone_id_, goal.action_goal.action_id.c_str());
               push_drone_action_.erase(push_drone_action_.begin());
-              nan_inf_executer_ = false;
+              nan_inf_executor_ = false;
               break;
             }
           }
@@ -578,7 +578,7 @@ void OnBoardScheduler::loop()
             else if(goal.action_goal.action_type == multidrone_msgs::DroneAction::TYPE_LAND) action_status_ = multidrone_msgs::ActionStatus::AS_LANDING;
             else{ // go to waypoint
               double dangerous_delay = 2.0;
-              // checkCommunication(time_feedback_,dangerous_delay); // Check the feedback sent by executer
+              // checkCommunication(time_feedback_,dangerous_delay); // Check the feedback sent by executor
               action_status_ = multidrone_msgs::ActionStatus::AS_GOING_TO_START_POSE;
             }
             
