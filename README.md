@@ -26,7 +26,7 @@ catkin build
 
 ## Testing ##
 
-You can find detailed instructions about the system and how to use it in the [Wiki](https://github.com/grvcTeam/multidrone_planning/wiki/Documentation).
+You can find detailed instructions about the system and how to use it in the [Wiki](https://github.com/grvcTeam/multidrone_planning/wiki).
 
 ## References
 
