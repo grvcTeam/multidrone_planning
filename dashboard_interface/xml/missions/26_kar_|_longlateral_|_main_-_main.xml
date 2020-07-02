@@ -20,34 +20,34 @@
     </targetTypes>
     <shootingActionSequences>
         <shootingActionSequence>
-            <uuid>14b7366e-48ec-40b5-819f-26d9bc6f7fc3</uuid>
+            <uuid>1</uuid>
             <name>S1</name>
             <role>main</role>
             <shootingActions>
-                <shootingAction shootingActionTemplateRef="ORBIT">
-                    <uuid>e64a4ff8-f573-41da-bd65-a58743e312ef</uuid>
-                    <name>ORBIT</name>
-                    <duration>300</duration>
+                <shootingAction shootingActionTemplateRef="LATERAL">
+                    <uuid>e64a4ff8-f573-422a-bd65-a58743e3133f</uuid>
+                    <name>LATERAL</name>
+                    <duration>30</duration>
                     <params>{}</params>
-                    <formationSpeed>7.2</formationSpeed>
+                    <formationSpeed>3.6</formationSpeed>
                     <priority>1</priority>
                     <RTTrajectory>
                         <RTTrajectoryPoint>
-                            <x>-2</x>
-                            <y>0</y>
+                            <x>-28.68</x>
+                            <y>4.34</y>
                             <altitude>-1.0</altitude>
                             <time>0</time>
                         </RTTrajectoryPoint>
                         <RTTrajectoryPoint>
-                            <x>8</x>
-                            <y>0</y>
+                            <x>-23.83</x>
+                            <y>-2.02</y>
                             <altitude>-1.0</altitude>
                             <time>30</time>
                         </RTTrajectoryPoint>
                     </RTTrajectory>
                     <originOfFormation>
-                        <x>-2</x>
-                        <y>0</y>
+                        <x>-28.68</x>
+                        <y>4.34</y>
                         <altitude>-1.0</altitude>
                         <time>0</time>
                     </originOfFormation>
@@ -60,10 +60,10 @@
                     </Maps>
                     <shootingRoles>
                         <shootingRole>
-                            <name>ORBIT</name>
+                            <name>LATERAL</name>
                             <framingTypeName>FRAMING_TYPE_MS</framingTypeName>
                             <shootingTypeName>RULE_OF_THIRDS</shootingTypeName>
-                            <params>{"r_0": {"value": 4, "description": "Radius of the circle (meters)"}, "azimuth_speed": {"value": 0.2, "description": "TODO, NOT GIVEN"}, "z_0": {"value": 3, "description": "Z-axis displacement (meters)"}, "image": "orbit.png", "azimuth_s": {"value": 0, "description": "Drone position angle (degrees)"}, "description": "The drone flies around the target in a circle, centred at the target."}</params>
+                            <params>{"y_0": {"value": 4, "description": "Radius of the circle (meters)"}, "z_0": {"value": 3, "description": "Z-axis displacement (meters)"}, "image": "LATERAL.png", "description": "The drone flies around the target in a circle, centred at the target."}</params>
                             <targetIdentifier>
                                 <name>GPS</name>
                                 <description>Tracks a shooting target through GPS sensors</description>
@@ -78,4 +78,3 @@
         </shootingActionSequence>
     </shootingActionSequences>
 </mission>
-

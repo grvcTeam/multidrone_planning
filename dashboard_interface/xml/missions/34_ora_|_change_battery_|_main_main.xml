@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <mission eventRef="START_RACE">
-    <uuid>31</uuid>
-    <name>Change battery mission</name>
+    <uuid>34</uuid>
+    <name>Change battery mission Oran</name>
     <role>main</role>
     <description>2 shooting action sequences in parallel</description>
     <creationDatetime>2019-10-07T10:44:44Z</creationDatetime>
@@ -52,33 +52,33 @@
                 <shootingAction shootingActionTemplateRef="CHASE">
                     <uuid>814a8fa0-e993-4295-ad6d-a7ef6b0b04ef</uuid>
                     <name>CHASE</name>
-                    <duration>60</duration>
+                    <duration>48</duration>
                     <params>{}</params>
                     <formationSpeed>3.6</formationSpeed>
                     <priority>1</priority>
                     <RTTrajectory>
                         <RTTrajectoryPoint>
-                            <latitude>37.558564</latitude>
-                            <longitude>-5.931400</longitude>
+                            <latitude>37.199728</latitude>
+                            <longitude>-5.8811013</longitude>
                             <altitude>-1.0</altitude>
                             <time>0</time>
                         </RTTrajectoryPoint>
                         <RTTrajectoryPoint>
-                            <latitude>37.5581</latitude>
-                            <longitude>-5.931</longitude>
+                            <latitude>37.199344</latitude>
+                            <longitude>-5.881033</longitude>
                             <altitude>-1.0</altitude>
-                            <time>59</time>
+                            <time>48</time>
                         </RTTrajectoryPoint>
                     </RTTrajectory>
                     <originOfRT>
-                        <latitude>37.558564</latitude>
-                        <longitude>-5.931400</longitude>
+                        <latitude>37.199728</latitude>
+                        <longitude>-5.8811013</longitude>
                         <altitude>-1.0</altitude>
                         <time>0</time>
                     </originOfRT>
                     <originOfFormation>
-                        <latitude>37.558564</latitude>
-                        <longitude>-5.931400</longitude>
+                        <latitude>37.199728</latitude>
+                        <longitude>-5.8811013</longitude>
                         <altitude>-1.0</altitude>
                         <time>0</time>
                     </originOfFormation>
@@ -107,68 +107,5 @@
                 </shootingAction>
             </shootingActions>
         </shootingActionSequence>
-        <!-- <shootingActionSequence>
-            <uuid>c4a9b5d7-48a7-4947-b785-dc176de31070</uuid>
-            <name>Lateral (GPS, GPS).</name>
-            <role>main</role>
-            <shootingActions>
-                <shootingAction shootingActionTemplateRef="LATERAL">
-                    <uuid>b38228ae-5d36-44c3-8ff7-98443ad5a693</uuid>
-                    <name>LATERAL</name>
-                    <duration>60</duration>
-                    <params>{}</params>
-                    <formationSpeed>3.6</formationSpeed>
-                    <priority>1</priority>
-                    <RTTrajectory>
-                        <RTTrajectoryPoint>
-                            <latitude>37.558564</latitude>
-                            <longitude>-5.931400</longitude>
-                            <altitude>-1.0</altitude>
-                            <time>0</time>
-                        </RTTrajectoryPoint>
-                        <RTTrajectoryPoint>
-                            <latitude>37.5581</latitude>
-                            <longitude>-5.931</longitude>
-                            <altitude>-1.0</altitude>
-                            <time>59</time>
-                        </RTTrajectoryPoint>
-                    </RTTrajectory>
-                    <originOfRT>
-                        <latitude>37.558564</latitude>
-                        <longitude>-5.931400</longitude>
-                        <altitude>-1.0</altitude>
-                        <time>0</time>
-                    </originOfRT>
-                    <originOfFormation>
-                        <latitude>37.558564</latitude>
-                        <longitude>-5.931400</longitude>
-                        <altitude>-1.0</altitude>
-                        <time>0</time>
-                    </originOfFormation>
-                    <Maps>
-                        <Map>
-                            <name>0bbb73c3-ba22-4424-9c4a-89c8216cd05f</name>
-                            <description>{"lon":"-6.0026627","lat":"37.4124074","KML":"&lt;kml xmlns=\"http://www.opengis.net/kml/2.2\" xmlns:gx=\"http://www.google.com/kml/ext/2.2\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/kml/2.2 https://developers.google.com/kml/schema/kml22gx.xsd\"&gt;&lt;Document&gt;&lt;Placemark&gt;&lt;name&gt;9&lt;/name&gt;&lt;description&gt;Origin of Formation&lt;/description&gt;&lt;Point&gt;&lt;coordinates&gt;-5.9313995025877375,37.558564154896885&lt;/coordinates&gt;&lt;/Point&gt;&lt;/Placemark&gt;&lt;Placemark&gt;&lt;name&gt;10&lt;/name&gt;&lt;description&gt;Reference Target Trajectory&lt;/description&gt;&lt;LineString&gt;&lt;coordinates&gt;-5.931399497349048,37.558564149658196 -5.931003290024819,37.55812544608489&lt;/coordinates&gt;&lt;/LineString&gt;&lt;/Placemark&gt;&lt;Placemark/&gt;&lt;/Document&gt;&lt;/kml&gt;"}</description>
-                            <uri>http://multidrone.eu/maps/0bbb73c3-ba22-4424-9c4a-89c8216cd05f</uri>
-                        </Map>
-                    </Maps>
-                    <shootingRoles>
-                        <shootingRole>
-                            <name>LATERAL</name>
-                            <framingTypeName>FRAMING_TYPE_VLS</framingTypeName>
-                            <shootingTypeName>RULE_OF_THIRDS</shootingTypeName>
-                            <params>{"y_0": {"value": -20, "description": "Y-axis displacement (meters)"}, "z_0": {"value": 10, "description": "Z-axis displacement (meters)"}, "image": "lateral.png", "description": "The drone moves alongside the target."}</params>
-                            <targetIdentifier>
-                                <name>GPS</name>
-                                <description>Track a shooting target through GPS sensors</description>
-                                <defaultParams>{"ID": ""}</defaultParams>
-                            </targetIdentifier>
-                            <targetIdentifierParams>{"ID": 1, "rt_mode": 2}</targetIdentifierParams>
-                            <targetTrajectory/>
-                        </shootingRole>
-                    </shootingRoles>
-                </shootingAction>
-            </shootingActions>
-        </shootingActionSequence> -->
     </shootingActionSequences>
 </mission>

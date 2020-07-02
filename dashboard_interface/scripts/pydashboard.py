@@ -218,11 +218,7 @@ def director_event_menu():
     print "Event menu. Select the event:"
     print "1. GET_READY"
     print "2. START_RACE"
-    print "3. START_CYCLING_RACE"
-    print "4. SECOND_EVENT"
-    print "5. a79b2ad5-f420-4512-97a7-75fcc7da1898"
-    print "6. bb1377f1-edc2-45c7-a06a-51d14daaf6bf"
-    print "7. svq_kar_35e0dabc-c7c6-44fa-8f94-756cac78dcdf"
+    print "3. SECOND_EVENT"
     print "Press any other key to quit."
     selected = raw_input(" >> ")
     if selected == "1":
@@ -232,19 +228,7 @@ def director_event_menu():
         event_id = "START_RACE"
         send_director_event(event_id)
     elif selected == "3":
-        event_id = "START_CYCLING_RACE"
-        send_director_event(event_id)
-    elif selected == "4":
         event_id = "SECOND_EVENT"
-        send_director_event(event_id)
-    elif selected == "5":
-        event_id = "a79b2ad5-f420-4512-97a7-75fcc7da1898"
-        send_director_event(event_id)
-    elif selected == "6":
-        event_id = "bb1377f1-edc2-45c7-a06a-51d14daaf6bf"
-        send_director_event(event_id)
-    elif selected == "7":
-        event_id = "35e0dabc-c7c6-44fa-8f94-756cac78dcdf"
         send_director_event(event_id)
     else:
         system("clear")

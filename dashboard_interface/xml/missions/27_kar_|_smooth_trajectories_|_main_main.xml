@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <mission eventRef="START_RACE">
-    <uuid>30</uuid>
+    <uuid>27</uuid>
     <name>Smooth trajectories</name>
     <role>main</role>
     <description>3 shooting action sequences in parallel, the one in the middle will be smooth.</description>

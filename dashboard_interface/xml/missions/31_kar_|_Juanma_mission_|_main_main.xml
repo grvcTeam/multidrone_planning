@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <mission eventRef="START_RACE">
-    <uuid>34</uuid>
+    <uuid>31</uuid>
     <name>Juanma's mission</name>
     <role>main</role>
     <description>2 shooting action sequences in parallel.</description>
