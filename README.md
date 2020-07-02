@@ -18,7 +18,7 @@ catkin build
 ## Dependencies ##
 
 * [grvc-ual](https://github.com/grvcTeam/grvc-ual)
-* [geodesy (from geographic_info)](http://wiki.ros.org/geodesy): `sudo apt-get install ros-ros-$(rosversion -d)-geographic-info`
+* [geodesy (from geographic_info)](http://wiki.ros.org/geodesy): `sudo apt-get install ros-$(rosversion -d)-geographic-info`
 * [libusbp](https://github.com/pololu/libusbp)
 * [cmake_modules](http://wiki.ros.org/cmake_modules): `sudo apt-get install ros-$(rosversion -d)-cmake-modules`
 * [gazebo_plugins](http://wiki.ros.org/gazebo_plugins): `sudo apt-get install ros-$(rosversion -d)-gazebo-plugins`
