@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<mission eventRef="96150129-8ec6-433a-acbf-77ea9816a7e1">
-    <uuid>22</uuid>
+<mission eventRef="START_RACE">
+    <uuid>21</uuid>
     <name>Boat experiment (flythrough X2 + static)</name>
     <role>main</role>
     <description>Location: Lake Bothkamp (lake house)</description>

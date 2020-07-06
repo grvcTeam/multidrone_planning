@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<mission eventRef="69c4d41a-e3c9-40c7-bc38-cf7ab72b7f0d">
-    <uuid>21</uuid>
+<mission eventRef="START_RACE">
+    <uuid>22</uuid>
     <name>Left to right + Right to left (GPS, visual and virtual)</name>
     <role>main</role>
     <description>Left to right + Right to left (GPS, visual and virtual)</description>

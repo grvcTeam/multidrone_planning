@@ -74,7 +74,7 @@
         <arg name="scenario" value="karting"/>
     </include>
 
-    <!-- Camera 1> -->
+    <!-- Camera 1 -->
     <node name="rqt_image_view_1" pkg="rqt_image_view" type="rqt_image_view" args="/drone_1/cgo3_camera/image_raw"/>
 
     <!-- Camera 2> -->

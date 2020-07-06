@@ -1,4 +1,5 @@
 <launch>
+    <arg name="vehicle" default="typhoon_h480"/>
 
     <!-- Launch Gazebo simulation -->
 	<rosparam param="/use_sim_time">true</rosparam>

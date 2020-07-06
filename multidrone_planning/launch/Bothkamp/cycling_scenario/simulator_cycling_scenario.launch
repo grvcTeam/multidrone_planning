@@ -1,4 +1,5 @@
 <launch>
+    <arg name="vehicle" default="typhoon_h480"/>
 
     <!-- Launch Gazebo simulation -->
 	<rosparam param="/use_sim_time">true</rosparam>
@@ -12,8 +13,8 @@
 	<!-- Launch robot id=1 -->
 	<include file="$(find px4_bringup)/launch/spawn_robot.launch" ns="drone_1">
 		<arg name="id" value="1"/>
+		<arg name="material" value="Orange"/>
         <arg name="robot_model" value="typhoon_h480"/>
-		<arg name="material" value="Indigo"/>
         <arg name="x" value="-60"/>
         <arg name="y" value="0"/>
         <arg name="z" value="0"/>
@@ -45,12 +46,6 @@
         <rosparam param="home_pose">[-49, 100, 0.0]</rosparam>
     </node>    
 
-    <!-- Camera 1>  -->
-    <node name="rqt_image_view_1" pkg="rqt_image_view" type="rqt_image_view" args="/drone_1/cgo3_camera/image_raw"/> 
-   
-    <!-- Camera 2> -->
-     <node name="rqt_image_view_2" pkg="rqt_image_view" type="rqt_image_view" args="/drone_2/cgo3_camera/image_raw"/> 
-
     <include file="$(find multidrone_simulator)/launch/target_node.launch">
         <arg name="x" value="-4"/>
         <arg name="y" value="0"/>
@@ -60,5 +55,11 @@
         <arg name="ori_z" value="1.58"/>
         <arg name="scenario" value="cycling"/>
     </include>
+
+    <!-- Camera 1 -->
+    <node name="rqt_image_view_1" pkg="rqt_image_view" type="rqt_image_view" args="/drone_1/cgo3_camera/image_raw"/> 
+   
+    <!-- Camera 2> -->
+     <node name="rqt_image_view_2" pkg="rqt_image_view" type="rqt_image_view" args="/drone_2/cgo3_camera/image_raw"/> 
 
 </launch>

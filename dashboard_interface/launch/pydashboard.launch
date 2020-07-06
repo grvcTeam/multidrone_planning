@@ -1,7 +1,5 @@
 <launch>
-	<arg name="xml_folder" default="XMLs"/>
-
 	<node pkg="dashboard_interface" type="pydashboard.py" name="pydashboard" output="screen">
-		<param name="xml_path" value="$(find dashboard_interface)/xml/$(arg xml_folder)/"/>
+		<param name="xml_path" value="$(find dashboard_interface)/xml/"/>
 	</node>
 </launch>

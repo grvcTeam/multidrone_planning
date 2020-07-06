@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<mission eventRef="a5fdd763-33e6-40cb-9e01-568023d2ca92">
+<mission eventRef="START_RACE">
     <uuid>23</uuid>
     <name>Flyby + Fly through. Static. Virtual gimbal.</name>
     <role>main</role>
