@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <mission eventRef="SECOND_EVENT">
-    <uuid>23</uuid>
+    <uuid>11</uuid>
     <name>M2</name>
     <role>main</role>
     <creationDatetime>2019-03-11T16:44:04Z</creationDatetime>

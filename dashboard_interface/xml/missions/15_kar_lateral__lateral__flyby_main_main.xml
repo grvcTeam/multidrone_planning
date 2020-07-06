@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <mission eventRef="START_RACE">
-    <uuid>30</uuid>
-    <name>Smooth trajectories 2</name>
+    <uuid>15</uuid>
+    <name>Smooth trajectories</name>
     <role>main</role>
     <description>3 shooting action sequences in parallel, the one in the middle will be smooth.</description>
     <creationDatetime>2019-10-07T10:44:44Z</creationDatetime>
-    <lastUpdated>2019-11-19T10:26:03.241Z</lastUpdated>
+    <lastUpdated>2019-11-08T10:15:25.229Z</lastUpdated>
     <droneTeam>
         <uuid>04e91fee-6531-4116-a6de-bd71cfecc8d2</uuid>
         <name>DEVELTEAM</name>
@@ -45,110 +45,47 @@
     </targetTypes>
     <shootingActionSequences>
         <shootingActionSequence>
-            <uuid>3301063e-cb1e-49fc-817f-3223909f1ce3</uuid>
-            <name>Flyby (GPS, GPS)</name>
-            <role>main</role>
-            <shootingActions>
-                <shootingAction shootingActionTemplateRef="FLYBY">
-                    <uuid>6dc5bc6b-bc5c-48be-9c8c-5a5068c3e9c4</uuid>
-                    <name>FLYBY</name>
-                    <duration>600</duration>
-                    <params>{}</params>
-                    <formationSpeed>1.8</formationSpeed>
-                    <priority>1</priority>
-                    <RTTrajectory>
-                        <RTTrajectoryPoint>
-                            <latitude>37.55837</latitude>
-                            <longitude>-5.931443</longitude>
-                            <altitude>-1.0</altitude>
-                            <time>0</time>
-                        </RTTrajectoryPoint>
-                        <RTTrajectoryPoint>
-                            <latitude>37.55814</latitude>
-                            <longitude>-5.931239</longitude>
-                            <altitude>-1.0</altitude>
-                            <time>62</time>
-                        </RTTrajectoryPoint>
-                    </RTTrajectory>
-                    <originOfRT>
-                        <latitude>37.55837</latitude>
-                        <longitude>-5.931443</longitude>
-                        <altitude>-1.0</altitude>
-                        <time>0</time>
-                    </originOfRT>
-                    <originOfFormation>
-                        <latitude>37.55837</latitude>
-                        <longitude>-5.9314375</longitude>
-                        <altitude>-1.0</altitude>
-                        <time>0</time>
-                    </originOfFormation>
-                    <Maps>
-                        <Map>
-                            <name>0a5eabe6-fb00-4eeb-bd36-be4302b513c7</name>
-                            <description>{"lon":"-5.931419849395752","lat":"37.55839920043945","KML":"&lt;kml xmlns=\"http://www.opengis.net/kml/2.2\" xmlns:gx=\"http://www.google.com/kml/ext/2.2\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/kml/2.2 https://developers.google.com/kml/schema/kml22gx.xsd\"&gt;&lt;Document&gt;&lt;Placemark&gt;&lt;name&gt;10&lt;/name&gt;&lt;description&gt;Reference Target Trajectory&lt;/description&gt;&lt;LineString&gt;&lt;coordinates&gt;-5.931443050503731,37.55836933851242 -5.931239202618599,37.55813866853714&lt;/coordinates&gt;&lt;/LineString&gt;&lt;/Placemark&gt;&lt;Placemark&gt;&lt;name&gt;9&lt;/name&gt;&lt;description&gt;Origin of Formation&lt;/description&gt;&lt;Point&gt;&lt;coordinates&gt;-5.931437686085701,37.55836933851242&lt;/coordinates&gt;&lt;/Point&gt;&lt;/Placemark&gt;&lt;/Document&gt;&lt;/kml&gt;"}</description>
-                            <uri>http://multidrone.eu/maps/0a5eabe6-fb00-4eeb-bd36-be4302b513c7</uri>
-                        </Map>
-                    </Maps>
-                    <shootingRoles>
-                        <shootingRole>
-                            <name>FLYBY</name>
-                            <framingTypeName>FRAMING_TYPE_MCU</framingTypeName>
-                            <shootingTypeName>RULE_OF_THIRDS</shootingTypeName>
-                            <params>{"x_e":{"value":5,"description":"X-axis end (meters)"},"x_s":{"value":-15,"description":"X-axis start (meters)"},"y_0":{"value":0,"description":"Y-axis displacement (meters)"},"z_0":{"value":10,"description":"Z-axis displacement (meters)"},"image":"flyby.png","description":"The drone flies past the target (offset from the target trajectory) in a straight line, normally overtaking the target, with camera tracking as it does so."}</params>
-                            <targetIdentifier>
-                                <name>GPS</name>
-                                <description>Track a shooting target through GPS sensors</description>
-                                <defaultParams>{"ID": ""}</defaultParams>
-                            </targetIdentifier>
-                            <targetIdentifierParams>{"ID":1,"rt_mode":2}</targetIdentifierParams>
-                            <targetTrajectory/>
-                        </shootingRole>
-                    </shootingRoles>
-                </shootingAction>
-            </shootingActions>
-        </shootingActionSequence>
-        <shootingActionSequence>
-            <uuid>5aca73f6-7947-42cd-9f1c-9bfba0177a5a</uuid>
+            <uuid>83497b8e-f691-4b49-a467-906466a57505</uuid>
             <name>Lateral 1 (GPS, GPS).</name>
             <role>main</role>
             <shootingActions>
                 <shootingAction shootingActionTemplateRef="LATERAL">
-                    <uuid>1d48b250-f7ab-4450-a618-d14a4b0fc78e</uuid>
+                    <uuid>cee44586-5b99-4c15-8475-7ece8faad9b8</uuid>
                     <name>LATERAL</name>
-                    <duration>600</duration>
+                    <duration>1000</duration>
                     <params>{}</params>
                     <formationSpeed>1.8</formationSpeed>
                     <priority>1</priority>
                     <RTTrajectory>
                         <RTTrajectoryPoint>
-                            <latitude>37.558357</latitude>
-                            <longitude>-5.9314485</longitude>
+                            <latitude>37.558414</latitude>
+                            <longitude>-5.931421</longitude>
                             <altitude>-1.0</altitude>
                             <time>0</time>
                         </RTTrajectoryPoint>
                         <RTTrajectoryPoint>
-                            <latitude>37.558144</latitude>
-                            <longitude>-5.9312367</longitude>
+                            <latitude>37.55827</latitude>
+                            <longitude>-5.931287</longitude>
                             <altitude>-1.0</altitude>
-                            <time>60</time>
+                            <time>40</time>
                         </RTTrajectoryPoint>
                     </RTTrajectory>
                     <originOfRT>
-                        <latitude>37.558357</latitude>
-                        <longitude>-5.9314485</longitude>
+                        <latitude>37.558414</latitude>
+                        <longitude>-5.931421</longitude>
                         <altitude>-1.0</altitude>
                         <time>0</time>
                     </originOfRT>
                     <originOfFormation>
-                        <latitude>37.55836</latitude>
-                        <longitude>-5.9314566</longitude>
+                        <latitude>37.558414</latitude>
+                        <longitude>-5.931421</longitude>
                         <altitude>-1.0</altitude>
                         <time>0</time>
                     </originOfFormation>
                     <Maps>
                         <Map>
                             <name>cb04c834-a113-4fcb-87c1-b15a0d4ceb4d</name>
-                            <description>{"lon":"-5.931419849395752","lat":"37.55839920043945","KML":"&lt;kml xmlns=\"http://www.opengis.net/kml/2.2\" xmlns:gx=\"http://www.google.com/kml/ext/2.2\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/kml/2.2 https://developers.google.com/kml/schema/kml22gx.xsd\"&gt;&lt;Document&gt;&lt;Placemark&gt;&lt;name&gt;10&lt;/name&gt;&lt;description&gt;Reference Target Trajectory&lt;/description&gt;&lt;LineString&gt;&lt;coordinates&gt;-5.931448414921761,37.558355927467346 -5.931236520409584,37.55814403295517&lt;/coordinates&gt;&lt;/LineString&gt;&lt;/Placemark&gt;&lt;Placemark&gt;&lt;name&gt;9&lt;/name&gt;&lt;description&gt;Origin of Formation&lt;/description&gt;&lt;Point&gt;&lt;coordinates&gt;-5.931456461548805,37.558361291885376&lt;/coordinates&gt;&lt;/Point&gt;&lt;/Placemark&gt;&lt;/Document&gt;&lt;/kml&gt;"}</description>
+                            <description>{"lon":"-5.931420803070068","lat":"37.558414459228516","KML":"&lt;kml xmlns=\"http://www.opengis.net/kml/2.2\" xmlns:gx=\"http://www.google.com/kml/ext/2.2\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/kml/2.2 https://developers.google.com/kml/schema/kml22gx.xsd\"&gt;&lt;Document&gt;&lt;Placemark&gt;&lt;name&gt;9&lt;/name&gt;&lt;description&gt;Origin of Formation&lt;/description&gt;&lt;Point&gt;&lt;coordinates&gt;-5.931420572596836,37.55841561185662&lt;/coordinates&gt;&lt;/Point&gt;&lt;/Placemark&gt;&lt;Placemark&gt;&lt;name&gt;10&lt;/name&gt;&lt;description&gt;Reference Target Trajectory&lt;/description&gt;&lt;LineString&gt;&lt;coordinates&gt;-5.931420567358146,37.55841560137924 -5.931286828854354,37.55826945242006&lt;/coordinates&gt;&lt;/LineString&gt;&lt;/Placemark&gt;&lt;/Document&gt;&lt;/kml&gt;"}</description>
                             <uri>http://multidrone.eu/maps/cb04c834-a113-4fcb-87c1-b15a0d4ceb4d</uri>
                         </Map>
                     </Maps>
@@ -157,7 +94,7 @@
                             <name>LATERAL</name>
                             <framingTypeName>FRAMING_TYPE_MS</framingTypeName>
                             <shootingTypeName>RULE_OF_THIRDS</shootingTypeName>
-                            <params>{"y_0":{"value":20,"description":"Y-axis displacement (meters)"},"z_0":{"value":4,"description":"Z-axis displacement (meters)"},"image":"lateral.png","description":"The drone moves alongside the target."}</params>
+                            <params>{"y_0":{"value":15,"description":"Y-axis displacement (meters)"},"z_0":{"value":7,"description":"Z-axis displacement (meters)"},"image":"lateral.png","description":"The drone moves alongside the target."}</params>
                             <targetIdentifier>
                                 <name>GPS</name>
                                 <description>Track a shooting target through GPS sensors</description>
@@ -171,47 +108,47 @@
             </shootingActions>
         </shootingActionSequence>
         <shootingActionSequence>
-            <uuid>683020c8-d4b2-4721-836a-5e97053a3dfe</uuid>
+            <uuid>df03c715-7e81-41f7-aaae-3825beb3c219</uuid>
             <name>Lateral 2 (GPS, GPS).</name>
             <role>main</role>
             <shootingActions>
                 <shootingAction shootingActionTemplateRef="LATERAL">
-                    <uuid>6e8cf121-ce1c-4107-b5a0-a34832db955a</uuid>
+                    <uuid>95624d35-7fa9-4fd5-a192-fae96c7e3fe2</uuid>
                     <name>LATERAL</name>
-                    <duration>600</duration>
+                    <duration>1000</duration>
                     <params>{}</params>
                     <formationSpeed>1.8</formationSpeed>
                     <priority>1</priority>
                     <RTTrajectory>
                         <RTTrajectoryPoint>
-                            <latitude>37.558365</latitude>
-                            <longitude>-5.9314566</longitude>
+                            <latitude>37.558414</latitude>
+                            <longitude>-5.931421</longitude>
                             <altitude>-1.0</altitude>
                             <time>0</time>
                         </RTTrajectoryPoint>
                         <RTTrajectoryPoint>
-                            <latitude>37.558144</latitude>
-                            <longitude>-5.931242</longitude>
+                            <latitude>37.55827</latitude>
+                            <longitude>-5.931287</longitude>
                             <altitude>-1.0</altitude>
-                            <time>61</time>
+                            <time>40</time>
                         </RTTrajectoryPoint>
                     </RTTrajectory>
                     <originOfRT>
-                        <latitude>37.558365</latitude>
-                        <longitude>-5.9314566</longitude>
+                        <latitude>37.558414</latitude>
+                        <longitude>-5.931421</longitude>
                         <altitude>-1.0</altitude>
                         <time>0</time>
                     </originOfRT>
                     <originOfFormation>
-                        <latitude>37.55837</latitude>
-                        <longitude>-5.9314647</longitude>
+                        <latitude>37.558414</latitude>
+                        <longitude>-5.931421</longitude>
                         <altitude>-1.0</altitude>
                         <time>0</time>
                     </originOfFormation>
                     <Maps>
                         <Map>
                             <name>eb9a8e85-b7f0-43d8-a571-a283e9f5e556</name>
-                            <description>{"lon":"-5.931419849395752","lat":"37.55839920043945","KML":"&lt;kml xmlns=\"http://www.opengis.net/kml/2.2\" xmlns:gx=\"http://www.google.com/kml/ext/2.2\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/kml/2.2 https://developers.google.com/kml/schema/kml22gx.xsd\"&gt;&lt;Document&gt;&lt;Placemark&gt;&lt;name&gt;10&lt;/name&gt;&lt;description&gt;Reference Target Trajectory&lt;/description&gt;&lt;LineString&gt;&lt;coordinates&gt;-5.931456461548806,37.5583639740944 -5.931241884827615,37.55814403295518&lt;/coordinates&gt;&lt;/LineString&gt;&lt;/Placemark&gt;&lt;Placemark&gt;&lt;name&gt;9&lt;/name&gt;&lt;description&gt;Origin of Formation&lt;/description&gt;&lt;Point&gt;&lt;coordinates&gt;-5.931464508175851,37.55836933851243&lt;/coordinates&gt;&lt;/Point&gt;&lt;/Placemark&gt;&lt;/Document&gt;&lt;/kml&gt;"}</description>
+                            <description>{"lon":"-6.0025368","lat":"37.4120837","KML":"&lt;kml xmlns=\"http://www.opengis.net/kml/2.2\" xmlns:gx=\"http://www.google.com/kml/ext/2.2\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/kml/2.2 https://developers.google.com/kml/schema/kml22gx.xsd\"&gt;&lt;Document&gt;&lt;Placemark&gt;&lt;name&gt;9&lt;/name&gt;&lt;description&gt;Origin of Formation&lt;/description&gt;&lt;Point&gt;&lt;coordinates&gt;-5.9314205673581455,37.558415622333996&lt;/coordinates&gt;&lt;/Point&gt;&lt;/Placemark&gt;&lt;Placemark&gt;&lt;name&gt;10&lt;/name&gt;&lt;description&gt;Reference Target Trajectory&lt;/description&gt;&lt;LineString&gt;&lt;coordinates&gt;-5.9314205673581455,37.55841561709531 -5.931286818376975,37.55826945765875&lt;/coordinates&gt;&lt;/LineString&gt;&lt;/Placemark&gt;&lt;Placemark/&gt;&lt;/Document&gt;&lt;/kml&gt;"}</description>
                             <uri>http://multidrone.eu/maps/eb9a8e85-b7f0-43d8-a571-a283e9f5e556</uri>
                         </Map>
                     </Maps>
@@ -221,6 +158,69 @@
                             <framingTypeName>FRAMING_TYPE_LS</framingTypeName>
                             <shootingTypeName>RULE_OF_THIRDS</shootingTypeName>
                             <params>{"y_0":{"value":-15,"description":"Y-axis displacement (meters)"},"z_0":{"value":7,"description":"Z-axis displacement (meters)"},"image":"lateral.png","description":"The drone moves alongside the target."}</params>
+                            <targetIdentifier>
+                                <name>GPS</name>
+                                <description>Track a shooting target through GPS sensors</description>
+                                <defaultParams>{"ID": ""}</defaultParams>
+                            </targetIdentifier>
+                            <targetIdentifierParams>{"ID":1,"rt_mode":2}</targetIdentifierParams>
+                            <targetTrajectory/>
+                        </shootingRole>
+                    </shootingRoles>
+                </shootingAction>
+            </shootingActions>
+        </shootingActionSequence>
+        <shootingActionSequence>
+            <uuid>2850b5d8-f553-4661-ae17-3e998b79cedd</uuid>
+            <name>Flyby (virtual, virtual)</name>
+            <role>main</role>
+            <shootingActions>
+                <shootingAction shootingActionTemplateRef="FLYBY">
+                    <uuid>38825a9c-d814-4b45-9ef3-034de8c51963</uuid>
+                    <name>FLYBY</name>
+                    <duration>1000</duration>
+                    <params>{}</params>
+                    <formationSpeed>1.8</formationSpeed>
+                    <priority>1</priority>
+                    <RTTrajectory>
+                        <RTTrajectoryPoint>
+                            <latitude>37.558414</latitude>
+                            <longitude>-5.931421</longitude>
+                            <altitude>-1.0</altitude>
+                            <time>0</time>
+                        </RTTrajectoryPoint>
+                        <RTTrajectoryPoint>
+                            <latitude>37.55827</latitude>
+                            <longitude>-5.931287</longitude>
+                            <altitude>-1.0</altitude>
+                            <time>40</time>
+                        </RTTrajectoryPoint>
+                    </RTTrajectory>
+                    <originOfRT>
+                        <latitude>37.558414</latitude>
+                        <longitude>-5.931421</longitude>
+                        <altitude>-1.0</altitude>
+                        <time>0</time>
+                    </originOfRT>
+                    <originOfFormation>
+                        <latitude>37.558414</latitude>
+                        <longitude>-5.931421</longitude>
+                        <altitude>-1.0</altitude>
+                        <time>0</time>
+                    </originOfFormation>
+                    <Maps>
+                        <Map>
+                            <name>0a5eabe6-fb00-4eeb-bd36-be4302b513c7</name>
+                            <description>{"lon":"-5.931420803070068","lat":"37.558414459228516","KML":"&lt;kml xmlns=\"http://www.opengis.net/kml/2.2\" xmlns:gx=\"http://www.google.com/kml/ext/2.2\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/kml/2.2 https://developers.google.com/kml/schema/kml22gx.xsd\"&gt;&lt;Document&gt;&lt;Placemark&gt;&lt;name&gt;9&lt;/name&gt;&lt;description&gt;Origin of Formation&lt;/description&gt;&lt;Point&gt;&lt;coordinates&gt;-5.931420572596835,37.558415632811375&lt;/coordinates&gt;&lt;/Point&gt;&lt;/Placemark&gt;&lt;Placemark&gt;&lt;name&gt;10&lt;/name&gt;&lt;description&gt;Reference Target Trajectory&lt;/description&gt;&lt;LineString&gt;&lt;coordinates&gt;-5.9314205778355245,37.558415627572685 -5.931286818376975,37.55826946289744&lt;/coordinates&gt;&lt;/LineString&gt;&lt;/Placemark&gt;&lt;Placemark/&gt;&lt;/Document&gt;&lt;/kml&gt;"}</description>
+                            <uri>http://multidrone.eu/maps/0a5eabe6-fb00-4eeb-bd36-be4302b513c7</uri>
+                        </Map>
+                    </Maps>
+                    <shootingRoles>
+                        <shootingRole>
+                            <name>FLYBY</name>
+                            <framingTypeName>FRAMING_TYPE_MCU</framingTypeName>
+                            <shootingTypeName>RULE_OF_THIRDS</shootingTypeName>
+                            <params>{"x_e":{"value":15,"description":"X-axis end (meters)"},"x_s":{"value":-15,"description":"X-axis start (meters)"},"y_0":{"value":0,"description":"Y-axis displacement (meters)"},"z_0":{"value":10,"description":"Z-axis displacement (meters)"},"image":"flyby.png","description":"The drone flies past the target (offset from the target trajectory) in a straight line, normally overtaking the target, with camera tracking as it does so."}</params>
                             <targetIdentifier>
                                 <name>GPS</name>
                                 <description>Track a shooting target through GPS sensors</description>

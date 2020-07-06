@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <mission eventRef="START_RACE">
-    <uuid>20</uuid>
+    <uuid>5</uuid>
     <name>M1</name>
     <role>main</role>
     <creationDatetime>2019-03-11T16:44:04Z</creationDatetime>
@@ -20,13 +20,13 @@
     </targetTypes>
     <shootingActionSequences>
         <shootingActionSequence>
-            <uuid>15b7366e-48g6-40b5-819f-26d9bc6f7f33</uuid>
+            <uuid>15b7366e-48g6-40b5-819f-26d9bc6f7fc4</uuid>
             <name>S1</name>
             <role>main</role>
             <shootingActions>
-                <shootingAction shootingActionTemplateRef="STATIC">
-                    <uuid>e64a4ff8-f573-41da-bd65-a58743e3133f</uuid>
-                    <name>STATIC</name>
+                <shootingAction shootingActionTemplateRef="LATERAL">
+                    <uuid>e64a4ff8-f573-41da-bd65-a58743e312ef</uuid>
+                    <name>LATERAL</name>
                     <duration>30</duration>
                     <params>{}</params>
                     <formationSpeed>3.6</formationSpeed>
@@ -46,7 +46,7 @@
                         </RTTrajectoryPoint>
                     </RTTrajectory>
                     <originOfFormation>
-                        <x>-23.68</x>
+                        <x>-28.68</x>
                         <y>4.34</y>
                         <altitude>-1.0</altitude>
                         <time>0</time>
@@ -60,10 +60,10 @@
                     </Maps>
                     <shootingRoles>
                         <shootingRole>
-                            <name>STATIC</name>
-                            <framingTypeName>FRAMING_TYPE_LS</framingTypeName>
+                            <name>LATERAL</name>
+                            <framingTypeName>FRAMING_TYPE_MS</framingTypeName>
                             <shootingTypeName>RULE_OF_THIRDS</shootingTypeName>
-                            <params>{"z_0": {"value": 3, "description": "Z-axis displacement (meters)"}}</params>
+                            <params>{"y_0": {"value": 5, "description": "Radius of the circle (meters)"}, "z_0": {"value": 3, "description": "Z-axis displacement (meters)"}, "image": "LATERAL.png", "description": "The drone flies around the target in a circle, centred at the target."}</params>
                             <targetIdentifier>
                                 <name>GPS</name>
                                 <description>Tracks a shooting target through GPS sensors</description>
@@ -74,9 +74,9 @@
                         </shootingRole>
                     </shootingRoles>
                 </shootingAction>
-                <shootingAction shootingActionTemplateRef="STATIC">
-                    <uuid>f64a4ff8-f573-41da-3365-a58743e312eg</uuid>
-                    <name>STATIC</name>
+                <shootingAction shootingActionTemplateRef="LATERAL">
+                    <uuid>f64a4ff8-f573-41da-fd65-a58743e312eg</uuid>
+                    <name>LATERAL_and_CHASE</name>
                     <duration>30</duration>
                     <params>{}</params>
                     <formationSpeed>3.6</formationSpeed>
@@ -110,16 +110,29 @@
                     </Maps>
                     <shootingRoles>
                         <shootingRole>
-                            <name>STATIC</name>
-                            <framingTypeName>FRAMING_TYPE_LS</framingTypeName>
+                            <name>LATERAL</name>
+                            <framingTypeName>FRAMING_TYPE_MS</framingTypeName>
                             <shootingTypeName>RULE_OF_THIRDS</shootingTypeName>
-                            <params>{"z_0": {"value": 3, "description": "Z-axis displacement (meters)"}}</params>
+                            <params>{"y_0": {"value": -5, "description": "Radius of the circle (meters)"}, "z_0": {"value": 3, "description": "Z-axis displacement (meters)"}, "image": "LATERAL.png", "description": "The drone flies around the target in a circle, centred at the target."}</params>
                             <targetIdentifier>
                                 <name>GPS</name>
                                 <description>Tracks a shooting target through GPS sensors</description>
                                 <defaultParams>{"ID": ""}</defaultParams>
                             </targetIdentifier>
                             <targetIdentifierParams>{"ID": 1, "rt_mode": 2}</targetIdentifierParams>
+                            <targetTrajectory/>
+                        </shootingRole>
+                        <shootingRole>
+                            <name>CHASE</name>
+                            <framingTypeName>FRAMING_TYPE_ELS</framingTypeName>
+                            <shootingTypeName>RULE_OF_THIRDS</shootingTypeName>
+                            <params>{"x_s": {"value": -5, "description": "Radius of the circle (meters)"}, "x_e": {"value": -5, "description": "Radius of the circle (meters)"}, "z_0": {"value": 5, "description": "Z-axis displacement (meters)"}, "image": "LATERAL.png", "description": "The drone flies around the target in a circle, centred at the target."}</params>
+                            <targetIdentifier>
+                                <name>VISUAL</name>
+                                <description>Tracks a shooting target through visual sensors</description>
+                                <defaultParams>{"ID": ""}</defaultParams>
+                            </targetIdentifier>
+                            <targetIdentifierParams>{"rt_mode": 0}</targetIdentifierParams>
                             <targetTrajectory/>
                         </shootingRole>
                     </shootingRoles>

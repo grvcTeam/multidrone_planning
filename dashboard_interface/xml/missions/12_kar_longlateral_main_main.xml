@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <mission eventRef="START_RACE">
-    <uuid>26</uuid>
+    <uuid>12</uuid>
     <name>M1</name>
     <role>main</role>
     <creationDatetime>2019-03-11T16:44:04Z</creationDatetime>
