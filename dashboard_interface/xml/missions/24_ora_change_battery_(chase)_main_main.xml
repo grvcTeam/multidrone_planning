@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <mission eventRef="START_RACE">
-    <uuid>23</uuid>
+    <uuid>24</uuid>
     <name>Change battery mission Oran</name>
     <role>main</role>
     <description>2 shooting action sequences in parallel</description>

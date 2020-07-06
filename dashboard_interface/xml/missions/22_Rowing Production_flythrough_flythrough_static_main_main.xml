@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<mission eventRef="96150129-8ec6-433a-acbf-77ea9816a7e1">
+    <uuid>22</uuid>
+    <name>Boat experiment (flythrough X2 + static)</name>
+    <role>main</role>
+    <description>Location: Lake Bothkamp (lake house)</description>
+    <creationDatetime>2019-09-22T10:09:11Z</creationDatetime>
+    <lastUpdated>2019-09-23T09:58:11Z</lastUpdated>
+    <droneTeam>
+        <uuid>d4087e76-a44f-4c6e-add1-ee576bd2db65</uuid>
+        <name>Bothkamp Drone Team</name>
+        <description></description>
+        <drones>
+            <drone>
+                <uuid>1315b598-69fc-42af-bffd-db8926da6cf0</uuid>
+                <name>Bothkamp drone 1</name>
+                <description></description>
+                <metadata>{"stream": "PUT_DRONE_STREAM_URL", "drone_id": 1}</metadata>
+            </drone>
+            <drone>
+                <uuid>135124e5-1be7-475c-bdb0-e0a6b04de92e</uuid>
+                <name>Bothkamp drone 3</name>
+                <description></description>
+                <metadata>{"stream": "PUT_DRONE_STREAM_URL", "drone_id": 3}</metadata>
+            </drone>
+            <drone>
+                <uuid>931de7f4-358a-42b2-a208-29a3f6d38f1f</uuid>
+                <name>Bothkamp drone 4</name>
+                <description></description>
+                <metadata>{"stream": "PUT_DRONE_STREAM_URL", "drone_id": 4}</metadata>
+            </drone>
+            <drone>
+                <uuid>976cda8a-dfb4-44d6-a52b-e7ec8e763d22</uuid>
+                <name>Bothkamp drone 2</name>
+                <description></description>
+                <metadata>{"stream": "PUT_DRONE_STREAM_URL", "drone_id": 2}</metadata>
+            </drone>
+        </drones>
+    </droneTeam>
+    <editorialTeam>
+        <uuid>9fd1f1ea-9ead-4c88-8bcd-e00a4c60d8d5</uuid>
+        <name>Editorial Team of Baseline</name>
+        <members>
+            <member role="Production Technician" userRef="f2c12403-7435-47ad-8051-2c8d9ffdc146"/>
+            <member role="Cameraman" userRef="ed21ab52-c135-4549-a776-db8281657439"/>
+            <member role="Director" userRef="4ed64b88-7e64-4e88-95d8-0aa9e84d6bb6"/>
+        </members>
+    </editorialTeam>
+    <targetTypes>
+        <targetType>
+            <name>TARGET_BOAT</name>
+            <description>target is a boat</description>
+        </targetType>
+    </targetTypes>
+    <shootingActionSequences>
+        <shootingActionSequence>
+            <uuid>d8a0d642-ecd1-400a-b63c-4d3c776b290f</uuid>
+            <name>FLYTHROUGH x2 + STATIC</name>
+            <role>main</role>
+            <shootingActions>
+                <shootingAction shootingActionTemplateRef="FLY_THROUGH">
+                    <uuid>33c2a084-7c50-4e94-9950-84cd70df41b3</uuid>
+                    <name>FLY_THROUGH</name>
+                    <duration>32</duration>
+                    <params>{}</params>
+                    <formationSpeed>3.6</formationSpeed>
+                    <priority>1</priority>
+                    <RTTrajectory>
+                        <RTTrajectoryPoint>
+                            <latitude>54.1931</latitude>
+                            <longitude>10.128</longitude>
+                            <altitude>-1.0</altitude>
+                            <time>0</time>
+                        </RTTrajectoryPoint>
+                        <RTTrajectoryPoint>
+                            <latitude>54.1933</latitude>
+                            <longitude>10.1277</longitude>
+                            <altitude>-1.0</altitude>
+                            <time>8</time>
+                        </RTTrajectoryPoint>
+                    </RTTrajectory>
+                    <originOfRT>
+                        <latitude>54.1931</latitude>
+                        <longitude>10.128</longitude>
+                        <altitude>-1.0</altitude>
+                        <time>0</time>
+                    </originOfRT>
+                    <originOfFormation>
+                        <latitude>54.1931</latitude>
+                        <longitude>10.128</longitude>
+                        <altitude>-1.0</altitude>
+                        <time>0</time>
+                    </originOfFormation>
+                    <Maps>
+                        <Map>
+                            <name>d1407833-8662-42d8-a41a-f9aa1b53fd78</name>
+                            <description>{"lon":10.128043,"lat":54.1931116,"KML":"&lt;kml xmlns=\"http://www.opengis.net/kml/2.2\" xmlns:gx=\"http://www.google.com/kml/ext/2.2\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/kml/2.2 https://developers.google.com/kml/schema/kml22gx.xsd\"&gt;&lt;Document&gt;&lt;Placemark&gt;&lt;name&gt;9&lt;/name&gt;&lt;description&gt;Origin of Formation&lt;/description&gt;&lt;Point&gt;&lt;coordinates&gt;10.128043326549234,54.19311167614069&lt;/coordinates&gt;&lt;/Point&gt;&lt;/Placemark&gt;&lt;Placemark&gt;&lt;name&gt;10&lt;/name&gt;&lt;description&gt;Reference Target Trajectory&lt;/description&gt;&lt;LineString&gt;&lt;coordinates&gt;10.128043661825359,54.1931111732265 10.127740614116192,54.193302537314594&lt;/coordinates&gt;&lt;/LineString&gt;&lt;/Placemark&gt;&lt;/Document&gt;&lt;/kml&gt;"}</description>
+                            <uri>http://multidrone.eu/maps/d1407833-8662-42d8-a41a-f9aa1b53fd78</uri>
+                        </Map>
+                    </Maps>
+                    <shootingRoles>
+                        <shootingRole>
+                            <name>FLY_THROUGH</name>
+                            <framingTypeName>FRAMING_TYPE_VLS</framingTypeName>
+                            <shootingTypeName>RULE_OF_THIRDS</shootingTypeName>
+                            <params>{"z_0": {"value": 2, "description": "Z-axis displacement (meters)"}, "image": "fly-through.png", "description": "The drone flies through the scene (normally) with a constant speed following a pre-programmed path with different camera movement."}</params>
+                            <targetIdentifier>
+                                <name>NONE</name>
+                                <description>Track a shooting target by gimbal position</description>
+                                <defaultParams>{"pan_e": "", "pan_s": "", "tilt_e": "", "tilt_s": ""}</defaultParams>
+                            </targetIdentifier>
+                            <targetIdentifierParams>{"pan_e": 0, "pan_s": 0, "tilt_e": 90, "tilt_s": 90, "rt_mode": 0}</targetIdentifierParams>
+                            <targetTrajectory/>
+                        </shootingRole>
+                    </shootingRoles>
+                </shootingAction>
+                <shootingAction shootingActionTemplateRef="FLY_THROUGH">
+                    <uuid>29bd75d1-8b45-4c69-8034-a7b3ba591d16</uuid>
+                    <name>FLY_THROUGH</name>
+                    <duration>30</duration>
+                    <params>{}</params>
+                    <formationSpeed>3.6</formationSpeed>
+                    <priority>3</priority>
+                    <RTTrajectory>
+                        <RTTrajectoryPoint>
+                            <latitude>54.1933</latitude>
+                            <longitude>10.1277</longitude>
+                            <altitude>-1.0</altitude>
+                            <time>0</time>
+                        </RTTrajectoryPoint>
+                        <RTTrajectoryPoint>
+                            <latitude>54.1935</latitude>
+                            <longitude>10.1275</longitude>
+                            <altitude>-1.0</altitude>
+                        </RTTrajectoryPoint>
+                    </RTTrajectory>
+                    <originOfRT>
+                        <latitude>54.1933</latitude>
+                        <longitude>10.1277</longitude>
+                        <altitude>-1.0</altitude>
+                        <time>0</time>
+                    </originOfRT>
+                    <originOfFormation>
+                        <latitude>54.1933</latitude>
+                        <longitude>10.1277</longitude>
+                        <altitude>-1.0</altitude>
+                        <time>0</time>
+                    </originOfFormation>
+                    <Maps>
+                        <Map>
+                            <name>5ddb915b-0658-4b35-af63-716a7a277fe4</name>
+                            <description>{"lon":10.12774,"lat":54.19331,"KML":"&lt;kml xmlns=\"http://www.opengis.net/kml/2.2\" xmlns:gx=\"http://www.google.com/kml/ext/2.2\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/kml/2.2 https://developers.google.com/kml/schema/kml22gx.xsd\"&gt;&lt;Document&gt;&lt;Placemark&gt;&lt;name&gt;9&lt;/name&gt;&lt;description&gt;Origin of Formation&lt;/description&gt;&lt;Point&gt;&lt;coordinates&gt;10.127741619944572,54.19331490062177&lt;/coordinates&gt;&lt;/Point&gt;&lt;/Placemark&gt;&lt;Placemark&gt;&lt;name&gt;10&lt;/name&gt;&lt;description&gt;Reference Target Trajectory&lt;/description&gt;&lt;LineString&gt;&lt;coordinates&gt;10.127744302153587,54.19330685399473 10.12746300548315,54.19349431525916&lt;/coordinates&gt;&lt;/LineString&gt;&lt;/Placemark&gt;&lt;Placemark/&gt;&lt;/Document&gt;&lt;/kml&gt;"}</description>
+                            <uri>http://multidrone.eu/maps/5ddb915b-0658-4b35-af63-716a7a277fe4</uri>
+                        </Map>
+                    </Maps>
+                    <shootingRoles>
+                        <shootingRole>
+                            <name>FLY_THROUGH</name>
+                            <framingTypeName>FRAMING_TYPE_MS</framingTypeName>
+                            <shootingTypeName>RULE_OF_THIRDS</shootingTypeName>
+                            <params>{"z_0": {"value": 8.5, "description": "Z-axis displacement (meters)"}, "image": "fly-through.png", "description": "The drone flies through the scene (normally) with a constant speed following a pre-programmed path with different camera movement."}</params>
+                            <targetIdentifier>
+                                <name>GPS</name>
+                                <description>Track a shooting target through GPS sensors</description>
+                                <defaultParams>{"ID": ""}</defaultParams>
+                            </targetIdentifier>
+                            <targetIdentifierParams>{"ID": 1, "rt_mode": 0}</targetIdentifierParams>
+                            <targetTrajectory/>
+                        </shootingRole>
+                    </shootingRoles>
+                </shootingAction>
+                <shootingAction shootingActionTemplateRef="STATIC">
+                    <uuid>c7cd1814-9641-4d88-814a-757ff7010528</uuid>
+                    <name>STATIC</name>
+                    <duration>120</duration>
+                    <params>{}</params>
+                    <formationSpeed>0.0</formationSpeed>
+                    <priority>4</priority>
+                    <RTTrajectory>
+                        <RTTrajectoryPoint>
+                            <latitude>54.1935</latitude>
+                            <longitude>10.1275</longitude>
+                            <altitude>-1.0</altitude>
+                            <time>0</time>
+                        </RTTrajectoryPoint>
+                        <RTTrajectoryPoint>
+                            <latitude>54.1935</latitude>
+                            <longitude>10.1275</longitude>
+                            <altitude>-1.0</altitude>
+                        </RTTrajectoryPoint>
+                    </RTTrajectory>
+                    <originOfRT>
+                        <latitude>54.1935</latitude>
+                        <longitude>10.1275</longitude>
+                        <altitude>-1.0</altitude>
+                        <time>0</time>
+                    </originOfRT>
+                    <originOfFormation>
+                        <latitude>54.1935</latitude>
+                        <longitude>10.1275</longitude>
+                        <altitude>-1.0</altitude>
+                        <time>0</time>
+                    </originOfFormation>
+                    <Maps>
+                        <Map>
+                            <name>e0ba24ff-3aa8-45b6-a3fd-17b56b99f6ce</name>
+                            <description>{"lon":"10.1333","lat":"54.2","KML":"&lt;kml xmlns=\"http://www.opengis.net/kml/2.2\" xmlns:gx=\"http://www.google.com/kml/ext/2.2\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/kml/2.2 https://developers.google.com/kml/schema/kml22gx.xsd\"&gt;&lt;Document&gt;&lt;Placemark&gt;&lt;name&gt;9&lt;/name&gt;&lt;description&gt;Origin of Formation&lt;/description&gt;&lt;Point&gt;&lt;coordinates&gt;10.127460323274136,54.19349402189255&lt;/coordinates&gt;&lt;/Point&gt;&lt;/Placemark&gt;&lt;Placemark&gt;&lt;name&gt;10&lt;/name&gt;&lt;description&gt;Reference Target Trajectory&lt;/description&gt;&lt;LineString&gt;&lt;coordinates&gt;10.127460316725774,54.193494016653865 10.127460316725774,54.193494016653865&lt;/coordinates&gt;&lt;/LineString&gt;&lt;/Placemark&gt;&lt;Placemark/&gt;&lt;/Document&gt;&lt;/kml&gt;"}</description>
+                            <uri>http://multidrone.eu/maps/e0ba24ff-3aa8-45b6-a3fd-17b56b99f6ce</uri>
+                        </Map>
+                    </Maps>
+                    <shootingRoles>
+                        <shootingRole>
+                            <name>STATIC</name>
+                            <framingTypeName>FRAMING_TYPE_LS</framingTypeName>
+                            <shootingTypeName>RULE_OF_THIRDS</shootingTypeName>
+                            <params>{"z_0": {"value": 8.5, "description": "Z-axis displacement (meters)"}, "image": "static.png", "description": "The drone remains stationary, with the camera being stationary or moving."}</params>
+                            <targetIdentifier>
+                                <name>GPS</name>
+                                <description>Track a shooting target through GPS sensors</description>
+                                <defaultParams>{"ID": ""}</defaultParams>
+                            </targetIdentifier>
+                            <targetIdentifierParams>{"ID": 1, "rt_mode": 2}</targetIdentifierParams>
+                            <targetTrajectory/>
+                        </shootingRole>
+                    </shootingRoles>
+                </shootingAction>
+            </shootingActions>
+        </shootingActionSequence>
+    </shootingActionSequences>
+</mission>
