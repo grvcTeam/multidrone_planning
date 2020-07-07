@@ -42,7 +42,7 @@ private:
   double current_yaw = 0.0;
   ignition::math::Pose3d previous_pose; /*< previous pose to calculate the velocity */
   ros::Subscriber load_map_sub;
-  std::atomic<bool> interrupted;
+  std::atomic<bool> interrupted, start_trajectory_srv_received;
 
   char key = ' ';
 
@@ -108,6 +108,8 @@ private:
 
   void loadMapCallback(const std_msgs::String &msg);
   void moveModel();
+
+  bool startTrajectoryServiceCallback(std_srvs::Trigger::Request &req, std_srvs::Trigger::Response &res);
 };
 
 Target::Target()
@@ -137,8 +139,16 @@ Target::Target()
   }
   bool keyboard = true;
 
+  ros::ServiceServer start_trajectory_srv;
+  start_trajectory_srv = nh_->advertiseService("start_trajectory", &Target::startTrajectoryServiceCallback, this);
+  start_trajectory_srv_received = false;
+  bool autostart = true;
+
   if(!nh_->getParam("keyboard",keyboard)){
     ROS_WARN("Target node: Fail to get keyboard mode");
+  }
+  if(!nh_->getParam("autostart",autostart) && !keyboard){
+    ROS_WARN("Target node: Fail to get autostart mode");
   }
   if(!nh_->getParam("update_rate",update_rate)){
     ROS_WARN("Target node: Fail to get update rate");
@@ -162,6 +172,15 @@ Target::Target()
   }
   else
   {
+    if (!autostart) {
+      ROS_INFO("Target waiting for the start_trajectory service to start moving according to the trajectory.");
+      while (ros::ok && !start_trajectory_srv_received) {
+        ros::Rate loop_rate(1); //[Hz]
+        loop_rate.sleep();
+        ros::spinOnce();
+      }
+    }
+
     motion_timer = nh_->createTimer(ros::Rate(update_rate), &Target::motionTimerCallback, this); //trajectory
     if (!trajectory_file.empty())
     {
@@ -553,6 +572,12 @@ void Target::moveModel()
   new_pose.pose.orientation.z = current_pose.Rot().Z();
   new_pose.pose.orientation.w = current_pose.Rot().W();
   model_pose_pub_.publish(new_pose);
+}
+
+bool Target::startTrajectoryServiceCallback(std_srvs::Trigger::Request &req, std_srvs::Trigger::Response &res) {
+  start_trajectory_srv_received = true;
+  res.success = true;
+  return true;
 }
 
 int main(int argc, char *argv[])

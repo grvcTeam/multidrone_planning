@@ -23,10 +23,11 @@ def main_menu():
     print "4. Select role"
     print "5. Safe to go service"
     print "6. Director event"
-    print "7. Car speed 1 m/s"
-    print "8. Abort service"
-    print "9. Clear missions and events"
+    print "7. Abort service"
+    print "8. Clear missions and events"
+    print "9. Car speed 1 m/s"
     print "10. Car speed 2 m/s"
+    print "11. Human target start_trajectory"
 
     selected = raw_input(" >> ")
     system("clear")
@@ -43,13 +44,15 @@ def main_menu():
     elif selected == "6":
         director_event_menu()
     elif selected == "7":
-        car_speed_menu()
-    elif selected == "8":
         abort_menu()
-    elif selected == "9":
+    elif selected == "8":
         clear_menu()
+    elif selected == "9":
+        car_speed_menu()
     elif selected == "10":
         car_speed_2_menu()
+    elif selected == "11":
+        human_target_start_trajectory()
 
     else:
         system("clear")
@@ -246,14 +249,7 @@ def send_director_event(event_id):
         print "\nService call failed: %s"%e
 
 
-# 7. Car speed 1 m/s:
-def car_speed_menu():
-    system("rostopic pub --once /drc_vehicle_xp900/speed/cmd std_msgs/Float64 \"data: 1.0\"")
-    system("clear")
-    print "Car moving at 1m/s"
-
-
-# 8. Abort:
+# 7. Abort:
 def abort_menu():
     try:
         print abort_service.call()
@@ -261,7 +257,7 @@ def abort_menu():
         print "\nService call failed: %s"%e
 
 
-# 9. Clear missions and events
+# 8. Clear missions and events
 def clear_menu():
     try:
         system("clear")
@@ -274,11 +270,25 @@ def clear_menu():
         print "\nService call failed: %s"%e
 
 
+# 9. Car speed 1 m/s:
+def car_speed_menu():
+    system("rostopic pub --once /drc_vehicle_xp900/speed/cmd std_msgs/Float64 \"data: 1.0\"")
+    system("clear")
+    print "Car moving at 1m/s"
+
+
 # 10. Car speed 2 m/s:
 def car_speed_2_menu():
     system("rostopic pub --once /drc_vehicle_xp900/speed/cmd std_msgs/Float64 \"data: 2\"")
     system("clear")
     print "Car moving at 2m/s"
+
+
+# 11. Human target start walking according to the given trajectory:
+def human_target_start_trajectory():
+    system("rosservice call /target_node/start_trajectory \"{}\"")
+    system("clear")
+    print "Human target moving."
 
 
 # Finish the execution directly when Ctrl+C is pressed (signal.SIGINT received), without escalating to SIGTERM.
