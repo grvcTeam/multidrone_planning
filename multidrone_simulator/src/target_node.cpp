@@ -175,7 +175,7 @@ Target::Target()
     if (!autostart) {
       ROS_INFO("Target waiting for the start_trajectory service to start moving according to the trajectory.");
       while (ros::ok && !start_trajectory_srv_received) {
-        ros::Rate loop_rate(1); //[Hz]
+        ros::Rate loop_rate(update_rate); // update_rate [Hz]
         loop_rate.sleep();
         ros::spinOnce();
       }
