@@ -67,7 +67,7 @@
     <include file="$(find multidrone_simulator)/launch/target_node.launch">
         <arg name="x" value="-30.962941"/>
         <arg name="y" value="3.489969"/>
-        <arg name="z" value="0.0"/>
+        <arg name="z" value="0.05"/>
         <arg name="ori_x" value="0.0"/>
         <arg name="ori_y" value="0.0"/>
         <arg name="ori_z" value="-0.935917"/>

@@ -46,7 +46,7 @@
     <!-- Include human target -->
     <include>
       <uri>model://target</uri>
-      <pose>-30.962941 3.489969 0 0 0 -0.935917</pose>
+      <pose>-30.962941 3.489969 0.05 0 0 -0.935917</pose>
       <name>target</name>
     </include>
 
