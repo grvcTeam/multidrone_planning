@@ -36,6 +36,7 @@ public:
     double max_x_=0;
     double min_y_=0;
     double max_y_=0;
+    bool parsed_correctly_ = true;
 };  // end KMLparser class
 #endif
 
