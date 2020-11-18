@@ -35,13 +35,12 @@ Apart from the documentation in the Wiki, you can find a detailed description of
 For a general overview of the architecture for cinematography with multiple drones:
 
 ```
-@article{alcantara_arxiv20,
+@article{alcantara_ACCESS20, 
+    author={A. {Alcántara} and J. {Capitán} and A. {Torres-González} and R. {Cunha} and A. {Ollero}},
+    journal={IEEE Access},
     title={Autonomous Execution of Cinematographic Shots with Multiple Drones},
-    author={Alfonso Alcántara and Jesús Capitán and Arturo Torres-González and Rita Cunha and Aníbal Ollero},
     year={2020},
-    eprint={2006.12163},
-    archivePrefix={arXiv},
-    primaryClass={cs.RO}
+    doi={10.1109/ACCESS.2020.3036239}
 }
 ```
 
