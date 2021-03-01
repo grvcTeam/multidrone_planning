@@ -47,21 +47,20 @@ For a general overview of the architecture for cinematography with multiple dron
 For details about planning methods in cinematography missions with multiple drones:
 
 ```
-@article{caraballo_arxiv20,
-    title={Autonomous Planning for Multiple Aerial Cinematographers},
-    author={Luis-Evaristo Caraballo and Angel Montes-Romero and Jose-Miguel Diaz-Bañez and Jesss Capitan and Arturo Torres-Gonzalez and Anibal Ollero},
-    year={2020},
-    eprint={2005.07237},
-    archivePrefix={arXiv},
-    journal = {ArXiv e-prints},
-    primaryClass={cs.RO}
+@inproceedings{caraballo_iros20, 
+    address = {Las Vegas, USA}, 
+    author = {Caraballo, Luis Evaristo and Montes-Romero, Angel and Diaz-Ba{\~{n}}ez, Jose Miguel and Capitan, Jesus and Torres-Gonzalez, Arturo and Ollero, Anibal}, 
+    booktitle = {International Conference on Intelligent Robots and Systems (IROS)}, 
+    title = {{Autonomous Planning for Multiple Aerial Cinematographers}}, 
+    year = {2020},
+    url = {https://ras.papercept.net/proceedings/IROS20/1119.pdf}
 }
 ```
 
 For director tools to design cinematography missions with multiple drones and details about the XML language for mission description:
 
 ```
-@Article{montes_arxiv20,
+@Article{montes_appsci20,
 AUTHOR = {Montes-Romero, Ángel and Torres-González, Arturo and Capitán, Jesús and Montagnuolo, Maurizio and Metta, Sabino and Negro, Fulvio and Messina, Alberto and Ollero, Aníbal},
 TITLE = {Director Tools for Autonomous Media Production with a Team of Drones},
 JOURNAL = {Applied Sciences},
