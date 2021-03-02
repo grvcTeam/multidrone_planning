@@ -151,7 +151,7 @@ Executor::Executor(int _argc, char** _argv)
               0, -1,  0,
               0,  0, -1;
 
-  std::cout << "Gimbal position is \n" << p_C_B << "\n\n";
+  // std::cout << "Gimbal position is \n" << p_C_B << "\n\n";
   
   // Wait until having initial drone pose
   while (!has_drone_pose_ || !has_drone_vel_ && ros::ok()) { 
@@ -243,7 +243,7 @@ void Executor::timerCallback(const ros::TimerEvent&)
           parameters_set = false;
           feedback_.status= true;
           server_->publishFeedback(feedback_);
-          std::cout << "GOT A SA\n\n";
+          // std::cout << "GOT A SA\n\n";
         }
       }
       break;
@@ -568,7 +568,7 @@ bool Executor::ManualControlServiceCallback(multidrone_msgs::ManualControls::Req
 }  
 
 void Executor::focus_reset_tree(int beg, int end){
-  std::cout << " Starting Auto Focus" << "\n";
+  // std::cout << " Starting Auto Focus" << "\n";
   int BEST, low_left, high_left = -1, low_right = -1, high_right, curr, curr_left, curr_right;
   bool  stop_left, stop_right;
   multidrone_msgs::CameraControl camera_control_msg_;
@@ -660,7 +660,7 @@ void Executor::focus_reset_tree(int beg, int end){
   camera_control_client_.call(camera_control_msg_);
   std::this_thread::sleep_for(std::chrono::milliseconds(1000));
   f_reset = true;
-  std::cout << " Done. Focus value is  " << BEST <<"\n";
+  // std::cout << " Done. Focus value is  " << BEST <<"\n";
 }
 
 void Executor::setMountModeParameters()
@@ -985,16 +985,16 @@ void Executor::actionCallback()
     duration_                       =  goal_.shooting_action.duration;
     length_                         =  goal_.shooting_action.length;
     rt_mode_                        =  goal_.shooting_action.rt_mode;
-    std::cout << "rt_mode_ is " << (int)rt_mode_ << "\n";
+    // std::cout << "rt_mode_ is " << (int)rt_mode_ << "\n";
     if (rt_mode_ != multidrone_msgs::ShootingAction::RT_MODE_VIRTUAL_TRAJ){
       rt_id_                        =  goal_.shooting_action.rt_id;
-      std::cout << "rt_id_ is " << (int)rt_id_ << "\n"; 
+      // std::cout << "rt_id_ is " << (int)rt_id_ << "\n"; 
     }      
     shooting_mode_                  =  goal_.shooting_action.shooting_roles[0].target_identifier_type.type;  
 
     if (shooting_mode_ == multidrone_msgs::TargetIdentifierType::GPS){
       shooting_id_                  =  (uint8_t) target_parameters_["ID"];
-      std::cout << "shooting_id_ is " << (int)shooting_id_ << "\n";      
+      // std::cout << "shooting_id_ is " << (int)shooting_id_ << "\n";      
     }      
     else if (shooting_mode_ == multidrone_msgs::TargetIdentifierType::VISUAL){
       multidrone_msgs::FollowTarget follow_target_msg;
@@ -1008,7 +1008,7 @@ void Executor::actionCallback()
       follow_target_msg.request.target_id = 0;
       follow_target_msg.request.target_type.type = 1;
       follow_target_client_.call(follow_target_msg);      
-      std::cout << "VISUAL_GPS shooting_id_ is " << (int)shooting_id_ << "\n";
+      // std::cout << "VISUAL_GPS shooting_id_ is " << (int)shooting_id_ << "\n";
     }
     else if (shooting_mode_ == multidrone_msgs::TargetIdentifierType::NONE){
       pan_s                         =  target_parameters_["pan_s"];
@@ -1126,9 +1126,9 @@ void Executor::actionCallback()
       server_->publishFeedback(feedback_);
       return;
     }
-    std::cout << "shooting_action_ is " << (int)shooting_action_ << "\n";
-    std::cout << "trailer.ry is "       << trailer.ry            << "\n";
-    std::cout << "trailer.altitude is " << trailer.altitude      << "\n";
+    // std::cout << "shooting_action_ is " << (int)shooting_action_ << "\n";
+    // std::cout << "trailer.ry is "       << trailer.ry            << "\n";
+    // std::cout << "trailer.altitude is " << trailer.altitude      << "\n";
       
     trailer.r << trailer.rx, trailer.ry;
     trailer.r_dot << trailer.rx_dot, trailer.ry_dot;
