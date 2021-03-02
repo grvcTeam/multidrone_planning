@@ -1,6 +1,6 @@
 # Autonomous cinematograpy with multiple drones #
 
-This repository containts a software architecture with algorithms for cooperative planning and mission execution in autonomous cinematography with multiple drones. This work was developed within the framework of the [_MultiDrone_](https://multidrone.eu/) project.
+This repository contains a software architecture with algorithms for cooperative planning and mission execution in autonomous cinematography with multiple drones. This work was developed within the framework of the [_MultiDrone_](https://multidrone.eu/) project.
 
 ## How to install ##
 
@@ -35,34 +35,32 @@ Apart from the documentation in the Wiki, you can find a detailed description of
 For a general overview of the architecture for cinematography with multiple drones:
 
 ```
-@article{alcantara_arxiv20,
+@article{alcantara_ACCESS20, 
+    author={A. {Alcántara} and J. {Capitán} and A. {Torres-González} and R. {Cunha} and A. {Ollero}},
+    journal={IEEE Access},
     title={Autonomous Execution of Cinematographic Shots with Multiple Drones},
-    author={Alfonso Alcántara and Jesús Capitán and Arturo Torres-González and Rita Cunha and Aníbal Ollero},
     year={2020},
-    eprint={2006.12163},
-    archivePrefix={arXiv},
-    primaryClass={cs.RO}
+    doi={10.1109/ACCESS.2020.3036239}
 }
 ```
 
 For details about planning methods in cinematography missions with multiple drones:
 
 ```
-@article{caraballo_arxiv20,
-    title={Autonomous Planning for Multiple Aerial Cinematographers},
-    author={Luis-Evaristo Caraballo and Angel Montes-Romero and Jose-Miguel Diaz-Bañez and Jesss Capitan and Arturo Torres-Gonzalez and Anibal Ollero},
-    year={2020},
-    eprint={2005.07237},
-    archivePrefix={arXiv},
-    journal = {ArXiv e-prints},
-    primaryClass={cs.RO}
+@inproceedings{caraballo_iros20, 
+    address = {Las Vegas, USA}, 
+    author = {Caraballo, Luis Evaristo and Montes-Romero, Angel and Diaz-Ba{\~{n}}ez, Jose Miguel and Capitan, Jesus and Torres-Gonzalez, Arturo and Ollero, Anibal}, 
+    booktitle = {International Conference on Intelligent Robots and Systems (IROS)}, 
+    title = {{Autonomous Planning for Multiple Aerial Cinematographers}}, 
+    year = {2020},
+    url = {https://ras.papercept.net/proceedings/IROS20/1119.pdf}
 }
 ```
 
 For director tools to design cinematography missions with multiple drones and details about the XML language for mission description:
 
 ```
-@Article{montes_arxiv20,
+@Article{montes_appsci20,
 AUTHOR = {Montes-Romero, Ángel and Torres-González, Arturo and Capitán, Jesús and Montagnuolo, Maurizio and Metta, Sabino and Negro, Fulvio and Messina, Alberto and Ollero, Aníbal},
 TITLE = {Director Tools for Autonomous Media Production with a Team of Drones},
 JOURNAL = {Applied Sciences},
