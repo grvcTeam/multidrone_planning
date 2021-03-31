@@ -53,7 +53,7 @@ For details about planning methods in cinematography missions with multiple dron
     booktitle = {International Conference on Intelligent Robots and Systems (IROS)}, 
     title = {{Autonomous Planning for Multiple Aerial Cinematographers}}, 
     year = {2020},
-    url = {https://ras.papercept.net/proceedings/IROS20/1119.pdf}
+    doi = {10.1109/IROS45743.2020.9341622}
 }
 ```
 
